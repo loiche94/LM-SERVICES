@@ -1,46 +1,98 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
-    <title>Example Domain</title>
-
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type="text/css">
-    body {
-        background-color: #f0f0f2;
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LM-SERVICES Électricité</title>
+  <meta name="description" content="Dépannage et installation électrique - LM-SERVICES Électricité">
+  <style>
+    :root{
+      --blue-600: #0b67c2;
+      --blue-200: #d9e9fb;
+      --muted: #666;
+      --max-width: 1000px;
+      --radius: 12px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    div {
-        width: 600px;
-        margin: 5em auto;
-        padding: 2em;
-        background-color: #fdfdff;
-        border-radius: 0.5em;
-        box-shadow: 2px 3px 7px 2px rgba(0,0,0,0.02);
-    }
-    a:link, a:visited {
-        color: #38488f;
-        text-decoration: none;
-    }
-    @media (max-width: 700px) {
-        div {
-            margin: 0 auto;
-            width: auto;
-        }
-    }
-    </style>    
+    *{box-sizing:border-box}
+    body{margin:0;background:#f7f9fc;color:#111;line-height:1.5}
+    .container{max-width:var(--max-width);margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:18px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo svg{width:72px;height:72px}
+    h1{margin:0;font-size:20px}
+    .tag{color:var(--muted);font-size:13px}
+    .card{background:white;border-radius:var(--radius);box-shadow:0 6px 18px rgba(10,20,30,0.06);padding:22px;margin-top:18px}
+    .hero{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+    .hero .text{flex:1 1 320px}
+    .hero h2{margin:0 0 8px 0;color:var(--blue-600)}
+    .cta{display:inline-block;background:var(--blue-600);color:white;padding:10px 16px;border-radius:10px;text-decoration:none}
+    .two-cols{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:18px}
+    @media (max-width:880px){.two-cols{grid-template-columns:1fr}}
+    ul.services{list-style:none;padding:0;margin:0}
+    ul.services li{padding:10px 0;border-bottom:1px dashed #eee}
+    .muted{color:var(--muted)}
+    .contact-card p{margin:6px 0}
+    .contact-card a{color:var(--blue-600);text-decoration:none}
+    footer{margin-top:22px;text-align:center;color:var(--muted);font-size:13px}
+    form input, form textarea{width:100%;padding:10px;border:1px solid #e6e9ef;border-radius:8px;margin-top:8px}
+    form button{margin-top:10px;padding:10px 14px;border-radius:8px;border:0;background:var(--blue-600);color:white}
+  </style>
 </head>
-
 <body>
-<div>
-    <h1>Example Domain</h1>
-    <p>This domain is for use in illustrative examples in documents. You may use this
-    domain in literature without prior coordination or asking for permission.</p>
-    <p><a href="https://www.iana.org/domains/example">More information...</a></p>
-</div>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 60 C30 10,70 10,90 60" fill="none" stroke="#0b67c2" stroke-width="5" stroke-linecap="round"/>
+          <path d="M15 70 C35 20,65 20,85 70" fill="none" stroke="#58a0e6" stroke-width="3" stroke-linecap="round"/>
+          <rect x="5" y="72" width="18" height="14" rx="3" fill="#0b67c2"/>
+          <rect x="77" y="72" width="18" height="14" rx="3" fill="#0b67c2"/>
+          <rect x="40" y="68" width="20" height="20" rx="4" fill="#e9f4ff" stroke="#0b67c2"/>
+          <circle cx="50" cy="78" r="3" fill="#0b67c2"/>
+        </svg>
+
+        <div>
+          <h1>LM-SERVICES <span style="font-weight:600">Électricité</span></h1>
+          <div class="tag">Dépannages • Installations • Petits travaux</div>
+        </div>
+      </div>
+    </header>
+    <section class="card hero">
+      <div class="text">
+        <h2>Électricien qualifié — dépannage rapide et installations sûres</h2>
+        <p class="muted">LM-SERVICES intervient pour tous vos besoins électriques : urgence, rénovation, installations neuves et maintenance. Nous proposons également des petits travaux complémentaires (jardinage, peinture, entretien) pour vous offrir une solution pratique et complète.</p>
+        <p><a class="cta" href="#contact">Contactez-nous</a></p>
+      </div>
+    </section>
+    <div class="two-cols">
+      <main>
+        <section class="card">
+          <h3>À propos</h3>
+          <p>LM-SERVICES Électricité est une entreprise artisanale spécialisée dans le dépannage et les installations électriques pour les particuliers et les petits professionnels. Nous mettons l'accent sur la sécurité, la qualité du travail et la transparence des prix.</p>
+        </section>
+        <section class="card">
+          <h3>Nos services</h3>
+          <ul class="services">
+            <li><strong>Dépannage électrique d'urgence</strong></li>
+            <li><strong>Installations & rénovations</strong></li>
+            <li><strong>Mises aux normes</strong></li>
+            <li><strong>Maintenance préventive</strong></li>
+            <li><strong>Petits travaux complémentaires</strong></li>
+          </ul>
+        </section>
+      </main>
+      <aside>
+        <div class="card contact-card" id="contact">
+          <h4>Contact</h4>
+          <p>Téléphone : <a href="tel:+33689492263">+33 6 89 49 22 63</a></p>
+          <p>E-mail : <a href="mailto:lm-services02@outlook.fr">lm-services02@outlook.fr</a></p>
+        </div>
+      </aside>
+    </div>
+    <footer>
+      <p>© LM-SERVICES Électricité</p>
+    </footer>
+  </div>
 </body>
 </html>
