@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LM-SERVICES - Avis Clients</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        .testimonials {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .testimonial {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        .testimonial:hover {
+            transform: translateX(10px);
+        }
+        .stars {
+            color: #ffc107;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .testimonial p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .author {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .date {
+            color: #999;
+            font-size: 0.9em;
+        }
+        .review-form {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+        }
+        .review-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .rating-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .rating-stars {
+            display: inline-flex;
+            gap: 10px;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        .rating-stars span {
+            color: #ddd;
+            transition: color 0.2s;
+        }
+        .rating-stars span:hover,
+        .rating-stars span.selected {
+            color: #ffc107;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+            font-size: 1em;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 LM-SERVICES 🌟</h1>
+        <p class="subtitle">Découvrez les avis de nos clients</p>
+        
+        <div class="testimonials">
+            <!-- Les avis seront chargés ici -->
+        </div>
+
+        <div class="review-form">
+            <h2>✍️ Laissez votre avis</h2>
+            <div class="rating-section">
+                <label>Votre note :</label>
+                <div class="rating-stars" id="ratingStars">
+                    <span data-rating="1">★</span>
+                    <span data-rating="2">★</span>
+                    <span data-rating="3">★</span>
+                    <span data-rating="4">★</span>
+                    <span data-rating="5">★</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="reviewText">Votre commentaire :</label>
+                <textarea id="reviewText" placeholder="Partagez votre expérience avec LM-SERVICES..."></textarea>
+            </div>
+            <button class="submit-btn" onclick="submitReview()">Publier mon avis</button>
+        </div>
+    </div>
+
+    <script>
+        let rating = 0;
+        const stars = document.querySelectorAll('.rating-stars span');
+
+        // Gestion des étoiles
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                rating = parseInt(this.getAttribute('data-rating'));
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+
+        // Soumettre l'avis
+        function submitReview() {
+            const reviewText = document.getElementById('reviewText').value.trim();
+            if (rating === 0 || !reviewText) {
+                alert('Veuillez sélectionner une note et écrire un commentaire.');
+                return;
+            }
+
+            const review = {
+                text: reviewText,
+                rating: rating,
+                author: 'Anonyme',
+                date: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })
+            };
+
+            let reviews = [];
+            try { reviews = JSON.parse(localStorage.getItem('lm_reviews') || '[]'); } catch(e) { reviews = []; }
+            reviews.push(review);
+            try { localStorage.setItem('lm_reviews', JSON.stringify(reviews)); } catch(e) {}
+
+            alert('Merci pour votre avis !');
+            document.getElementById('reviewText').value = '';
+            rating = 0;
+            stars.forEach(s => s.classList.remove('selected'));
+            
+            // Rafraîchir la liste des avis
+            addReviewToDOM(review);
+        }
+
+        function addReviewToDOM(review) {
+            const testimonials = document.querySelector('.testimonials');
+            if (!testimonials) return;
+            
+            const d = document.createElement('div');
+            d.className = 'testimonial';
+            d.innerHTML = `
+                <div class="stars">${'★'.repeat(review.rating)}</div>
+                <p>${review.text}</p>
+                <div class="author">– ${review.author}</div>
+                <div class="date">${review.date}</div>
+            `;
+            testimonials.insertBefore(d, document.querySelector('.review-form'));
+        }
+
+        // Charger les avis existants
+        window.addEventListener('load', function() {
+            try {
+                const reviews = JSON.parse(localStorage.getItem('lm_reviews') || '[]');
+                reviews.forEach(review => addReviewToDOM(review));
+            } catch(e) {}
+        });
+    </script>
+</body>
+</html>
