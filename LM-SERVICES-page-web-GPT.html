@@ -1,237 +1,416 @@
-<!DOCTYPE html>
+Version GROK 3:
+
+
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LM-SERVICES - Avis Clients</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        h1 {
-            text-align: center;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.2em;
-        }
-        .testimonials {
-            display: grid;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .testimonial {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease;
-        }
-        .testimonial:hover {
-            transform: translateX(10px);
-        }
-        .stars {
-            color: #ffc107;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .testimonial p {
-            color: #333;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .author {
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .date {
-            color: #999;
-            font-size: 0.9em;
-        }
-        .review-form {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
-            border-radius: 15px;
-            color: white;
-        }
-        .review-form h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .rating-section {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .rating-stars {
-            display: inline-flex;
-            gap: 10px;
-            font-size: 2em;
-            cursor: pointer;
-        }
-        .rating-stars span {
-            color: #ddd;
-            transition: color 0.2s;
-        }
-        .rating-stars span:hover,
-        .rating-stars span.selected {
-            color: #ffc107;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            resize: vertical;
-            min-height: 120px;
-            font-family: inherit;
-            font-size: 1em;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: white;
-            color: #667eea;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .submit-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LM-SERVICES - Dépannage & Installation Électrique</title>
+  <meta name="description" content="LM-SERVICES - Dépannage et installation électrique à Empuriabrava. Intervention rapide, installations sûres, diagnostic professionnel.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --accent: #0077ff; --muted: #6b7280; }
+    * { box-sizing: border-box; }
+    body { font-family: Inter, system-ui, Arial, sans-serif; margin: 0; background: radial-gradient(circle at 10% 10%, #071129 0%, #030409 40%, #071019 100%); color: #e6eef8; min-height: 100vh; position: relative; overflow-x: hidden; }
+    header { padding: 28px 20px; text-align: center; }
+    .hero { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 18px; position: relative; }
+    .hero-cable { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.06; filter: grayscale(60%) blur(1px); z-index: 0; pointer-events: none; animation: fadeIn 2s infinite alternate; }
+    @keyframes fadeIn { from { opacity: 0.06; } to { opacity: 0.12; } }
+    .hero-inner { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .logo-wrap { position: relative; width: 320px; height: 250px; display: grid; place-items: center; cursor: pointer; }
+    .logo { width: 220px; height: auto; z-index: 5; display: block; transition: transform 0.3s ease, filter 0.3s ease; }
+    .logo:hover { transform: scale(1.1) rotate(5deg); filter: brightness(1.2); }
+    .arc-svg { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+    .arc { stroke: var(--accent); stroke-width: 3; fill: none; stroke-linecap: round; filter: drop-shadow(0 6px 18px rgba(255, 165, 0, 0.25)); }
+    .arc-anim { stroke-dasharray: 200; stroke-dashoffset: 200; animation: dash 2.2s linear infinite, glow 1.8s ease-in-out infinite alternate; }
+    .arc-anim.delay { animation-delay: 0.5s; }
+    @keyframes dash { to { stroke-dashoffset: 0; } }
+    @keyframes glow { from { filter: drop-shadow(0 4px 6px rgba(255, 165, 0, 0.05)); } to { filter: drop-shadow(0 12px 32px rgba(255, 165, 0, 0.45)); } }
+    .spark { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(45deg, white, #ffaa00); box-shadow: 0 0 12px 4px rgba(255, 165, 0, 0.25); opacity: 0; }
+    .spark.active { animation: sparkPulse 1.5s ease-out infinite; }
+    @keyframes sparkPulse { 0% { opacity: 0; transform: scale(0); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(1.5); } }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.04); padding: 18px; border-radius: 12px; max-width: 1000px; margin: 18px auto; position: relative; z-index: 2; transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 880px) { .grid { grid-template-columns: 2fr 1fr; } }
+    h1 { font-size: 24px; margin: 0; animation: fadeInText 2s ease-in-out; }
+    @keyframes fadeInText { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    p.lead { color: var(--muted); margin: 4px 0 0; }
+    .breakers { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; margin-top: 12px; }
+    .breaker { width: 86px; background: linear-gradient(180deg, #071226 0%, #041423 100%); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .breaker:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0,119,255,0.3); }
+    .breaker img { width: 56px; height: 56px; object-fit: contain; transition: transform 0.3s ease; }
+    .breaker:hover img { transform: scale(1.1); }
+    .cta { display: flex; gap: 10px; align-items: center; }
+    .btn { background: linear-gradient(90deg, var(--accent), #00a3ff); padding: 10px 14px; border-radius: 10px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 8px 30px rgba(0,119,255,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,119,255,0.25); }
+    .btn.secondary { background: transparent; border: 1px solid rgba(255,255,255,0.06); color: var(--accent); }
+    footer { padding: 18px; text-align: center; color: var(--muted); font-size: 14px; }
+    .chat-floating { position: fixed; right: 20px; bottom: 18px; width: 360px; max-width: calc(100% - 40px); z-index: 1200; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .chat-header { background: linear-gradient(90deg, var(--accent), #0088ff); padding: 10px; border-radius: 12px 12px 0 0; color: white; display: flex; align-items: center; gap: 10px; transition: transform 0.3s ease; }
+    .chat-header:hover { transform: scale(1.02); }
+    .chat-body { background: #06101a; padding: 12px; border-radius: 0 0 12px 12px; border: 1px solid rgba(255,255,255,0.03); max-height: 380px; overflow: auto; }
+    .msg { padding: 8px 10px; border-radius: 10px; margin-bottom: 8px; max-width: 78%; transition: transform 0.3s ease; }
+    .msg:hover { transform: translateX(5px); }
+    .msg.client { background: linear-gradient(180deg, rgba(0,119,255,0.14), rgba(0,119,255,0.06)); margin-left: auto; }
+    .msg.me { background: rgba(255,255,255,0.04); }
+    .chat-input { display: flex; gap: 8px; padding: 8px; border-top: 1px solid rgba(255,255,255,0.02); }
+    .chat-input input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); background: transparent; color: inherit; transition: border-color 0.3s ease; }
+    .chat-input input:focus { border-color: var(--accent); }
+    .small { font-size: 13px; color: var(--muted); }
+    @media (max-width: 420px) { .chat-floating { right: 10px; left: 10px; width: auto; } }
+    .logo-controls { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
+    .dropzone { border: 2px dashed rgba(255,255,255,0.04); padding: 10px; border-radius: 8px; text-align: center; color: var(--muted); font-size: 13px; cursor: pointer; transition: border-color 0.3s ease, transform 0.3s ease; }
+    .dropzone:hover { border-color: var(--accent); transform: scale(1.05); }
+    .testimonials { margin-top: 20px; }
+    .testimonial { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; margin-bottom: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .testimonial:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(0,119,255,0.2); }
+    .testimonial p { margin: 0 0 8px; }
+    .testimonial .author { font-style: italic; color: var(--muted); font-size: 12px; }
+    .stars { color: #ffd700; margin-bottom: 5px; }
+    .date { font-size: 11px; color: var(--muted); }
+    .breakers img { border-radius: 8px; }
+    .electric-arc { position: absolute; stroke: #ffaa00; stroke-width: 2; fill: none; opacity: 0.5; pointer-events: none; filter: url(#arc-glow); }
+    .electric-arc-anim { animation: arcPulse 3s infinite; }
+    @keyframes arcPulse { 0% { stroke-opacity: 0.5; } 50% { stroke-opacity: 0.8; } 100% { stroke-opacity: 0.5; } }
+    .review-form { margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; }
+    .review-form h3 { margin-top: 0; }
+    .review-form textarea { width: 100%; height: 100px; margin-bottom: 10px; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); background: transparent; color: #e6eef8; resize: vertical; }
+    .review-form .stars { cursor: pointer; user-select: none; }
+    .review-form .stars span { font-size: 24px; margin-right: 5px; }
+    .review-form .stars span:hover, .review-form .stars span.selected { color: #ffd700; }
+    .review-form button { background: linear-gradient(90deg, var(--accent), #00a3ff); padding: 10px 14px; border-radius: 10px; color: white; font-weight: 600; border: none; cursor: pointer; transition: transform 0.3s ease; }
+    .review-form button:hover { transform: translateY(-2px); }
+  </style>
+  <svg style="display:none">
+    <filter id="arc-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </svg>
 </head>
 <body>
-    <div class="container">
-        <h1>🌟 LM-SERVICES 🌟</h1>
-        <p class="subtitle">Découvrez les avis de nos clients</p>
-        
+  <header>
+    <div class="hero">
+      <img class="hero-cable" src="https://images.unsplash.com/photo-1581091215367-6b1b2d1c3f45?auto=format&fit=crop&w=1600&q=60" alt="câbles électriques décoratifs" onerror="this.style.display='none'">
+
+      <div class="hero-inner">
+        <div class="logo-wrap" id="logoWrap" onclick="triggerLogoAnimation()">
+          <img src="logo.png" alt="LM-SERVICES logo" class="logo" id="siteLogo">
+          <svg class="arc-svg" viewBox="-20 -20 340 260" preserveAspectRatio="xMidYMid meet" aria-hidden>
+            <path class="arc arc-anim" d="M10 180 C80 10 240 10 310 180" />
+            <path class="arc arc-anim delay" d="M20 160 C90 40 230 40 300 160" />
+            <path class="arc arc-anim" d="M40 190 C110 60 210 60 280 190" style="opacity:0.8" />
+          </svg>
+          <div class="spark" style="top: 20%; left: 30%;" id="spark1"></div>
+          <div class="spark" style="top: 40%; left: 70%;" id="spark2"></div>
+          <div class="spark" style="top: 70%; left: 40%;" id="spark3"></div>
+        </div>
+
+        <div style="text-align:center;">
+          <h1>LM-SERVICES - Dépannage & Installation Électrique</h1>
+          <p class="lead">Intervention rapide à Empuriabrava et alentours. Installation, dépannage, mise en conformité et conseils pro.</p>
+
+          <div class="logo-controls">
+            <label class="dropzone" id="dropzone">Cliquer ou déposer le logo ici</label>
+            <button class="btn secondary" id="clearLogo">Retirer logo</button>
+          </div>
+        </div>
+      </div>
+
+      <svg class="electric-arc" style="top: 10%; left: 10%; width: 150px; height: 100px;" viewBox="0 0 100 100">
+        <path class="electric-arc-anim" d="M 10 90 L 50 10 L 90 90" />
+      </svg>
+      <svg class="electric-arc" style="top: 20%; right: 10%; width: 120px; height: 80px;" viewBox="0 0 100 100">
+        <path class="electric-arc-anim" d="M 10 80 L 50 20 L 90 80" />
+      </svg>
+    </div>
+  </header>
+
+  <main class="card">
+    <div class="grid">
+      <section>
+        <h2>Nos services</h2>
+        <ul>
+          <li>Dépannage électrique urgent</li>
+          <li>Installation tableaux et disjoncteurs</li>
+          <li>Mise aux normes & diagnostics</li>
+          <li>Éclairage, prises, travaux domestiques</li>
+        </ul>
+        <div class="breakers" aria-hidden>
+          <div class="breaker">
+            <img data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5z0WjQbT8pI5yJ2Q8u8xX4kT0g2mL3eX8Qw&s" alt="tableau électrique 1" class="breaker-img">
+            <div class="small">Tableau Électrique</div>
+          </div>
+          <div class="breaker">
+            <img data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8r2rQJ0fQh5nP8uW8eY3iX6oH0h6R6eX8kQ&s" alt="tableau électrique 2" class="breaker-img">
+            <div class="small">Tableau Électrique</div>
+          </div>
+          <div class="breaker">
+            <img data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5z0WjQbT8pI5yJ2Q8u8xX4kT0g2mL3eX8Qw&s" alt="tableau électrique 3" class="breaker-img">
+            <div class="small">Tableau Électrique</div>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top:12px">Appelez-nous : <a href="tel:+336892263" class="btn" style="display:inline-block">+33 6 89 22 63</a> - Email : <a href="mailto:lm-services02@outlook.fr" class="btn secondary">lm-services02@outlook.fr</a></p>
+
+        <div style="margin-top:12px" class="cta">
+          <a class="btn" href="#contact" onclick="openChat()">Discutez maintenant</a>
+          <a class="btn secondary" href="#services">Nos offres</a>
+        </div>
+
         <div class="testimonials">
-            <!-- Les avis seront chargés ici -->
+          <h2>Témoignages clients</h2>
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>Super service sur Llança pour un pb de prises grillées! Merci pour les conseils. Je recommande LM services et reviendrai vers ce monsieur certainement !</p>
+            <div class="author">– Beyemeglaurence Garrigues</div>
+            <div class="date">Il y a 8 semaines</div>
+          </div>
+          <!-- Other testimonials remain unchanged -->
         </div>
 
         <div class="review-form">
-            <h2>✍️ Laissez votre avis</h2>
-            <div class="rating-section">
-                <label>Votre note :</label>
-                <div class="rating-stars" id="ratingStars">
-                    <span data-rating="1">★</span>
-                    <span data-rating="2">★</span>
-                    <span data-rating="3">★</span>
-                    <span data-rating="4">★</span>
-                    <span data-rating="5">★</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="reviewText">Votre commentaire :</label>
-                <textarea id="reviewText" placeholder="Partagez votre expérience avec LM-SERVICES..."></textarea>
-            </div>
-            <button class="submit-btn" onclick="submitReview()">Publier mon avis</button>
+          <h3>Laisser un avis</h3>
+          <textarea id="reviewText" placeholder="Partagez votre expérience..."></textarea>
+          <div class="stars" id="starRating">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+          </div>
+          <button onclick="submitReview()">Envoyer l'avis</button>
         </div>
+      </section>
+
+      <aside>
+        <h3>Infos rapides</h3>
+        <p class="small">Basé à Empuriabrava - interventions sur rendez-vous et urgences.</p>
+        <div style="margin-top:12px">
+          <strong>Horaires</strong>
+          <p class="small">Lun-Sam: 8:00 - 19:00 (urgences 24/7 sur demande)</p>
+        </div>
+
+        <div style="margin-top:14px">
+          <strong>Demander un devis</strong>
+          <p class="small">Envoyez un message via le chat (bouton en bas à droite) ou cliquez ici pour envoyer un email pré-rempli.</p>
+          <a class="btn" href="mailto:lm-services02@outlook.fr?subject=Demande%20de%20devis%20-%20LM-SERVICES" style="display:inline-block;margin-top:8px">Envoyer un mail</a>
+        </div>
+      </aside>
     </div>
 
-    <script>
-        let rating = 0;
-        const stars = document.querySelectorAll('.rating-stars span');
+    <svg class="electric-arc" style="top: 50%; left: 5%; width: 100px; height: 70px;" viewBox="0 0 100 100">
+      <path class="electric-arc-anim" d="M 10 90 L 50 30 L 90 90" />
+    </svg>
+    <svg class="electric-arc" style="top: 60%; right: 15%; width: 130px; height: 90px;" viewBox="0 0 100 100">
+      <path class="electric-arc-anim" d="M 10 80 L 50 20 L 90 80" />
+    </svg>
+  </main>
 
-        // Gestion des étoiles
-        stars.forEach(star => {
-            star.addEventListener('click', function() {
-                rating = parseInt(this.getAttribute('data-rating'));
-                stars.forEach((s, index) => {
-                    if (index < rating) {
-                        s.classList.add('selected');
-                    } else {
-                        s.classList.remove('selected');
-                    }
-                });
-            });
+  <div class="chat-floating" id="chatWidget" aria-live="polite">
+    <div class="chat-header" role="button" onclick="toggleChat()">
+      <div style="width:42px;height:42px;border-radius:8px;background:rgba(255,255,255,0.06);display:grid;place-items:center">LMS</div>
+      <div>
+        <div style="font-weight:700">Discussion</div>
+        <div class="small">Service client - LM-SERVICES</div>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody" style="display:none">
+      <div id="messages"></div>
+      <div class="chat-input">
+        <input id="msgInput" placeholder="Écrivez votre message...">
+        <button class="btn" onclick="sendMessage()">Envoyer</button>
+      </div>
+      <div style="padding:8px;font-size:12px;color:var(--muted)">Astuce : le chat envoie un email à l'adresse de la société si vous cliquez sur "Envoyer par e-mail".</div>
+      <div style="padding:8px;display:flex;gap:8px"><button class="btn secondary" onclick="sendEmailFromChat()">Envoyer par e-mail</button><button class="btn secondary" onclick="clearLocal()">Effacer local</button></div>
+    </div>
+  </div>
+
+  <footer>
+    © LM-SERVICES - Tous droits réservés. <span class="small">Conception simple pour GitHub Pages. Vous pouvez uploader un logo via le bouton "Cliquer ou déposer le logo ici" ou remplacer le fichier logo.png dans le repo.</span>
+    <svg class="electric-arc" style="top: -20px; left: 20%; width: 150px; height: 100px;" viewBox="0 0 100 100">
+      <path class="electric-arc-anim" d="M 10 90 L 50 10 L 90 90" />
+    </svg>
+  </footer>
+
+  <input type="file" id="logoFileInput" accept="image/*" style="display:none">
+
+  <script>
+    function makeFallbackSVG(text) {
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="100%" height="100%" rx="12" fill="#071226"/>' +
+                '<text x="50%" y="50%" fill="#ffffff" font-size="20" font-family="Arial" dominant-baseline="middle" text-anchor="middle">' + text + '</text></svg>';
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    }
+
+    function progressiveLoad() {
+      var imgs = document.querySelectorAll('img.breaker-img');
+      Array.prototype.forEach.call(imgs, function(img) {
+        var src = img.getAttribute('data-src');
+        if (!src) return;
+        img.src = src;
+        img.onerror = function() { img.onerror = null; img.src = makeFallbackSVG(img.alt || 'Image'); };
+      });
+    }
+
+    var logoInput = document.getElementById('logoFileInput');
+    var dropzone = document.getElementById('dropzone');
+    var clearBtn = document.getElementById('clearLogo');
+    var siteLogo = document.getElementById('siteLogo');
+    var sparks = [document.getElementById('spark1'), document.getElementById('spark2'), document.getElementById('spark3')];
+
+    function setLogoDataUrl(dataUrl) {
+      try { localStorage.setItem('lm_logo_dataurl', dataUrl); } catch(e) { console.warn('localStorage unavailable'); }
+      if (siteLogo) { siteLogo.src = dataUrl; siteLogo.style.display = 'block'; }
+    }
+    function removeLogo() {
+      try { localStorage.removeItem('lm_logo_dataurl'); } catch(e) {}
+      if (siteLogo) { siteLogo.src = 'logo.png'; }
+    }
+
+    function triggerLogoAnimation() {
+      siteLogo.style.transform = 'scale(1.2) rotate(10deg)';
+      siteLogo.style.filter = 'brightness(1.3)';
+      sparks.forEach(spark => {
+        spark.classList.add('active');
+        setTimeout(() => spark.classList.remove('active'), 1500);
+      });
+      setTimeout(() => {
+        siteLogo.style.transform = 'scale(1) rotate(0deg)';
+        siteLogo.style.filter = 'brightness(1)';
+      }, 500);
+    }
+
+    function createParticle(x, y) {
+      const particle = document.createElement('div');
+      particle.style.position = 'absolute';
+      particle.style.width = '5px';
+      particle.style.height = '5px';
+      particle.style.background = 'rgba(255, 165, 0, 0.8)';
+      particle.style.borderRadius = '50%';
+      particle.style.pointerEvents = 'none';
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      document.body.appendChild(particle);
+      animateParticle(particle);
+    }
+
+    function animateParticle(particle) {
+      const duration = Math.random() * 1.5 + 1;
+      const endX = Math.random() * (window.innerWidth - 10);
+      const endY = Math.random() * (window.innerHeight - 10);
+      particle.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: `translate(${endX - particle.offsetLeft}px, ${endY - particle.offsetTop}px) scale(0)`, opacity: 0 }
+      ], {
+        duration: duration * 1000,
+        easing: 'ease-out',
+        fill: 'forwards'
+      }).onfinish = () => particle.remove();
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      if (Math.random() > 0.7) {
+        createParticle(e.clientX, e.clientY);
+      }
+    });
+
+    if (dropzone) {
+      dropzone.addEventListener('click', function() { if (logoInput) logoInput.click(); });
+      dropzone.addEventListener('dragover', function(e) { e.preventDefault(); dropzone.style.borderColor = 'rgba(0,119,255,0.3)'; });
+      dropzone.addEventListener('dragleave', function(e) { e.preventDefault(); dropzone.style.borderColor = ''; });
+      dropzone.addEventListener('drop', function(e) { e.preventDefault(); dropzone.style.borderColor = ''; var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) handleFile(f); });
+    }
+    if (logoInput) { logoInput.addEventListener('change', function() { var f = logoInput.files && logoInput.files[0]; if (f) handleFile(f); }); }
+    if (clearBtn) { clearBtn.addEventListener('click', function() { removeLogo(); }); }
+
+    function handleFile(file) {
+      if (!file.type || file.type.indexOf('image/') !== 0) { alert('Veuillez fournir un fichier image.'); return; }
+      var reader = new FileReader();
+      reader.onload = function(ev) { setLogoDataUrl(ev.target.result); };
+      reader.onerror = function() { alert('Erreur lors de la lecture du fichier.'); };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      progressiveLoad();
+      var stored = null;
+      try { stored = localStorage.getItem('lm_logo_dataurl'); } catch(e) { stored = null; }
+      if (stored && siteLogo) { siteLogo.src = stored; siteLogo.style.display = 'block'; return; }
+
+      if (siteLogo) {
+        var names = ['logo.png', 'logo.svg', 'logo.jpg', 'logo.jpeg'];
+        var found = false;
+        names.forEach(function(name) {
+          var img = new Image();
+          img.onload = function() { if (siteLogo && !found) { siteLogo.src = name; siteLogo.style.display = 'block'; found = true; } };
+          img.onerror = function() {};
+          img.src = name;
         });
-
-        // Soumettre l'avis
-        function submitReview() {
-            const reviewText = document.getElementById('reviewText').value.trim();
-            if (rating === 0 || !reviewText) {
-                alert('Veuillez sélectionner une note et écrire un commentaire.');
-                return;
+        setTimeout(function() {
+          if (!found && siteLogo && siteLogo.src.indexOf('logo') === -1) {
+            siteLogo.style.display = 'none';
+            var wrap = document.getElementById('logoWrap');
+            if (wrap) {
+              var txt = document.createElement('div');
+              txt.innerHTML = '<div style="text-align:center"> <div style="font-weight:800;font-size:22px;color:var(--accent)">LM-SERVICES</div> <div style="font-size:13px;color:var(--muted)">Dépannage & Installation Électrique</div></div>';
+              wrap.appendChild(txt);
             }
+          }
+        }, 700);
+      }
+    });
 
-            const review = {
-                text: reviewText,
-                rating: rating,
-                author: 'Anonyme',
-                date: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })
-            };
+    var chatBody = document.getElementById('chatBody');
+    var messagesEl = document.getElementById('messages');
+    var input = document.getElementById('msgInput');
+    var STORAGE_KEY = 'lm_chat_messages_v1';
 
-            let reviews = [];
-            try { reviews = JSON.parse(localStorage.getItem('lm_reviews') || '[]'); } catch(e) { reviews = []; }
-            reviews.push(review);
-            try { localStorage.setItem('lm_reviews', JSON.stringify(reviews)); } catch(e) {}
+    function toggleChat() { if (!chatBody) return; if (chatBody.style.display === 'none') { chatBody.style.display = 'block'; loadMessages(); } else { chatBody.style.display = 'none'; } }
+    function openChat() { if (!chatBody) return; chatBody.style.display = 'block'; loadMessages(); window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
+    function loadMessages() { if (!messagesEl) return; messagesEl.innerHTML = ''; var saved = []; try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { saved = []; } for (var i = 0; i < saved.length; i++) { addMsgEl(saved[i].text, saved[i].from); } messagesEl.scrollTop = messagesEl.scrollHeight; }
+    function addMsgEl(text, from) { if (!messagesEl) return; var d = document.createElement('div'); d.className = 'msg ' + (from === 'client' ? 'client' : 'me'); d.textContent = text; messagesEl.appendChild(d); messagesEl.scrollTop = messagesEl.scrollHeight; }
+    function sendMessage() { if (!input) return; var t = input.value.trim(); if (!t) return; var arr = []; try { arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { arr = []; } arr.push({ text: t, from: 'client', ts: Date.now() }); try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch(e) {} addMsgEl(t, 'client'); input.value = ''; }
+    function clearLocal() { try { localStorage.removeItem(STORAGE_KEY); } catch(e) {} loadMessages(); }
+    function sendEmailFromChat() { if (!input) return; var saved = []; try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { saved = []; } if (saved.length === 0 && input.value.trim() === '') { alert('Aucun message à envoyer.'); return; } var lines = ['Conversation avec client:', '']; for (var j = 0; j < saved.length; j++) { var time = new Date(saved[j].ts).toLocaleString(); lines.push(time + ' - ' + saved[j].text); } if (input.value.trim() !== '') { lines.push('Client (draft): ' + input.value.trim()); } var body = lines.join('\n'); var subject = encodeURIComponent('Conversation site - nouveau message'); var mailto = 'mailto:lm-services02@outlook.fr?subject=' + subject + '&body=' + encodeURIComponent(body); window.location.href = mailto; }
+    if (input) { input.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } }); }
 
-            alert('Merci pour votre avis !');
-            document.getElementById('reviewText').value = '';
-            rating = 0;
-            stars.forEach(s => s.classList.remove('selected'));
-            
-            // Rafraîchir la liste des avis
-            addReviewToDOM(review);
+    let rating = 0;
+    const stars = document.querySelectorAll('#starRating span');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        rating = parseInt(star.getAttribute('data-value'));
+        stars.forEach(s => s.classList.remove('selected'));
+        for (let i = 0; i < rating; i++) {
+          stars[i].classList.add('selected');
         }
+      });
+    });
 
-        function addReviewToDOM(review) {
-            const testimonials = document.querySelector('.testimonials');
-            if (!testimonials) return;
-            
-            const d = document.createElement('div');
-            d.className = 'testimonial';
-            d.innerHTML = `
-                <div class="stars">${'★'.repeat(review.rating)}</div>
-                <p>${review.text}</p>
-                <div class="author">– ${review.author}</div>
-                <div class="date">${review.date}</div>
-            `;
-            testimonials.insertBefore(d, document.querySelector('.review-form'));
-        }
-
-        // Charger les avis existants
-        window.addEventListener('load', function() {
-            try {
-                const reviews = JSON.parse(localStorage.getItem('lm_reviews') || '[]');
-                reviews.forEach(review => addReviewToDOM(review));
-            } catch(e) {}
-        });
-    </script>
-</body>
-</html>
+    function submitReview() {
+      const reviewText = document.getElementById('reviewText').value.trim();
+      if (rating === 0 || !reviewText) {
+        alert('Veuillez sélectionner une note et écrire un commentaire.');
+        return;
+      }
+      const review = {
+        text: reviewText,
+        rating: rating,
+        author: 'Anonyme',
+        date: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })
+      };
+      let reviews = [];
+      try { reviews = JSON.parse(localStorage.getItem('lm_reviews') || '[]'); } catch(e) { reviews = []; }
+      reviews.push(review);
+      try { localStorage.setItem('lm_reviews', JSON.stringify(reviews)); } catch(e) {}
+      alert('Merci pour votre avis !');
+      document.getElementById('reviewText').value = '';
+      rating = 0;
+      stars.forEach(s => s.classList.remove('selected'));
+    }
+  </script>
