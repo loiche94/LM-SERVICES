@@ -1,84 +1,331 @@
 <!DOCTYPE html>
-<h2>Nos services</h2>
-<ul>
-  <li>Dépannage électrique urgent</li>
-  <li>Installation tableaux et disjoncteurs</li>
-  <li>Mise aux normes & diagnostics</li>
-  <li>Éclairage, prises, travaux domestiques</li>
-</ul>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LM-SERVICES | Électricien Professionnel Empuriabrava</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      padding: 40px 20px;
+      background: white;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .logo {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      border-radius: 50%;
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      box-shadow: 0 5px 20px rgba(37,99,235,0.4);
+    }
+    h1 {
+      color: #1e40af;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      color: #64748b;
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      color: #1e40af;
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 10px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .service-card {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #2563eb;
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card::before {
+      content: "⚡";
+      font-size: 2em;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .testimonial {
+      background: #f8fafc;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #fbbf24;
+    }
+    .testimonial .stars {
+      color: #fbbf24;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+    .testimonial .msg {
+      font-style: italic;
+      color: #475569;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .testimonial .author {
+      font-weight: bold;
+      color: #1e40af;
+    }
+    .testimonial .small {
+      color: #94a3b8;
+      font-size: 0.9em;
+      margin-left: 10px;
+    }
+    .review-form {
+      background: #eff6ff;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 25px;
+    }
+    .review-form h3 {
+      color: #1e40af;
+      margin-bottom: 15px;
+    }
+    .review-form input[type="text"],
+    .review-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    .review-form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .rating {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 15px;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    .rating input {
+      display: none;
+    }
+    .rating label {
+      color: #cbd5e1;
+      font-size: 2em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .rating input:checked ~ label,
+    .rating label:hover,
+    .rating label:hover ~ label {
+      color: #fbbf24;
+    }
+    .review-form button {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .review-form button:hover {
+      transform: scale(1.05);
+    }
+    .contact-info {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+    .contact-info a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 10px 0;
+      transition: transform 0.2s;
+    }
+    .whatsapp-btn:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8em; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">LM</div>
+      <h1>LM-SERVICES</h1>
+      <p class="tagline">Votre Électricien de Confiance à Empuriabrava</p>
+      <p class="tagline">Dépannage Rapide • Installation • Mise aux Normes</p>
+    </div>
 
-<div class="section">
-  <h2>Témoignages clients</h2>
+    <div class="section">
+      <h2>⚡ Nos Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Dépannage Urgent</h3>
+          <p>Intervention rapide 24/7 pour tous vos problèmes électriques urgents</p>
+        </div>
+        <div class="service-card">
+          <h3>Installation Complète</h3>
+          <p>Tableaux électriques, disjoncteurs et mise en conformité</p>
+        </div>
+        <div class="service-card">
+          <h3>Mise aux Normes</h3>
+          <p>Diagnostics professionnels et conformité réglementaire</p>
+        </div>
+        <div class="service-card">
+          <h3>Travaux Domestiques</h3>
+          <p>Éclairage, prises, rénovations électriques complètes</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Top !!! Ce deplace direct et fait du tres bon travail a des prix tres corect je recommende !👍👌</span> <span class="author"><a href="https://www.google.com/maps/contrib/107904787910697226140/reviews?hl=fr" target="_blank">Ornella Ornella</a></span><span class="small">Il y a 16 semaines</span></div>
-
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">★★★★★ Super service sur Llança pour un pb de prises grillées ! Merci pour les conseils. Je recommande LM services et reviendrai vers ce monsieur certainement !</span> <span class="author">– Beyemeglaurence Garrigues</span><span class="small">Il y a 8 semaines</span></div>
-
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Professionnel, rapide et efficace, je recommande sans hésiter.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231231/reviews?hl=fr" target="_blank">Eric Anglada</a></span><span class="small">Il y a 12 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Intervention parfaite, très bon rapport qualité prix.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231232/reviews?hl=fr" target="_blank">Sven Wessler</a></span><span class="small">Il y a 14 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très satisfait du service, ponctuel et compétent.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231233/reviews?hl=fr" target="_blank">Joan Abella</a></span><span class="small">Il y a 18 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Je recommande vivement, excellent électricien à Empuriabrava.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231234/reviews?hl=fr" target="_blank">Helene Ordner du Puytison</a></span><span class="small">Il y a 10 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très réactif et travail propre.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231235/reviews?hl=fr" target="_blank">Rudy Delsaut</a></span><span class="small">Il y a 9 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Intervention rapide pour une panne, merci !</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231236/reviews?hl=fr" target="_blank">Sabine Parolini</a></span><span class="small">Il y a 6 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Service sérieux et de confiance.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231237/reviews?hl=fr" target="_blank">Chloé Crnc</a></span><span class="small">Il y a 20 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Bon professionnel, je recommande.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231238/reviews?hl=fr" target="_blank">bruno kovalski</a></span><span class="small">Il y a 5 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très contente de l'intervention.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231239/reviews?hl=fr" target="_blank">martine bonnefoy</a></span><span class="small">Il y a 22 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Disponible et efficace.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231240/reviews?hl=fr" target="_blank">Thierry Lelong</a></span><span class="small">Il y a 7 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Rapide, clair et honnête.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231241/reviews?hl=fr" target="_blank">Jean Pierre Chaumay</a></span><span class="small">Il y a 11 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Je ferai encore appel à lui.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231242/reviews?hl=fr" target="_blank">Kader Ben Ali</a></span><span class="small">Il y a 13 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Travail impeccable et soigné.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231243/reviews?hl=fr" target="_blank">Pierre Oudoul</a></span><span class="small">Il y a 17 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très professionnel, je recommande.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231244/reviews?hl=fr" target="_blank">Melodie Pascual</a></span><span class="small">Il y a 4 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Au top, merci pour votre aide.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231245/reviews?hl=fr" target="_blank">Stephanie Pernin</a></span><span class="small">Il y a 2 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très compétent et ponctuel.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231246/reviews?hl=fr" target="_blank">Bruno DIAZ</a></span><span class="small">Il y a 15 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Bon contact, intervention rapide.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231247/reviews?hl=fr" target="_blank">Catherine Morant</a></span><span class="small">Il y a 3 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Service parfait.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231248/reviews?hl=fr" target="_blank">Nes Da</a></span><span class="small">Il y a 1 semaine</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très bon travail.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231249/reviews?hl=fr" target="_blank">Dounia Hamidi</a></span><span class="small">Il y a 19 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Je recommande.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231250/reviews?hl=fr" target="_blank">Josiane Thise</a></span><span class="small">Il y a 21 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Merci pour l'intervention rapide.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231251/reviews?hl=fr" target="_blank">Maeva Foroni</a></span><span class="small">Il y a 23 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très pro, je recommande.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231252/reviews?hl=fr" target="_blank">Jean-Claude Riviere</a></span><span class="small">Il y a 24 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Rapide et efficace.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231253/reviews?hl=fr" target="_blank">Jennifer Coulée</a></span><span class="small">Il y a 25 semaines</span></div>
-  <div class="testimonial"><span style="color:#FFD700; font-size:1.2em;">★★★★★</span><span class="msg">Très bonne expérience.</span> <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231254/reviews?hl=fr" target="_blank">groffy patisserie</a></span><span class="small">Il y a 26 semaines</span></div>
-
-  <!-- Ajoute ici d'autres témoignages si tu veux -->
-
-  <div class="review-form">
-    <h3>Laisser un avis</h3>
-    <form>
-      <input type="text" placeholder="Votre nom" required>
-
-      <div class="rating" style="display:flex; gap:6px; align-items:center;">
-        <input type="radio" id="star5" name="rating" value="5">
-        <label for="star5" style="color:#FFD700; font-size:1.4em; cursor:pointer;">★</label>
-        <input type="radio" id="star4" name="rating" value="4">
-        <label for="star4" style="color:#FFD700; font-size:1.4em; cursor:pointer;">★</label>
-        <input type="radio" id="star3" name="rating" value="3">
-        <label for="star3" style="color:#FFD700; font-size:1.4em; cursor:pointer;">★</label>
-        <input type="radio" id="star2" name="rating" value="2">
-        <label for="star2" style="color:#FFD700; font-size:1.4em; cursor:pointer;">★</label>
-        <input type="radio" id="star1" name="rating" value="1">
-        <label for="star1" style="color:#FFD700; font-size:1.4em; cursor:pointer;">★</label>
+    <div class="section">
+      <h2>⭐ Témoignages Clients</h2>
+      
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">Top !!! Ce deplace direct et fait du tres bon travail a des prix tres corect je recommende !👍👌</span>
+        <div>
+          <span class="author"><a href="https://www.google.com/maps/contrib/107904787910697226140/reviews?hl=fr" target="_blank">Ornella Ornella</a></span>
+          <span class="small">Il y a 16 semaines</span>
+        </div>
       </div>
 
-      <textarea placeholder="Votre avis" required></textarea>
-      <button type="submit">Valider</button>
-    </form>
-  </div>
-</div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">Professionnel, rapide et efficace, je recommande sans hésiter.</span>
+        <div>
+          <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231231/reviews?hl=fr" target="_blank">Eric Anglada</a></span>
+          <span class="small">Il y a 12 semaines</span>
+        </div>
+      </div>
 
-<div class="section">
-  <h2>Infos rapides</h2>
-  <div class="card">
-    <span><b>Basé à Empuriabrava</b> – interventions sur rendez-vous et urgences.</span>
-    <span class="small"><b>Horaires :</b> Lun-Sam: 8h00 - 19h00 (urgences 24/7 sur demande)</span>
-  </div>
-  <div class="contact">
-    <span class="contact-info">Appelez-nous : +33 6 89 22 63</span>
-    <span class="contact-info">Email : <a class="contact-link" href="mailto:lm-services02@outlook.fr">lm-services02@outlook.fr</a></span>
-    <span class="contact-info">Discuter maintenant via <a class="contact-link" href="https://wa.me/336892263">WhatsApp</a></span>
-    <span class="contact-info">Envoyer un mail rapide : <a class="contact-link" href="mailto:lm-services02@outlook.fr?subject=Demande%20LM-SERVICES">Envoyer un mail</a></span>
-  </div>
-</div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">Intervention parfaite, très bon rapport qualité prix.</span>
+        <div>
+          <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231232/reviews?hl=fr" target="_blank">Sven Wessler</a></span>
+          <span class="small">Il y a 14 semaines</span>
+        </div>
+      </div>
 
-<footer class="section small" style="text-align:center; color:#6b7280;">
-  LMS - Service client  |  © 2025 LM-SERVICES
-</footer>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">Très satisfait du service, ponctuel et compétent.</span>
+        <div>
+          <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231233/reviews?hl=fr" target="_blank">Joan Abella</a></span>
+          <span class="small">Il y a 18 semaines</span>
+        </div>
+      </div>
+
+      <div class="review-form">
+        <h3>📝 Laissez votre avis</h3>
+        <form>
+          <input type="text" placeholder="Votre nom" required>
+          <div class="rating">
+            <input type="radio" name="rating" id="star5" value="5">
+            <label for="star5">★</label>
+            <input type="radio" name="rating" id="star4" value="4">
+            <label for="star4">★</label>
+            <input type="radio" name="rating" id="star3" value="3">
+            <label for="star3">★</label>
+            <input type="radio" name="rating" id="star2" value="2">
+            <label for="star2">★</label>
+            <input type="radio" name="rating" id="star1" value="1">
+            <label for="star1">★</label>
+          </div>
+          <textarea placeholder="Partagez votre expérience avec LM-SERVICES..." required></textarea>
+          <button type="submit">Envoyer mon avis</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📞 Contactez-Nous</h2>
+      <div class="contact-info">
+        <p><strong>📍 Localisation:</strong> Empuriabrava, Costa Brava</p>
+        <p><strong>⏰ Horaires:</strong> Lun-Sam: 8h00 - 19h00</p>
+        <p><strong>🚨 Urgences:</strong> 24/7 sur demande</p>
+      </div>
+      <div class="contact-info">
+        <p><strong>📞 Téléphone:</strong> <a href="tel:+33689226363">+33 6 89 22 63 63</a></p>
+        <p><strong>📧 Email:</strong> <a href="mailto:lm-services02@outlook.fr">lm-services02@outlook.fr</a></p>
+      </div>
+      <div style="text-align: center;">
+        <a href="https://wa.me/33689226363" class="whatsapp-btn" target="_blank">💬 Discuter sur WhatsApp</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 LM-SERVICES | Service Électrique Professionnel</p>
+      <p>Empuriabrava • Costa Brava • Espagne</p>
+    </footer>
+  </div>
+</body>
+</html>
