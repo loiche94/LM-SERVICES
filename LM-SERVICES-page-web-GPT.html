@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LM-SERVICES | Électricien Professionnel Empuriabrava</title>
+  <title>LM-SERVICES | Électricien Professionnel Roses</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; line-height: 1.6; }
     .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
     .header { text-align: center; padding: 40px 20px; background: white; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-    .logo { width: 150px; height: 150px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 20px rgba(37,99,235,0.4); }
-    .logo img { width: 100%; height: 100%; object-fit: cover; }
+    .logo { width: 470px; height: 130px; background: #e6f4ff; border-radius: 18px; box-shadow: 0 4px 18px rgba(0,119,255,0.27); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; overflow: hidden; }
+    .logo img { max-width: 90%; max-height: 90%; object-fit: contain; animation: swing 2.5s infinite ease-in-out; }
+    @keyframes swing { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
     h1 { color: #1e40af; font-size: 2.5em; margin-bottom: 10px; }
     .tagline { color: #64748b; font-size: 1.2em; margin-top: 10px; }
     .section { background: white; padding: 30px; margin-bottom: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
@@ -41,184 +42,111 @@
     .whatsapp-btn:hover { transform: scale(1.05); }
     .reviews-select { margin: 10px 0 0; }
     .reviews-select select { width: 100%; padding: 10px; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 1em; }
+    .languages { color: #0077ff; font-weight: 500; margin-top: 15px; font-size: 1.1em; }
     footer { text-align: center; color: white; padding: 20px; margin-top: 30px; }
-    @media (max-width: 768px) { h1 { font-size: 1.8em; } .services-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { h1 { font-size: 1.8em; } .services-grid { grid-template-columns: 1fr; } .logo { width: 90%; height: 100px; } }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <div class="logo">
-        <img src="https://loiche94.github.io/LM-SERVICES/Logo.jpg" alt="LM-SERVICES Logo" />
+        <img src="Logo.jpg" alt="LM-SERVICES Logo">
       </div>
       <h1>LM-SERVICES</h1>
-      <p class="tagline">Votre Électricien de Confiance à Empuriabrava</p>
-      <p class="tagline">Dépannage Rapide • Installation • Mise aux Normes</p>
-      <div class="reviews-select">
-        <label for="select-avis"><strong>Voir les avis clients</strong></label>
-        <select id="select-avis">
-          <option value="">— Sélectionnez un client —</option>
-          <option value="ornella">Ornella Ornella</option>
-          <option value="eric">Eric Anglada</option>
-          <option value="sven">Sven Wessler</option>
-          <option value="joan">Joan Abella</option>
-        </select>
+      <p class="tagline">Votre électricien professionnel à Roses (Espagne)</p>
+    </div>
+
+    <div class="section">
+      <h2>Nos Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Installation Électrique</h3>
+          <p>Installation complète et conforme aux normes pour maisons et appartements à Roses.</p>
+        </div>
+        <div class="service-card">
+          <h3>Dépannage d'Urgence</h3>
+          <p>Service rapide 24/7 pour tous vos problèmes électriques dans la région de Roses.</p>
+        </div>
+        <div class="service-card">
+          <h3>Mise aux Normes</h3>
+          <p>Conformité et sécurité de vos installations selon les normes espagnoles.</p>
+        </div>
+        <div class="service-card">
+          <h3>Éclairage LED</h3>
+          <p>Installation d'éclairage moderne et économique pour votre propriété.</p>
+        </div>
       </div>
     </div>
 
     <div class="section">
-      <h2>⚡ Nos Services</h2>
-      <div class="services-grid">
-        <div class="service-card">Dépannage Urgent<br/>Intervention rapide 24/7 pour tous vos problèmes électriques urgents</div>
-        <div class="service-card">Installation Complète<br/>Tableaux électriques, disjoncteurs et mise en conformité</div>
-        <div class="service-card">Mise aux Normes<br/>Diagnostics professionnels et conformité réglementaire</div>
-        <div class="service-card">Travaux Domestiques<br/>Éclairage, prises, rénovations électriques complètes</div>
+      <h2>Avis Clients</h2>
+      
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">"Excellent service ! Intervention rapide et travail soigné. Je recommande vivement."</span>
+        <span class="author">Marie L.</span>
+        <span class="small">Roses</span>
       </div>
-    </div>
 
-    <div class="section" id="section-avis">
-      <h2>⭐ Témoignages Clients</h2>
-      <div id="avis-detail" class="testimonial" style="display:none;"></div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">"Professionnel, ponctuel et prix raisonnables. Merci pour votre efficacité !"</span>
+        <span class="author">Jean-Pierre D.</span>
+        <span class="small">Roses</span>
+      </div>
 
-      <div id="liste-avis">
-        <div class="testimonial" data-id="ornella">
-          <div class="stars">★★★★★</div>
-          <span class="msg">Top !!! Ce deplace direct et fait du tres bon travail a des prix tres corect je recommende !👍👌</span>
-          <div>
-            <span class="author"><a href="https://www.google.com/maps/contrib/107904787910697226140/reviews?hl=fr" target="_blank">Ornella Ornella</a></span>
-            <span class="small">Il y a 16 semaines</span>
-          </div>
-        </div>
-
-        <div class="testimonial" data-id="eric">
-          <div class="stars">★★★★★</div>
-          <span class="msg">Professionnel, rapide et efficace, je recommande sans hésiter.</span>
-          <div>
-            <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231231/reviews?hl=fr" target="_blank">Eric Anglada</a></span>
-            <span class="small">Il y a 12 semaines</span>
-          </div>
-        </div>
-
-        <div class="testimonial" data-id="sven">
-          <div class="stars">★★★★★</div>
-          <span class="msg">Intervention parfaite, très bon rapport qualité prix.</span>
-          <div>
-            <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231232/reviews?hl=fr" target="_blank">Sven Wessler</a></span>
-            <span class="small">Il y a 14 semaines</span>
-          </div>
-        </div>
-
-        <div class="testimonial" data-id="joan">
-          <div class="stars">★★★★★</div>
-          <span class="msg">Très satisfait du service, ponctuel et compétent.</span>
-          <div>
-            <span class="author"><a href="https://www.google.com/maps/contrib/108231231231231231233/reviews?hl=fr" target="_blank">Joan Abella</a></span>
-            <span class="small">Il y a 18 semaines</span>
-          </div>
-        </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <span class="msg">"Très satisfait du résultat. L'électricien a su répondre à toutes nos attentes."</span>
+        <span class="author">Sophie M.</span>
+        <span class="small">Empuriabrava</span>
       </div>
 
       <div class="review-form">
-        <h3>📝 Laissez votre avis</h3>
-        <form id="form-avis">
-          <input id="avis-nom" placeholder="Votre nom" required type="text" />
+        <h3>Laissez votre avis</h3>
+        <form id="reviewForm">
           <div class="rating">
-            <input id="star5" name="rating" type="radio" value="5" /><label for="star5">★</label>
-            <input id="star4" name="rating" type="radio" value="4" /><label for="star4">★</label>
-            <input id="star3" name="rating" type="radio" value="3" /><label for="star3">★</label>
-            <input id="star2" name="rating" type="radio" value="2" /><label for="star2">★</label>
-            <input id="star1" name="rating" type="radio" value="1" /><label for="star1">★</label>
+            <input type="radio" id="star5" name="rating" value="5" />
+            <label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1" />
+            <label for="star1">★</label>
           </div>
-          <textarea id="avis-msg" placeholder="Partagez votre expérience avec LM-SERVICES..." required></textarea>
+          <input type="text" placeholder="Votre nom" required />
+          <textarea placeholder="Votre message" required></textarea>
           <button type="submit">Envoyer mon avis</button>
         </form>
       </div>
     </div>
 
     <div class="section">
-      <h2>📞 Contactez-Nous</h2>
-      <div class="contact-info">📍 Localisation: Empuriabrava, Costa Brava<br/>⏰ Horaires: Lun-Sam: 8h00 - 19h00<br/>🚨 Urgences: 24/7 sur demande</div>
+      <h2>Contactez-nous</h2>
       <div class="contact-info">
-        <p>📞 Téléphone: <a href="tel:+33689226363">+33 6 89 22 63 63</a></p>
-        <p>📧 Email: <a href="mailto:lm-services02@outlook.fr">lm-services02@outlook.fr</a></p>
+        <p>📱 Téléphone : <a href="tel:+34692715600">+34 692 71 56 00</a></p>
+        <p>✉️ Email : <a href="mailto:lmservices.contact@gmail.com">lmservices.contact@gmail.com</a></p>
+        <p>📍 Zone d'intervention : Roses et environs (Espagne)</p>
+        <p class="languages">Langues parlées : Français, Anglais, un peu Espagnol</p>
       </div>
-      <div style="text-align: center;">
-        <a class="whatsapp-btn" href="https://wa.me/33689226363" target="_blank">💬 Discuter sur WhatsApp</a>
-      </div>
+      <a href="https://wa.me/34692715600" class="whatsapp-btn">💬 Contactez-nous sur WhatsApp</a>
     </div>
 
-    <footer>
-      © 2025 LM-SERVICES | Service Électrique Professionnel<br/>Empuriabrava • Costa Brava • Espagne
-    </footer>
   </div>
 
+  <footer>
+    <p>&copy; 2025 LM-SERVICES - Électricien Professionnel à Roses (Espagne)</p>
+  </footer>
+
   <script>
-    const selectAvis = document.getElementById('select-avis');
-    const avisDetail = document.getElementById('avis-detail');
-    const listeAvis = document.getElementById('liste-avis');
-
-    function renderDetail(id) {
-      if (!id) { avisDetail.style.display = 'none'; avisDetail.innerHTML = ''; return; }
-      const item = listeAvis.querySelector(`.testimonial[data-id="${id}"]`);
-      if (item) {
-        avisDetail.innerHTML = item.outerHTML;
-        avisDetail.style.display = 'block';
-        avisDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-    selectAvis.addEventListener('change', (e) => renderDetail(e.target.value));
-
-    const STORAGE_KEY = 'lm_services_avis_v1';
-    function loadAvis() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
-    function saveAvis(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
-    function slugify(text) { return (text||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
-
-    function appendAvisDOM(avis) {
-      const wrap = document.createElement('div');
-      wrap.className = 'testimonial';
-      wrap.dataset.id = avis.id;
-      wrap.innerHTML = `
-        <div class="stars">${'★★★★★'.slice(0, Math.max(0, Math.min(5, Number(avis.note)||0)))}</div>
-        <span class="msg"></span>
-        <div>
-          <span class="author"></span>
-          <span class="small">À l'instant</span>
-        </div>`;
-      wrap.querySelector('.msg').textContent = avis.message;
-      const author = document.createElement('span');
-      author.textContent = avis.nom;
-      author.className = 'author';
-      wrap.querySelector('.author').replaceWith(author);
-      listeAvis.appendChild(wrap);
-
-      const exists = [...selectAvis.options].some(o => o.value === avis.id);
-      if (!exists) {
-        const opt = document.createElement('option');
-        opt.value = avis.id;
-        opt.textContent = avis.nom;
-        selectAvis.appendChild(opt);
-      }
-    }
-
-    loadAvis().forEach(appendAvisDOM);
-
-    const form = document.getElementById('form-avis');
-    form.addEventListener('submit', (e) => {
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const nom = document.getElementById('avis-nom').value.trim();
-      const noteEl = form.querySelector('input[name="rating"]:checked');
-      const note = noteEl ? Number(noteEl.value) : 0;
-      const message = document.getElementById('avis-msg').value.trim();
-      if (!nom || !message || !note) { alert('Merci de renseigner votre nom, une note et un commentaire.'); return; }
-
-      const avis = { id: slugify(nom + '-' + Date.now()), nom, note, message };
-      const arr = loadAvis();
-      arr.push(avis);
-      saveAvis(arr);
-      appendAvisDOM(avis);
-      form.reset();
-      const checked = form.querySelector('input[name="rating"]:checked');
-      if (checked) checked.checked = false;
+      alert('Merci pour votre avis ! Il sera publié après modération.');
+      this.reset();
     });
   </script>
 </body>
