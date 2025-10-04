@@ -1,146 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LM-SERVICES | Électricien Professionnel Roses</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LM-SERVICES Électricien à Roses - Dépannage et installation</title>
+  <meta name="description" content="LM-SERVICES, électricien à Roses (Espagne). Dépannage, installation et services électriques professionnels. Disponible en Français, Anglais et Espagnol.">
+  <link rel="alternate" hreflang="fr" href="index.html">
+  <link rel="alternate" hreflang="en" href="index-en.html">
+  <link rel="alternate" hreflang="es" href="index-es.html">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; line-height: 1.6; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-    .header { text-align: center; padding: 40px 20px; background: white; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-    .logo { width: 470px; height: 130px; background: #e6f4ff; border-radius: 18px; box-shadow: 0 4px 18px rgba(0,119,255,0.27); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; overflow: hidden; }
-    .logo img { max-width: 90%; max-height: 90%; object-fit: contain; animation: swing 2.5s infinite ease-in-out; }
-    @keyframes swing { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
-    h1 { color: #1e40af; font-size: 2.5em; margin-bottom: 10px; }
-    .tagline { color: #64748b; font-size: 1.2em; margin-top: 10px; }
-    .section { background: white; padding: 30px; margin-bottom: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-    .section h2 { color: #1e40af; font-size: 2em; margin-bottom: 20px; border-bottom: 3px solid #2563eb; padding-bottom: 10px; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-    .service-card { background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 20px; border-radius: 10px; border-left: 4px solid #2563eb; transition: transform 0.3s; }
-    .service-card:hover { transform: translateY(-5px); }
-    .service-card::before { content: "⚡"; font-size: 2em; display: block; margin-bottom: 10px; }
-    .testimonial { background: #f8fafc; padding: 20px; margin-bottom: 15px; border-radius: 10px; border-left: 4px solid #fbbf24; }
-    .testimonial .stars { color: #fbbf24; font-size: 1.3em; margin-bottom: 10px; }
-    .testimonial .msg { font-style: italic; color: #475569; margin-bottom: 10px; display: block; }
-    .testimonial .author { font-weight: bold; color: #1e40af; }
-    .testimonial .small { color: #94a3b8; font-size: 0.9em; margin-left: 10px; }
-    .review-form { background: #eff6ff; padding: 25px; border-radius: 10px; margin-top: 25px; }
-    .review-form h3 { color: #1e40af; margin-bottom: 15px; }
-    .review-form input[type="text"], .review-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 1em; }
-    .review-form textarea { min-height: 100px; resize: vertical; }
-    .rating { display: flex; gap: 5px; margin-bottom: 15px; flex-direction: row-reverse; justify-content: flex-end; }
-    .rating input { display: none; }
-    .rating label { color: #cbd5e1; font-size: 2em; cursor: pointer; transition: color 0.2s; }
-    .rating input:checked ~ label, .rating label:hover, .rating label:hover ~ label { color: #fbbf24; }
-    .review-form button { background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 12px 30px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; transition: transform 0.2s; }
-    .review-form button:hover { transform: scale(1.05); }
-    .contact-info { background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 20px; border-radius: 10px; margin-bottom: 15px; font-size: 1.1em; }
-    .contact-info a { color: #2563eb; text-decoration: none; font-weight: bold; }
-    .contact-info a:hover { text-decoration: underline; }
-    .whatsapp-btn { display: inline-block; background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 10px 0; transition: transform 0.2s; }
-    .whatsapp-btn:hover { transform: scale(1.05); }
-    .reviews-select { margin: 10px 0 0; }
-    .reviews-select select { width: 100%; padding: 10px; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 1em; }
-    .languages { color: #0077ff; font-weight: 500; margin-top: 15px; font-size: 1.1em; }
-    footer { text-align: center; color: white; padding: 20px; margin-top: 30px; }
-    @media (max-width: 768px) { h1 { font-size: 1.8em; } .services-grid { grid-template-columns: 1fr; } .logo { width: 90%; height: 100px; } }
+    body {font-family: Arial, sans-serif; margin:0; padding:0; line-height:1.6;}
+    header {background:#003366; color:#fff; text-align:center; padding:2rem;}
+    header img {max-width:200px; display:block; margin:0 auto;}
+    nav {margin-top:1rem;}
+    nav a {color:#fff; margin:0 10px; text-decoration:none;}
+    section {padding:2rem;}
+    .services {display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:1rem;}
+    .card {border:1px solid #ddd; border-radius:8px; padding:1rem; background:#f9f9f9;}
+    form {max-width:500px; margin:auto;}
+    input, textarea {width:100%; margin:0.5rem 0; padding:0.8rem;}
+    button {background:#003366; color:#fff; border:none; padding:1rem; cursor:pointer;}
+    footer {background:#eee; padding:1rem; text-align:center;}
+    iframe {width:100%; height:300px; border:0;}
   </style>
+  <!-- Données structurées JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "name": "LM-SERVICES",
+    "image": "logo.png",
+    "telephone": "+33 689 49 22 63",
+    "email": "lm-services02@outlook.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Roses",
+      "addressRegion": "Catalogne",
+      "addressCountry": "ES"
+    },
+    "url": "https://votresite.github.io"
+  }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <img src="./Logo.jpg" alt="LM-SERVICES Logo" />
+  <header>
+    <img src="logo.png" alt="Logo LM-SERVICES">
+    <h1>LM-SERVICES - Électricien à Roses</h1>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#services">Nos Services</a>
+      <a href="#contact">Contact</a>
+      <select id="lang" onchange="location = this.value;">
+        <option value="index.html" selected>Français</option>
+        <option value="index-en.html">English</option>
+        <option value="index-es.html">Español</option>
+      </select>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>À propos</h2>
+    <p>LM-SERVICES est une entreprise d’électricité basée à Roses, spécialisée dans le dépannage, l’installation et la maintenance électrique pour particuliers et professionnels.</p>
+  </section>
+
+  <section id="services">
+    <h2>Nos Services</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Dépannage rapide</h3>
+        <p>Intervention urgente en cas de panne électrique.</p>
       </div>
-      <h1>LM-SERVICES</h1>
-      <p class="tagline">Votre électricien professionnel à Roses (Espagne)</p>
-    </div>
-    <div class="section">
-      <h2>Nos Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Installation Électrique</h3>
-          <p>Installation complète et conforme aux normes pour maisons et appartements à Roses.</p>
-        </div>
-        <div class="service-card">
-          <h3>Dépannage d'Urgence</h3>
-          <p>Service rapide 24/7 pour tous vos problèmes électriques dans la région de Roses.</p>
-        </div>
-        <div class="service-card">
-          <h3>Mise aux Normes</h3>
-          <p>Conformité et sécurité de vos installations selon les normes espagnoles.</p>
-        </div>
-        <div class="service-card">
-          <h3>Éclairage LED</h3>
-          <p>Installation d'éclairage moderne et économique pour votre propriété.</p>
-        </div>
+      <div class="card">
+        <h3>Installations</h3>
+        <p>Tableaux électriques, câblages, éclairage et équipements.</p>
       </div>
-    </div>
-    <div class="section">
-      <h2>Avis Clients</h2>
-      
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <span class="msg">"Excellent service ! Intervention rapide et travail soigné. Je recommande vivement."</span>
-        <span class="author">Marie L.</span>
-        <span class="small">Roses</span>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <span class="msg">"Professionnel, ponctuel et prix raisonnables. Merci pour votre efficacité !"</span>
-        <span class="author">Jean-Pierre D.</span>
-        <span class="small">Roses</span>
-      </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <span class="msg">"Très satisfait du résultat. L'électricien a su répondre à toutes nos attentes."</span>
-        <span class="author">Sophie M.</span>
-        <span class="small">Empuriabrava</span>
-      </div>
-      <div class="review-form">
-        <h3>Laissez votre avis</h3>
-        <form id="reviewForm">
-          <div class="rating">
-            <input type="radio" id="star5" name="rating" value="5" />
-            <label for="star5">★</label>
-            <input type="radio" id="star4" name="rating" value="4" />
-            <label for="star4">★</label>
-            <input type="radio" id="star3" name="rating" value="3" />
-            <label for="star3">★</label>
-            <input type="radio" id="star2" name="rating" value="2" />
-            <label for="star2">★</label>
-            <input type="radio" id="star1" name="rating" value="1" />
-            <label for="star1">★</label>
-          </div>
-          <input type="text" placeholder="Votre nom" required />
-          <textarea placeholder="Votre message" required></textarea>
-          <button type="submit">Envoyer mon avis</button>
-        </form>
+      <div class="card">
+        <h3>Maintenance</h3>
+        <p>Contrôles réguliers et mise en conformité des installations.</p>
       </div>
     </div>
-    <div class="section">
-      <h2>Contactez-nous</h2>
-      <div class="contact-info">
-        <p>📱 Téléphone : <a href="tel:+33689492263">+33 689 49 22 63</a></p>
-        <p>✉️ Email : <a href="mailto:lm-services02@outlook.fr">lm-services02@outlook.fr</a></p>
-        <p>📍 Zone d'intervention : Roses et environs (Espagne)</p>
-        <p class="languages">Langues parlées : Français, Anglais, un peu Espagnol</p>
-      </div>
-      <a href="https://wa.me/33689492263" class="whatsapp-btn">💬 Contactez-nous sur WhatsApp</a>
-    </div>
-  </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" name="name" placeholder="Votre nom" required>
+      <input type="email" name="email" placeholder="Votre email" required>
+      <input type="tel" name="phone" placeholder="Votre téléphone">
+      <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+    <h3>Nous trouver</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>
+  </section>
 
   <footer>
-    <p>© 2025 LM-SERVICES - Électricien Professionnel à Roses (Espagne)</p>
+    <p>&copy; 2025 LM-SERVICES | Électricien à Roses</p>
+    <p>Tél : +33 689 49 22 63 | Email : lm-services02@outlook.fr</p>
   </footer>
-
-  <script>
-    document.getElementById('reviewForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Merci pour votre avis ! Il sera publié après modération.');
-      this.reset();
-    });
-  </script>
 </body>
 </html>
