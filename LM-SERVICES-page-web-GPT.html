@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LM-SERVICES | Électricien Professionnel Roses</title>
+  <title>LM-SERVICES | Électricien Professionnel à Roses</title>
   <style>
     /* Reset & base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +28,7 @@
       height: 100vh;
       pointer-events: none; /* ne pas capter les clics */
       mix-blend-mode: screen; /* éclairs se mélangent bien */
-      opacity: 0.95;
+      opacity: 0.9; /* Légère réduction de l'opacité pour un effet plus subtil */
     }
 
     /* Calque sombre semi-transparent pour contraste texte */
@@ -164,10 +164,24 @@
           <h3>Dépannage d'Urgence</h3>
           <p>Service rapide 24/7 pour tous vos problèmes électriques dans la région de Roses.</p>
         </div>
+
+        <!-- Nouvelle rubrique insérée ici -->
+        <div class="service-card">
+          <h3>Tarification Transparente</h3>
+          <p>Tarifs clairs et détaillés pour tous nos services : devis gratuits, aucun frais caché, pour une intervention en toute transparence et sérénité.</p>
+        </div>
+
         <div class="service-card">
           <h3>Mise aux Normes</h3>
           <p>Conformité et sécurité de vos installations selon les normes espagnoles.</p>
         </div>
+
+        <!-- Seconde nouvelle rubrique insérée ici -->
+        <div class="service-card">
+          <h3>Petits Travaux Complémentaires</h3>
+          <p>Petits travaux complémentaires (peinture, jardinage, bricolage...) pour un service complet et pratique, répondant à tous vos besoins du quotidien.</p>
+        </div>
+
         <div class="service-card">
           <h3>Éclairage LED</h3>
           <p>Installation d'éclairage moderne et économique pour votre propriété.</p>
@@ -321,7 +335,7 @@
 
         const forks = [];
         // quelques ramifications
-        for(let i=0;i<Math.floor(random(1,4));i++){
+        for(let i=0;i<Math.floor(random(1,3));i++){ /* Légère réduction du nombre max de ramifications pour plus de subtilité */
           const forkIndex = Math.floor(random(2, primary.length-1));
           const origin = primary[forkIndex];
           const fx = origin.x + random(-80,80);
@@ -439,7 +453,7 @@
       const levers = document.querySelectorAll('.breaker-lever');
       function tick(){
         levers.forEach(l => {
-          if(Math.random() < 0.08) l.classList.toggle('active');
+          if(Math.random() < 0.06) l.classList.toggle('active'); /* Légère réduction de la probabilité pour moins d'animations */
         });
         setTimeout(tick, 1400 + Math.random()*2200);
       }
