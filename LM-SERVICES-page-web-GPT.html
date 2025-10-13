@@ -6,190 +6,89 @@
   <meta name="description" content="Électricien professionnel à Roses, Espagne : installations électriques, dépannages d'urgence, mises aux normes et éclairage LED. Service fiable et rapide 24h/24." />
   <meta name="keywords" content="électricien Roses, électricité Espagne, installation électrique, dépannage urgent, mise aux normes, éclairage LED, LM-SERVICES" />
   <title>LM-SERVICES | Électricien Professionnel à Roses - Dépannage 24h/24</title>
-
-  <!-- SEO technique -->
   <link rel="canonical" href="https://votredomaine.com/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
   <meta name="theme-color" content="#2563eb" />
-  
-  <!-- Multilingue (à activer quand les versions existent) -->
-  <!--
-  <link rel="alternate" href="https://votredomaine.com/" hreflang="fr" />
-  <link rel="alternate" href="https://votredomaine.com/en/" hreflang="en" />
-  <link rel="alternate" href="https://votredomaine.com/es/" hreflang="es" />
-  -->
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="LM-SERVICES | Électricien Professionnel à Roses" />
   <meta property="og:description" content="Électricien à Roses — installations, dépannage 24/7, mise aux normes et éclairage LED. Service francophone." />
   <meta property="og:url" content="https://votredomaine.com/" />
   <meta property="og:site_name" content="LM-SERVICES" />
   <meta property="og:locale" content="fr_FR" />
-  <meta property="og:image" content="https://votredomaine.com/logo.jpg" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/loiche94/LM-SERVICES/main/Logo.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="LM-SERVICES | Électricien à Roses" />
   <meta name="twitter:description" content="Intervention rapide à Roses — dépannage, mise aux normes, éclairage LED. Contactez-nous." />
-  <meta name="twitter:image" content="https://votredomaine.com/logo.jpg" />
-
-  <!-- Données structurées JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://votredomaine.com/#lm-services",
-        "name": "LM-SERVICES",
-        "description": "Électricien professionnel basé à Roses (Espagne). Installations, dépannages d'urgence, mises aux normes et éclairage LED.",
-        "url": "https://votredomaine.com/",
-        "telephone": "+33-689-49-22-63",
-        "email": "lm-services02@outlook.fr",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Roses",
-          "addressRegion": "Girona",
-          "addressCountry": "ES"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 42.263456,
-          "longitude": 3.174567
-        },
-        "areaServed": {
-          "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": 42.263456,
-            "longitude": 3.174567
-          },
-          "geoRadius": 30000
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        ],
-        "priceRange": "€€",
-        "image": ["https://votredomaine.com/logo.jpg"]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://votredomaine.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://votredomaine.com/#services" },
-          { "@type": "ListItem", "position": 3, "name": "Contact", "item": "https://votredomaine.com/#contact" }
-        ]
-      }
-    ]
-  }
-  </script>
-
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/loiche94/LM-SERVICES/main/Logo.jpg" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* Votre CSS existant reste globalement bon */
-    /* J'ajoute juste quelques optimisations */
-    
-    /* Amélioration accessibilité */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    /* Focus visible pour navigation clavier */
-    a:focus, button:focus {
-      outline: 2px solid #2563eb;
-      outline-offset: 2px;
-    }
-    
-    /* Performance mobile */
-    @media (max-width: 768px) {
-      #lightningCanvas {
-        display: none; /* Désactive l'animation lourde sur mobile */
-      }
-    }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+    a:focus, button:focus { outline: 2px solid #2563eb; outline-offset: 2px; }
+    @media (max-width: 768px) { #lightningCanvas { display: none; } }
+    .site-header { display:flex; align-items:center; gap:16px; padding:16px; }
+    .logo-wrap { width: 240px; max-width: 55vw; aspect-ratio: 1 / 1; position: relative; }
+    .logo-wrap img { width: 100%; height: 100%; object-fit: contain; display:block; filter: drop-shadow(0 6px 20px rgba(37,99,235,.35)); }
+    @keyframes logoPulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+    .logo-anim { animation: logoPulse 4s ease-in-out infinite; }
+    body.dark { background:#0b1220; color:#e5e7eb; }
+    body.light { background:#ffffff; color:#111827; }
+    .bg-overlay{position:fixed;inset:0;pointer-events:none}
   </style>
 </head>
 <body class="dark">
-
-  <!-- Navigation simplifiée -->
-  <nav role="navigation" aria-label="Menu principal">
-    <a href="#header">Accueil</a>
-    <a href="#services">Services</a>
-    <a href="#why-us">Pourquoi Nous ?</a>
-    <a href="#avis">Avis</a>
-    <a href="#contact">Contact</a>
-    <button id="themeToggle" aria-pressed="false">
-      <span class="dark-text">Mode clair</span>
-      <span class="light-text">Mode sombre</span>
-    </button>
-  </nav>
-
-  <!-- Arrière-plan optimisé -->
+  <header id="header" class="site-header">
+    <div class="logo-wrap">
+      <img id="siteLogo" class="logo-anim" src="https://raw.githubusercontent.com/loiche94/LM-SERVICES/main/Logo.jpg" alt="LM-SERVICES - Logo" width="512" height="512" loading="eager">
+    </div>
+    <nav role="navigation" aria-label="Menu principal">
+      <a href="#header">Accueil</a>
+      <a href="#services">Services</a>
+      <a href="#why-us">Pourquoi Nous ?</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+      <button id="themeToggle" aria-pressed="false">
+        <span class="dark-text">Mode clair</span>
+        <span class="light-text">Mode sombre</span>
+      </button>
+    </nav>
+  </header>
   <canvas id="lightningCanvas" aria-hidden="true"></canvas>
   <div class="bg-overlay" aria-hidden="true"></div>
-
-  <!-- Votre contenu existant reste ici -->
-  <!-- J'ai corrigé la duplication du formulaire dans la section avis -->
-
+  <main>
+    <section id="services"></section>
+    <section id="why-us"></section>
+    <section id="avis"></section>
+    <section id="contact"></section>
+  </main>
   <script>
-    // Gestion du thème améliorée
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
       const isLight = document.body.classList.toggle('light');
       document.body.classList.toggle('dark');
       themeToggle.setAttribute('aria-pressed', isLight);
-      
-      // Sauvegarde la préférence
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
-    
-    // Application du thème sauvegardé
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
       document.body.classList.add('light');
       document.body.classList.remove('dark');
       themeToggle.setAttribute('aria-pressed', true);
     }
-    
-    // Navigation fluide
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        if (targetElement) { targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
-    
-    // Optimisation des images
     document.addEventListener('DOMContentLoaded', () => {
       const images = document.querySelectorAll('img');
       images.forEach(img => {
-        if (!img.hasAttribute('loading')) {
-          img.setAttribute('loading', 'lazy');
-        }
-        // Fallback pour images manquantes
-        img.addEventListener('error', function() {
-          this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDcwIiBoZWlnaHQ9IjEzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjU2M2ViIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TE0tU0VSVklDRVM8L3RleHQ+PC9zdmc+';
-          this.alt = 'LM-SERVICES - Logo par défaut';
-        });
+        if (!img.hasAttribute('loading')) { img.setAttribute('loading', 'lazy'); }
+        img.addEventListener('error', function() { this.src = 'Logo.jpg'; this.alt = 'LM-SERVICES - Logo par défaut'; });
       });
     });
   </script>
