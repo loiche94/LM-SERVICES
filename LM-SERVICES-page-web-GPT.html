@@ -230,6 +230,518 @@
 
     .header { text-align: center; padding: 36px 20px; background: rgba(255,255,255,0.06); border-radius: 14px; margin-top: 28px; backdrop-filter: blur(6px); }
     body.light .header { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    
+.logo {
+  /* triple de 470px = 1410px */
+  max-width: 1410px;
+  width: 100%;
+  height: auto;
+  /* Conserver le même ratio visuel (470 / 130) en augmentant proportionnellement */
+  aspect-ratio: 470 / 130;
+  background: rgba(230,244,255,0.03);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  overflow: hidden;
+}
+
+.logo img { max-width: 90%; max-height: 90%; object-fit: contain; animation: swing 2.5s infinite ease-in-out; }
+
+@keyframes swing {
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
+}
+
+@media (max-width: 768px) {
+  .logo { max-width: 100%; aspect-ratio: auto; height: 260px; }
+}
+/* Accessibilité */
+    @media (prefers-reduced-motion: reduce) {
+      .breaker-deco, .service-card, .review-form button, .logo img { animation: none !important; transition: none !important; }
+    }
+
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    .rating input {
+      display: none;
+    }
+    .rating label {
+      font-size: 2em;
+      color: #ddd;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .rating input:checked ~ label,
+    .rating label:hover,
+    .rating label:hover ~ label {
+      color: #ffd700;
+    }
+    .thankyou_message {
+      margin-top: 10px;
+      color: #a7d8ff;
+    }
+    body.light .thankyou_message { color: #1e40af; }
+
+    /* Style du bandeau de cookies */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      z-index: 9999;
+      display: none;
+      font-size: 0.9em;
+    }
+    #cookie-banner button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #cookie-banner button:hover {
+      background: #1e40af;
+    }
+  </style>
+<!-- gtag.js deferred; injected after consent -->
+
+</head>
+<body class="dark">
+  <!-- Google Tag Manager (noscript) - remplacez GT-K5Q634NG par votre container ID -->
+  
+  <!-- GTM noscript placeholder (will be inserted conditionally after consent) -->
+  <div id="gtm-noscript-placeholder" aria-hidden="true"></div>
+
+  <!-- BANNIERE ET MODAL DE COOKIES AMELIORES -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" style="display:none;">
+    <div class="text">
+      <strong>Nous utilisons des cookies</strong>
+      <div style="margin-top:6px;">Nous utilisons des cookies pour améliorer votre expérience, mesurer l'audience et afficher des publicités pertinentes. Vous pouvez choisir vos préférences.</div>
+      <div style="margin-top:8px;"><a href="/privacy" class="btn-link">Voir la politique de confidentialité</a></div>
+    </div>
+    <div class="actions" aria-hidden="false">
+      <button id="btn-decline" class="btn btn-outline" title="Refuser les cookies non essentiels">Refuser</button>
+      <button id="btn-settings" class="btn btn-outline" title="Paramètres des cookies">Paramètres</button>
+      <button id="btn-accept" class="btn btn-primary" title="Accepter tous les cookies">Accepter tout</button>
+    </div>
+  </div>
+
+  <div id="cookie-modal-backdrop" class="cookie-modal-backdrop" role="dialog" aria-modal="true" style="display:none;">
+    <div class="cookie-modal" role="document" aria-labelledby="cookie-modal-title">
+      <h3 id="cookie-modal-title">Paramètres des cookies</h3>
+      <p>Choisissez les catégories de cookies que vous autorisez.</p>
+
+      <div class="cookie-category">
+        <div>
+          <strong>Strictement nécessaires</strong>
+          <div style="font-size:13px; color:#666;">Essentiels au fonctionnement du site</div>
+        </div>
+        <div class="toggle">
+          <span style="font-size:13px; color:#666;">Toujours actifs</span>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div>
+          <strong>Analytics</strong>
+          <div style="font-size:13px; color:#666;">Mesure d'audience (ex. Google Analytics)</div>
+        </div>
+        <div class="toggle">
+          <input type="checkbox" id="cookie-analytics" />
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div>
+          <strong>Marketing</strong>
+          <div style="font-size:13px; color:#666;">Publicités personnalisées</div>
+        </div>
+        <div class="toggle">
+          <input type="checkbox" id="cookie-marketing" />
+        </div>
+      </div>
+
+      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:14px;">
+        <button id="modal-cancel" class="btn btn-outline">Annuler</button>
+        <button id="modal-save" class="btn btn-primary">Enregistrer mes choix</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Configuration — utilise l'ID GTM déjà défini dans la page (gtmId) si présent */
+    const GA_MEASUREMENT_ID = 'G-D2CM83J3VT';
+    const GTM_CONTAINER_ID = (typeof gtmId !== 'undefined' ? gtmId : 'GT-K5Q634NG');
+
+    /* Utilitaires stockage du consentement */
+    const consentKey = 'lmservices_cookie_consent_v1';
+    function getStoredConsent() {
+      try {
+        const raw = localStorage.getItem(consentKey);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+    function storeConsent(choice) {
+      const payload = { choice, timestamp: new Date().toISOString() };
+      localStorage.setItem(consentKey, JSON.stringify(payload));
+      // pour compatibilité avec l'ancien script, écrire aussi cookiesAccepted true/false
+      try { localStorage.setItem('cookiesAccepted', (choice.analytics || choice.marketing) ? 'true' : 'false'); } catch(e) {}
+    }
+
+    /* UI elements */
+    const banner = document.getElementById('cookie-banner');
+    const btnAccept = document.getElementById('btn-accept');
+    const btnDecline = document.getElementById('btn-decline');
+    const btnSettings = document.getElementById('btn-settings');
+    const modalBackdrop = document.getElementById('cookie-modal-backdrop');
+    const modalSave = document.getElementById('modal-save');
+    const modalCancel = document.getElementById('modal-cancel');
+    const cbAnalytics = document.getElementById('cookie-analytics');
+    const cbMarketing = document.getElementById('cookie-marketing');
+
+    /* Flags to prevent double injection */
+    let _gtagInjected = false;
+
+    function injectGtag() {
+      if (_gtagInjected) return;
+      _gtagInjected = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_MEASUREMENT_ID);
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID, { 'anonymize_ip': true });
+    }
+
+    function injectGtmNoScriptIfNeeded(allowNonEssential) {
+      const placeholder = document.getElementById('gtm-noscript-placeholder');
+      if (!placeholder) return;
+      placeholder.innerHTML = '';
+      if (allowNonEssential) {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.googletagmanager.com/ns.html?id=' + encodeURIComponent(GTM_CONTAINER_ID);
+        iframe.height = '0'; iframe.width = '0';
+        iframe.style = 'display:none;visibility:hidden';
+        placeholder.appendChild(iframe);
+      }
+    }
+
+    function applyConsentChoice(choice) {
+      storeConsent(choice);
+      const allowNonEssential = !!(choice.analytics || choice.marketing);
+      if (allowNonEssential) {
+        // load GTM (existing function present in head)
+        if (typeof loadGTM === 'function') loadGTM();
+        injectGtag();
+      }
+      injectGtmNoScriptIfNeeded(allowNonEssential);
+    }
+
+    /* Banner / modal logic */
+    function openModal() {
+      const stored = getStoredConsent();
+      if (stored && stored.choice) {
+        cbAnalytics.checked = !!stored.choice.analytics;
+        cbMarketing.checked = !!stored.choice.marketing;
+      } else {
+        cbAnalytics.checked = false;
+        cbMarketing.checked = false;
+      }
+      modalBackdrop.style.display = 'flex';
+    }
+    function closeModal() { modalBackdrop.style.display = 'none'; }
+
+    btnAccept.addEventListener('click', function() {
+      const choice = { necessary: true, analytics: true, marketing: true };
+      applyConsentChoice(choice);
+      banner.style.display = 'none';
+    });
+    btnDecline.addEventListener('click', function() {
+      const choice = { necessary: true, analytics: false, marketing: false };
+      applyConsentChoice(choice);
+      banner.style.display = 'none';
+    });
+    btnSettings.addEventListener('click', openModal);
+    modalSave.addEventListener('click', function() {
+      const choice = { necessary: true, analytics: !!cbAnalytics.checked, marketing: !!cbMarketing.checked };
+      applyConsentChoice(choice);
+      closeModal();
+      banner.style.display = 'none';
+    });
+    modalCancel.addEventListener('click', closeModal);
+
+    (function initConsent() {
+      const stored = getStoredConsent();
+      if (!stored) {
+        banner.style.display = 'flex';
+      } else {
+        try {
+          const choice = stored.choice || { necessary: true, analytics: false, marketing: false };
+          if (choice.analytics || choice.marketing) {
+            if (typeof loadGTM === 'function') loadGTM();
+            injectGtag();
+            injectGtmNoScriptIfNeeded(true);
+          } else {
+            injectGtmNoScriptIfNeeded(false);
+          }
+        } catch(e) {
+          banner.style.display = 'flex';
+        }
+      }
+    })();
+
+    window.openCookieSettings = openModal;
+  </script>
+E html>
+<html lang="fr">
+<head>
+  <!-- Google Tag Manager (head) - remplacez GT-K5Q634NG par votre container ID -->
+  <script>
+    // Bloquer GTM tant qu'il n'y a pas de consentement
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Remplacer GT-K5Q634NG par votre ID GTM
+    var gtmId = 'GT-K5Q634NG';
+
+    // Fonction pour charger GTM après consentement
+    function loadGTM() {
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',gtmId);
+    }
+
+    // Vérifier si consentement déjà donné
+    if (localStorage.getItem('cookiesAccepted') === 'true') {
+      loadGTM();
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Électricien professionnel à Roses, Espagne : installations électriques, dépannages d'urgence, mises aux normes et éclairage LED. Service fiable et rapide." />
+  <meta name="keywords" content="électricien Roses, électricité Espagne, installation électrique, dépannage urgent, mise aux normes" />
+  <title>LM-SERVICES | Électricien Professionnel à Roses</title>
+
+  <!-- ===== SEO & Social meta additionnels (COLLÉS ICI) ===== -->
+  <link rel="canonical" href="https://REMPLACEZ_PAR_VOTRE_URL/" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#2563eb" />
+  <!-- Hreflang - adapte si besoin -->
+  <link rel="alternate" href="https://REMPLACEZ_PAR_VOTRE_URL/" hreflang="fr" />
+  <link rel="alternate" href="https://REMPLACEZ_PAR_VOTRE_URL/en/" hreflang="en" />
+  <link rel="alternate" href="https://REMPLACEZ_PAR_VOTRE_URL/es/" hreflang="es" />
+
+  <!-- Open Graph (partage réseaux sociaux) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LM-SERVICES | Électricien Professionnel à Roses" />
+  <meta property="og:description" content="Électricien à Roses — installations, dépannage 24/7, mise aux normes et éclairage LED. Service francophone." />
+  <meta property="og:url" content="https://REMPLACEZ_PAR_VOTRE_URL/" />
+  <meta property="og:site_name" content="LM-SERVICES" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="https://REMPLACEZ_PAR_VOTRE_URL/Logo.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LM-SERVICES | Électricien à Roses" />
+  <meta name="twitter:description" content="Intervention rapide à Roses — dépannage, mise aux normes, éclairage LED. Contactez-nous." />
+  <meta name="twitter:image" content="https://REMPLACEZ_PAR_VOTRE_URL/Logo.jpg" />
+
+  <!-- Structured data JSON-LD : LocalBusiness + Services + Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://REMPLACEZ_PAR_VOTRE_URL/#lm-services",
+        "name": "LM-SERVICES",
+        "description": "Électricien professionnel basé à Roses (Espagne). Installations, dépannages d'urgence, mises aux normes et éclairage LED.",
+        "url": "https://REMPLACEZ_PAR_VOTRE_URL/",
+        "telephone": "+33 689 49 22 63",
+        "email": "lm-services02@outlook.fr",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Roses",
+          "addressRegion": "Girona",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.263456,
+          "longitude": 3.174567
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 42.263456,
+            "longitude": 3.174567
+          },
+          "geoRadius": 30000
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ],
+        "priceRange": "€€",
+        "image": [
+          "https://REMPLACEZ_PAR_VOTRE_URL/Logo.jpg"
+        ],
+        "sameAs": [
+          "https://REMPLACEZ_PAR_VOTRE_PAGE_FACEBOOK",
+          "https://REMPLACEZ_PAR_VOTRE_INSTAGRAM",
+          "https://REMPLACEZ_PAR_VOTRE_LINKEDIN"
+        ]
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Installation Électrique",
+        "provider": { "@id": "https://REMPLACEZ_PAR_VOTRE_URL/#lm-services" }
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Dépannage d'Urgence",
+        "provider": { "@id": "https://REMPLACEZ_PAR_VOTRE_URL/#lm-services" }
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Mise aux Normes",
+        "provider": { "@id": "https://REMPLACEZ_PAR_VOTRE_URL/#lm-services" }
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Éclairage LED",
+        "provider": { "@id": "https://REMPLACEZ_PAR_VOTRE_URL/#lm-services" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://REMPLACEZ_PAR_VOTRE_URL/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://REMPLACEZ_PAR_VOTRE_URL/#services" },
+          { "@type": "ListItem", "position": 3, "name": "Contact", "item": "https://REMPLACEZ_PAR_VOTRE_URL/#contact" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- ===== FIN head additions ===== -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous">
+  <style>
+    /* Reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background-color: #0b1220; /* Mode sombre par défaut */
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      font-size: 1.1em; /* Amélioration lisibilité */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+    }
+
+    /* Navbar fixe */
+    nav {
+      background: #2563eb;
+      position: sticky;
+      top: 0;
+      padding: 10px;
+      text-align: center;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav button {
+      background: #1e40af;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Canvas arrière-plan (foudre réaliste) */
+    #lightningCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.7; /* Réduite pour subtilité */
+    }
+
+    /* Calque sombre semi-transparent pour contraste texte */
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3,7,18,0.6), rgba(4,7,25,0.5));
+      z-index: -1;
+    }
+
+    body.light .bg-overlay { display: none; } /* Désactiver en mode clair */
+
+    /* Décor: disjoncteurs SVG en fond */
+    .breaker-deco { position: fixed; z-index: -1; opacity: 0.08; width: 280px; height: auto; transform-origin: center; }
+    .breaker-deco.small { width: 140px; opacity: 0.06; }
+    .breaker-1 { top: 6%; left: 2%; transform: rotate(var(--r)); }
+    .breaker-2 { bottom: 8%; right: 3%; transform: rotate(var(--r)); }
+    .breaker-3 { top: 30%; right: 6%; transform: rotate(var(--r)); }
+    .breaker-4 { bottom: 18%; left: 4%; transform: rotate(var(--r)); }
+
+    /* Animation subtile pour disjoncteurs */
+    @keyframes breakerPulse {
+      0% { transform: scale(1) rotate(var(--r)); filter: blur(0px); opacity: 0.06; }
+      50% { transform: scale(1.03) rotate(calc(var(--r) + 0.6deg)); filter: blur(0.25px); opacity: 0.12; }
+      100% { transform: scale(1) rotate(var(--r)); filter: blur(0px); opacity: 0.06; }
+    }
+    .breaker-deco { animation: breakerPulse 6s ease-in-out infinite; }
+
+    /* Container principal */
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px 20px 40px; } /* Plus d'espace */
+
+    .header { text-align: center; padding: 36px 20px; background: rgba(255,255,255,0.06); border-radius: 14px; margin-top: 28px; backdrop-filter: blur(6px); }
+    body.light .header { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     .logo { max-width: 470px; width: 100%; height: auto; aspect-ratio: 470 / 130; background: rgba(230,244,255,0.03); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; overflow: hidden; }
     body.light .logo { background: #e6f4ff; box-shadow: 0 4px 18px rgba(0,119,255,0.27); }
     .logo img { max-width: 90%; max-height: 90%; object-fit: contain; animation: swing 2.5s infinite ease-in-out; }
@@ -396,20 +908,8 @@
       background: #1e40af;
     }
   </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2CM83J3VT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  
-  // Vérifier consentement avant de configurer GA
-  if (localStorage.getItem('cookiesAccepted') === 'true') {
-    gtag('js', new Date());
-    gtag('config', 'G-D2CM83J3VT');
-    // Google Ads (global site tag) - remplacez AW-XXXXXXXXX par votre ID Google Ads
-    gtag('config', 'AW-XXXXXXXXX');
-  }
-</script>
+<!-- gtag.js deferred; injected after consent -->
+
 </head>
 <body class="dark">
   <!-- Google Tag Manager (noscript) - remplacez GT-K5Q634NG par votre container ID -->
