@@ -1,643 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google Tag Manager (head) - remplacez GT-K5Q634NG par votre container ID -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>LM-SERVICES | Électricien Professionnel à Roses</title>
+  <!-- Google Tag Manager & Google Analytics GA4 -->
   <script>
-    // Bloquer GTM tant qu'il n'y a pas de consentement
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-
-    // Remplacer GT-K5Q634NG par votre ID GTM
     var gtmId = 'GT-K5Q634NG';
-
-    // Fonction pour charger GTM après consentement
     function loadGTM() {
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      (function(w,d,s,l,i){
+          w[l]=w[l]||[];
+          w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+          f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer',gtmId);
+      // Google Analytics GA4
+      var gaScript = document.createElement('script');
+      gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-D2CM83J3VT";
+      gaScript.async = true;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      gtag('js', new Date());
+      gtag('config', 'G-D2CM83J3VT');
     }
-
-    // Vérifier si consentement déjà donné
-    if (localStorage.getItem('cookiesAccepted') === 'true') {
-      loadGTM();
-    }
+    if (localStorage.getItem('cookiesAccepted') === 'true') { loadGTM(); }
   </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- SEO Amélioré -->
-  <meta name="description" content="Électricien professionnel à Roses, Catalogne (Espagne) : installations électriques résidentielles, dépannages d'urgence 24/7, mises aux normes électriques et éclairage LED économe. Service fiable, rapide et multilingue pour particuliers et entreprises." />
-  <meta name="keywords" content="électricien Roses, électricité Catalogne, installation électrique Espagne, dépannage urgent électricien Roses, mise aux normes électrique Catalogne, éclairage LED Roses, électricien d'urgence 24h/24" />
-  <title>LM-SERVICES | Électricien Professionnel à Roses (Catalogne, Espagne) - Dépannage 24/7</title>
+  <!-- Ta feuille de style, éventuellement tes scripts JS/CSS persos ici -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GT-K5Q634NG"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ===== SEO & Social meta additionnels (COLLÉS ICI) ===== -->
-  <link rel="canonical" href="https://www.lm-services-electricien.com/" />
-  <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
-  <meta name="theme-color" content="#2563eb" />
-  <!-- Hreflang - adapte si besoin -->
-  <link rel="alternate" href="https://www.lm-services-electricien.com/" hreflang="fr" />
-  <link rel="alternate" href="https://www.lm-services-electricien.com/en/" hreflang="en" />
-  <link rel="alternate" href="https://www.lm-services-electricien.com/es/" hreflang="es" />
-  
-  <!-- Geo meta tags -->
-  <meta name="geo.region" content="ES-CT" />
-  <meta name="geo.placename" content="Roses, Catalogne, Espagne" />
-  <meta name="geo.position" content="42.263456;3.174567" />
+  <!-- ENTÊTE / LOGO / NAVIGATION -->
+  <header>
+    <img src="Logo.jpg" alt="Logo LM-Services" style="height:80px;">
+    <h1>LM-SERVICES</h1>
+    <h2>Électricien Français à Roses (Catalogne)</h2>
+    <nav>
+      <a href="#services">Nos Services</a>
+      <a href="#avis">Avis Clients</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <!-- Open Graph (partage réseaux sociaux) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="LM-SERVICES | Électricien Professionnel à Roses (Catalogne, Espagne)" />
-  <meta property="og:description" content="Électricien expert à Roses — installations électriques complètes, dépannage urgent 24/7, mise aux normes de sécurité et éclairage LED économe. Service francophone fiable en Catalogne pour maisons, appartements et entreprises." />
-  <meta property="og:url" content="https://www.lm-services-electricien.com/" />
-  <meta property="og:site_name" content="LM-SERVICES" />
-  <meta property="og:locale" content="fr_FR" />
-  <meta property="og:image" content="https://www.lm-services-electricien.com/Logo.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Logo LM-SERVICES, électricien professionnel à Roses, Catalogne" />
+  <!-- SECTION SERVICES -->
+  <section id="services">
+    <h3>Nos Services</h3>
+    <ul>
+      <li>Installations électriques</li>
+      <li>Dépannages et diagnostics</li>
+      <li>Rénovation et mise aux normes</li>
+      <li>Domotique et automatisation</li>
+      <li>Énergie solaire et batteries (Marstek Venus-E, etc.)</li>
+    </ul>
+  </section>
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="LM-SERVICES | Électricien à Roses (Catalogne, Espagne)" />
-  <meta name="twitter:description" content="Intervention rapide et professionnelle à Roses — dépannage électrique d'urgence, mise aux normes, éclairage LED. Contactez-nous 24/7 pour un devis gratuit." />
-  <meta name="twitter:image" content="https://www.lm-services-electricien.com/Logo.jpg" />
-  <meta name="twitter:image:alt" content="Logo LM-SERVICES, expert en électricité à Roses" />
+  <!-- SECTION AVIS CLIENTS -->
+  <section id="avis">
+    <h3>Avis & Retours</h3>
+    <div>
+      <p>⭐⭐⭐⭐⭐ Très professionnel, intervention rapide ! — Jean (Roses)</p>
+      <p>⭐⭐⭐⭐ Service impeccable, prix correct — Marie (Empuriabrava)</p>
+      <p>N'hésitez pas à <b>laisser votre avis</b> via WhatsApp ou Email.</p>
+    </div>
+  </section>
 
-  <!-- Structured data JSON-LD : LocalBusiness + Services + Breadcrumb + Enhanced with AggregateRating and Reviews + FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://www.lm-services-electricien.com/#lm-services",
-        "name": "LM-SERVICES",
-        "alternateName": "Électricien Roses",
-        "description": "Électricien professionnel basé à Roses (Catalogne, Espagne). Spécialisé en installations électriques résidentielles et commerciales, dépannages d'urgence 24/7, mises aux normes de sécurité électriques et installations d'éclairage LED économe en énergie.",
-        "url": "https://www.lm-services-electricien.com/",
-        "telephone": "+33 689 49 22 63",
-        "email": "lm-services02@outlook.fr",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Zone d'intervention Roses et environs",
-          "addressLocality": "Roses",
-          "addressRegion": "Catalogne",
-          "postalCode": "17480",
-          "addressCountry": "ES"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 42.263456,
-          "longitude": 3.174567
-        },
-        "areaServed": {
-          "@type": "Place",
-          "name": "Roses et environs (Catalogne, Espagne)"
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        ],
-        "priceRange": "€€",
-        "image": [
-          "https://www.lm-services-electricien.com/Logo.jpg"
-        ],
-        "logo": "https://www.lm-services-electricien.com/Logo.jpg",
-        "sameAs": [
-          "https://www.facebook.com/lmservicesroses",
-          "https://www.instagram.com/lmservicesroses"
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5",
-          "bestRating": "5",
-          "worstRating": "1",
-          "reviewCount": "26"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Beyemeglaurence Garrigues"},
-            "datePublished": "2025-08-12",
-            "reviewBody": "Super service sur Llança pour un pb de prises grillées! Merci pour les conseils. Je recommande LM services et reviendrai vers ce monsieur certainement !",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Ornella Ornella"},
-            "datePublished": "2025-06-24",
-            "reviewBody": "Top !!! Ce deplace direct et fait du tres bon travail a des prix tres corect je recommende !👍👌",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Eric Anglada"},
-            "datePublished": "2025-05-27",
-            "reviewBody": "Un grand merci pour votre réactivité et votre professionnalisme ! Suite à un problème électrique, j’ai été...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Sven Wessler"},
-            "datePublished": "2025-05-13",
-            "reviewBody": "Super Elektricker, der hat Ahnungs von seinem Handwerk. Ist Mega schnell und der Preis ist Super...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Joan Abella"},
-            "datePublished": "2025-05-13",
-            "reviewBody": "Gran profesional, servicio impecable, recomendado al 100%",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Helene Ordner du Puytison"},
-            "datePublished": "2025-05-06",
-            "reviewBody": "Nous l’avons appelé à 19 H un bruit s’échappait de notre climatiseur éteint, il est intervenu 15 mins plus tard pour...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Rudy Delsaut"},
-            "datePublished": "2025-03-12",
-            "reviewBody": "Rapide, efficace, coche toutes les cases! Je recommande aux francophones de Roses!",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Sabine Parolini"},
-            "datePublished": "2024-08-17",
-            "reviewBody": "Merci à Loic qui est intervenu très rapidement un dimanche , une personne très à l'écoute et très sympathique",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Chloé Crnc"},
-            "datePublished": "2024-08-15",
-            "reviewBody": "Service irréprochable ! Appel la veille au soir pour une intervention le lendemain matin. Monsieur s’est démené pour...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "bruno kovalski"},
-            "datePublished": "2024-05-14",
-            "reviewBody": "Intervention efficace. Prix raisonnable. Rien à redire.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "martine bonnefoy"},
-            "datePublished": "2024-04-21",
-            "reviewBody": "Suite à des problèmes sur le disjoncteur, il est intervenu très rapidement un samedi matin, avec beaucoup de compétence et un prix très correct Je recommande en toute confiance.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Thierry Lelong"},
-            "datePublished": "2024-03-19",
-            "reviewBody": "J'ai contacté cette société pour établir une attestation de conformité sur Llança....",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Jean Pierre Chaumay"},
-            "datePublished": "2024-02-18",
-            "reviewBody": "J'ai appelé Loîc un dimanche matin ,l'après-midi le problème a été résolu. Très bon professionnel ,serviable .Je recommande ses services !!! E Sagetat",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Kader Ben Ali"},
-            "datePublished": "2024-01-08",
-            "reviewBody": "Très bon professionnel, à l'écoute et hyper réactif. Merci Loic...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Pierre Oudoul"},
-            "datePublished": "2024-01-05",
-            "reviewBody": "Technicien très sympathique et compétant qui a bien voulu venir nous dépanner à 20h30 .je recommande cette entreprise.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Melodie Pascual"},
-            "datePublished": "2024-01-04",
-            "reviewBody": "Un IMMENSE MERCI à Mr Mendes, d'avoir répondu à notre appel ce jeudi soir. Nous l'avons contacter car notre...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Stephanie Pernin"},
-            "datePublished": "2023-09-02",
-            "reviewBody": "Un électricien au top Loic est intervenu un quart d’heure après mon appel super gentil et à l’écoute pour un samedi après midi c’est super",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Bruno DIAZ"},
-            "datePublished": "2023-07-28",
-            "reviewBody": "Bon travail, nous souhaitions mettre des prises électriques dans nos garages pour charger nos voitures.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Catherine Morant"},
-            "datePublished": "2023-07-12",
-            "reviewBody": "Très gentil, professionnel et efficace. Je recommande",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Nes Da"},
-            "datePublished": "2023-06-29",
-            "reviewBody": "Un grand merci à Loïc qui est intervenu chez nous très rapidement alors qu’il était 19h passé....",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Dounia Hamidi"},
-            "datePublished": "2023-06-22",
-            "reviewBody": "Loic est une superbe personne avant tout très bon technicien, serviable efficace mais surtout adorable et arrangeant ! Merci de votre efficacité !",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Josiane Thise"},
-            "datePublished": "2023-05-05",
-            "reviewBody": "Rapidité du service. Amabilité et efficacité. À recommander",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Maeva Foroni"},
-            "datePublished": "2023-02-09",
-            "reviewBody": "Top! ponctuel, professionnel, à l’écoute du client Rapport qualité prix top !...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Jean-Claude Riviere"},
-            "datePublished": "2023-02-07",
-            "reviewBody": "Ayant eu besoin d'un électricien professionnel pour ma maison d' Empuriabrava , j'ai fais venir ce Monsieur . Très...",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "Jennifer Coulée"},
-            "datePublished": "2022-12-25",
-            "reviewBody": "Panne d’électricité en ce jour de Noël, le patron est venu lui même me dépanner. Très sympathique, très professionnel, prix très démocratique. Probablement le meilleur électricien français à Rosas",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {"@type": "Person", "name": "groffy patisserie"},
-            "datePublished": "2022-12-17",
-            "reviewBody": "Nous avons eu un problème électrique ils sont venu dans l’heure et ont résolu la panne, prix très honnêtes. Patron très sympa et compétent. A recommander vivement !!!",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          }
-        ]
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Installation Électrique Résidentielle et Commerciale",
-        "provider": { "@id": "https://www.lm-services-electricien.com/#lm-services" },
-        "areaServed": { "@type": "Place", "name": "Roses, Catalogne, Espagne" },
-        "description": "Installations électriques complètes pour maisons, appartements et entreprises à Roses, conformes aux normes espagnoles pour une sécurité optimale."
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Dépannage Électrique d'Urgence 24/7",
-        "provider": { "@id": "https://www.lm-services-electricien.com/#lm-services" },
-        "areaServed": { "@type": "Place", "name": "Roses, Catalogne, Espagne" },
-        "description": "Interventions rapides pour pannes électriques, courts-circuits et problèmes urgents à Roses et environs, disponibles 24h/24 et 7j/7."
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Mise aux Normes Électriques",
-        "provider": { "@id": "https://www.lm-services-electricien.com/#lm-services" },
-        "areaServed": { "@type": "Place", "name": "Roses, Catalogne, Espagne" },
-        "description": "Mise en conformité des installations électriques selon les normes actuelles pour assurer la sécurité de votre foyer ou entreprise à Roses."
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Installation Éclairage LED",
-        "provider": { "@id": "https://www.lm-services-electricien.com/#lm-services" },
-        "areaServed": { "@type": "Place", "name": "Roses, Catalogne, Espagne" },
-        "description": "Installations d'éclairage LED moderne et économe en énergie pour illuminer votre espace à Roses tout en réduisant vos factures d'électricité."
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.lm-services-electricien.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.lm-services-electricien.com/#services" },
-          { "@type": "ListItem", "position": 3, "name": "Pourquoi Nous", "item": "https://www.lm-services-electricien.com/#why-us" },
-          { "@type": "ListItem", "position": 4, "name": "Avis", "item": "https://www.lm-services-electricien.com/#avis" },
-          { "@type": "ListItem", "position": 5, "name": "Contact", "item": "https://www.lm-services-electricien.com/#contact" }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Quels services d'électricité offrez-vous à Roses ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nous proposons des installations électriques résidentielles et commerciales, dépannages d'urgence 24/7, mises aux normes de sécurité, et installations d'éclairage LED économe à Roses et environs en Catalogne."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Comment contacter LM-SERVICES pour un dépannage urgent ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Appelez-nous au +33 689 49 22 63 ou via WhatsApp au même numéro. Nous intervenons rapidement 24h/24 à Roses, Catalogne."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Êtes-vous certifié pour les mises aux normes électriques en Espagne ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Oui, avec plus de 10 ans d'expérience, nous assurons des mises aux normes conformes aux réglementations espagnoles pour la sécurité de votre installation à Roses."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Offrez-vous des devis gratuits pour l'éclairage LED ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Absolument, contactez-nous pour un devis gratuit et personnalisé pour l'installation d'éclairage LED économe à Roses."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Parlez-vous plusieurs langues ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Oui, nous parlons français, anglais et un peu d'espagnol pour un service fluide à Roses et environs."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
-  <!-- ===== FIN head additions ===== -->
+  <!-- SECTION CONTACT -->
+  <section id="contact">
+    <h3>Contact</h3>
+    <ul>
+      <li><b>Tél. :</b> +34 6 98 40 29 00</li>
+      <li><b>Email :</b> lm-services@outlook.es</li>
+      <li>
+        <b>WhatsApp Direct :</b>
+        <a href="https://wa.me/34698402900?text=Bonjour%20LM-SERVICES" target="_blank">Contactez-nous !</a>
+      </li>
+    </ul>
+    <p>Localisation : Roses, Catalogne (Espagne)</p>
+  </section>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous">
-  <style>
-    /* Votre CSS original inchangé */
-    /* Reset & base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-      background-color: #0b1220; /* Mode sombre par défaut */
-      color: #fff;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-      font-size: 1.1em; /* Amélioration lisibilité */
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.light {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #333;
-    }
-
-    /* Navbar fixe */
-    nav {
-      background: #2563eb;
-      position: sticky;
-      top: 0;
-      padding: 10px;
-      text-align: center;
-      z-index: 10;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav button {
-      background: #1e40af;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* Canvas arrière-plan (foudre réaliste) */
-    #lightningCanvas {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      opacity: 0.7; /* Réduite pour subtilité */
-    }
-
-    /* Calque sombre semi-transparent pour contraste texte */
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(3,7,18,0.6), rgba(4,7,25,0.5));
-      z-index: -1;
-    }
-
-    body.light .bg-overlay { display: none; } /* Désactiver en mode clair */
-
-    /* Décor: disjoncteurs SVG en fond */
-    .breaker-deco { position: fixed; z-index: -1; opacity: 0.08; width: 280px; height: auto; transform-origin: center; }
-    .breaker-deco.small { width: 140px; opacity: 0.06; }
-    .breaker-1 { top: 6%; left: 2%; transform: rotate(var(--r)); }
-    .breaker-2 { bottom: 8%; right: 3%; transform: rotate(var(--r)); }
-    .breaker-3 { top: 30%; right: 6%; transform: rotate(var(--r)); }
-    .breaker-4 { bottom: 18%; left: 4%; transform: rotate(var(--r)); }
-
-    /* Animation subtile pour disjoncteurs */
-    @keyframes breakerPulse {
-      0% { transform: scale(1) rotate(var(--r)); filter: blur(0px); opacity: 0.06; }
-      50% { transform: scale(1.03) rotate(calc(var(--r) + 0.6deg)); filter: blur(0.25px); opacity: 0.12; }
-      100% { transform: scale(1) rotate(var(--r)); filter: blur(0px); opacity: 0.06; }
-    }
-    .breaker-deco { animation: breakerPulse 6s ease-in-out infinite; }
-
-    /* Container principal */
-    .container { max-width: 1100px; margin: 0 auto; padding: 20px 20px 40px; } /* Plus d'espace */
-
-    .header { text-align: center; padding: 36px 20px; background: rgba(255,255,255,0.06); border-radius: 14px; margin-top: 28px; backdrop-filter: blur(6px); }
-    body.light .header { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-    
-    .logo {
-      /* triple de 940px = 2820px */
-      max-width: 2820px;
-      width: 100%;
-      height: auto;
-      /* Conserver le même ratio visuel (940 / 260) en augmentant proportionnellement */
-      aspect-ratio: 940 / 260;
-      background: rgba(230,244,255,0.03);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px auto;
-      overflow: hidden;
-    }
-
-    .logo img { max-width: 90%; max-height: 90%; object-fit: contain; animation: swing 2.5s infinite ease-in-out; }
-
-    @keyframes swing {
-      0% { transform: rotate(-2deg); }
-      50% { transform: rotate(2deg); }
-      100% { transform: rotate(-2deg); }
-    }
-
-    @media (max-width: 768px) {
-      .logo { max-width: 100%; aspect-ratio: auto; height: 520px; }
-    }
-    
-    h1 { color: #bfe2ff; font-size: 2.4em; margin-bottom: 6px; text-shadow: 0 6px 20px rgba(0,0,0,0.6); }
-    body.light h1 { color: #1e40af; text-shadow: none; }
-    .tagline { color: #cbd5e1; font-size: 1.05em; margin-top: 6px; }
-    body.light .tagline { color: #64748b; }
-
-    /* CTA dans header */
-    .cta-btn { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; transition: transform 0.2s; }
-    .cta-btn:hover { transform: scale(1.05); }
-
-    .section { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); padding: 40px; margin-bottom: 22px; border-radius: 12px; box-shadow: 0 8px 30px rgba(2,6,23,0.5); } /* Plus de padding */
-    body.light .section { background: white; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-    .section h2 { color: #a7d8ff; font-size: 1.8em; margin-bottom: 12px; border-bottom: 2px solid rgba(163,214,255,0.08); padding-bottom: 8px; }
-    body.light .section h2 { color: #1e40af; border-bottom: 3px solid #2563eb; }
-
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 14px; }
-    .service-card { background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); padding: 18px; border-radius: 10px; transition: transform 0.28s, box-shadow 0.28s; border-left: 4px solid rgba(40,160,255,0.6); }
-    body.light .service-card { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-left: 4px solid #2563eb; }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(6,10,30,0.6); }
-    .service-card i { font-size: 2em; display: block; margin-bottom: 8px; color: #bfe2ff; }
-    body.light .service-card i { color: #2563eb; }
-
-    /* Nouvelle section Pourquoi Nous Choisir */
-    .why-us { list-style: none; padding: 0; }
-    .why-us li { margin-bottom: 10px; font-size: 1.1em; }
-    .why-us li::before { content: "✔ "; color: #a7d8ff; }
-    body.light .why-us li::before { color: #2563eb; }
-
-    .testimonials-container { max-height: 50vh; overflow-y: auto; padding-right: 8px; }
-    .testimonial { background: rgba(255,255,255,0.02); padding: 14px; margin-bottom: 12px; border-radius: 8px; border-left: 4px solid rgba(255,193,7,0.12); }
-    body.light .testimonial { background: #f8fafc; border-left: 4px solid #fbbf24; }
-    .testimonial .stars { color: #ffd24a; font-size: 1.1em; margin-bottom: 6px; }
-    body.light .testimonial .stars { color: #fbbf24; }
-    .testimonial .msg { font-style: italic; color: #cbd5e1; margin-bottom: 10px; display: block; }
-    body.light .testimonial .msg { color: #475569; }
-    .testimonial .author { font-weight: bold; color: #a7d8ff; }
-    body.light .testimonial .author { color: #1e40af; }
-    .testimonial .small { color: #94a3b8; font-size: 0.9em; margin-left: 10px; }
-
-    .review-form { background: rgba(255,255,255,0.02); padding: 18px; border-radius: 10px; margin-top: 18px; }
-    body.light .review-form { background: #eff6ff; }
-    .review-form input[type="text"], .review-form textarea { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid rgba(200,210,220,0.06); border-radius: 8px; font-size: 0.98em; background: rgba(255,255,255,0.01); color: #e6f0ff; }
-    body.light .review-form input[type="text"], body.light .review-form textarea { border: 2px solid #cbd5e1; background: white; color: #333; }
-    .review-form button { background: linear-gradient(135deg,#2583ff,#0b67b3); color: white; padding: 10px 22px; border: none; border-radius: 8px; cursor: pointer; }
-    body.light .review-form button { background: linear-gradient(135deg, #2563eb, #1e40af); }
-
-    .contact-info { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 18px; border-radius: 10px; margin-bottom: 12px; font-size: 1.03em; }
-    body.light .contact-info { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
-    .contact-info a { color: #bfe2ff; text-decoration: none;
+  <!-- SECTION AUTRES / FOOTER -->
+  <footer>
+    <p>&copy; 2025 LM-SERVICES | Tous droits réservés.</p>
+    <p>Site hébergé sur <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+  </footer>
+</body>
+</html>
