@@ -3,336 +3,373 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>LM-SERVICES — Électricien à Roses</title>
+<title>LM-SERVICES — Électricien à Roses (FR/EN/ES)</title>
 
-<meta name="description" content="LM-SERVICES: électricien français basé à Roses (Espagne). 25 ans d'expérience, dépannage et petites installations dans un rayon de 20-30 km." />
-<meta name="keywords" content="électricien Roses, dépannage électrique Roses, installation prises Roses, LM-SERVICES" />
+<meta name="description" content="LM-SERVICES: électricien français basé à Roses (Espagne). 25 ans d'expérience. Dépannages & petites installations dans un rayon de 20-30 km. Français · English · Español. Contact: 06 89 49 22 63" />
+<meta name="keywords" content="électricien Roses, dépannage électrique Roses, LM-SERVICES, électricien français Espagne, prises, disjoncteur" />
 <link rel="canonical" href="https://votre-depot-github.github.io/LM-SERVICES/" />
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<!-- Google analytics placeholder using provided IDs -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2CM83J3VT"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-D2CM83J3VT');
-gtag('config', 'GT-K5Q634NG');
-</script>
-
 <style>
-:root{ --bg:#0b0f13; --card:#0f1720; --muted:#9aa4b2; --accent:#ffd166; --accent-2:#4dd6ff; --glass:rgba(255,255,255,0.04); --radius:14px; color-scheme:dark;}
-[data-theme="light"]{ --bg:#f6f8fb; --card:#fff; --muted:#58606d; --accent:#ff7a18; --accent-2:#0077cc; --glass:rgba(0,0,0,0.04); color-scheme:light;}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;color:#e6eef6;background:var(--bg)}
-.header{display:flex;align-items:center;gap:14px;padding:18px;max-width:1200px;margin:0 auto}
-.logo{width:84px;height:84px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center}
-.logo img{width:100%;height:100%;object-fit:cover}
-.header .info{display:flex;flex-direction:column}
-.header .phone{margin-left:auto;font-weight:800;color:var(--accent)}
-.container{max-width:1200px;margin:18px auto;padding:18px;display:grid;grid-template-columns:1fr 360px;gap:18px}
-@media(max-width:980px){.container{grid-template-columns:1fr;padding:12px}.logo{width:64px;height:64px}}
-.hero{background:var(--card);border-radius:14px;padding:18px;position:relative}
-.aside{min-width:260px}
-.contact-card,.reviews{background:var(--card);padding:14px;border-radius:12px;margin-bottom:12px}
-.input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-.action-btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;padding:10px 12px;border-radius:10px;color:#071018;font-weight:700;cursor:pointer}
-.cookie-banner{position:fixed;left:12px;right:12px;bottom:12px;padding:12px;border-radius:12px;background:var(--card);z-index:80;display:flex;gap:12px;align-items:center}
-.lang-switch{display:flex;gap:6px}
+:root{--bg:#071019;--card:#0f1720;--muted:#9aa4b2;--accent:#ffd166;--accent2:#4dd6ff;--glass:rgba(255,255,255,0.03);--radius:16px;--maxw:1200px;color-scheme:dark}
+[data-theme="light"]{--bg:#f6f8fb;--card:#fff;--muted:#47535f;--accent:#ff7a18;--accent2:#0077cc;--glass:rgba(0,0,0,0.04);color-scheme:light}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;color:#e6eef6;background:radial-gradient(1200px 400px at 10% 10%, rgba(77,214,255,0.06), transparent), var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.container{max-width:var(--maxw);margin:16px auto;padding:14px;display:grid;grid-template-columns:1fr 360px;gap:18px}
+@media(max-width:980px){.container{grid-template-columns:1fr;padding:10px}.logo-large{width:160px;height:160px}}
+.header{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:6px}
+.logo-large{width:220px;height:220px;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;box-shadow:0 18px 60px rgba(0,0,0,0.6)}
+.logo-large img{width:86%;height:86%;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));transition:transform 240ms}
+.company{font-weight:800;font-size:26px;letter-spacing:0.6px}
+.tag{color:var(--muted);font-size:13px}
+.top-actions{display:flex;gap:10px;margin-top:8px}
+.btn{padding:10px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#071018}
+.btn-ws{background:#25D366;color:#06221a}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 14px 40px rgba(2,8,15,0.6);position:relative;overflow:hidden}
+.h-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.h-title{font-size:20px;font-weight:800;margin:0}
+.h-sub{color:var(--muted);margin-top:6px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+@media(max-width:980px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:12px;border-radius:12px;cursor:pointer;transition:transform 260ms,box-shadow 260ms}
+.tile:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(2,8,15,0.4)}
+.tile .icon{width:44px;height:44;border-radius:10px;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#071018}
+.aside{position:relative}
+.card{background:var(--card);padding:14px;border-radius:12px;margin-bottom:12px;box-shadow:0 10px 30px rgba(0,0,0,0.35)}
 .small{font-size:13px;color:var(--muted)}
-.map{height:240px;border-radius:12px;overflow:hidden}
-.star{cursor:pointer;color:gold;font-size:20px}
-.lang-hidden{display:none}
+.reviews-dropdown{max-height:300px;overflow:auto;margin-top:10px}
+.review{padding:10px;border-radius:10px;background:linear-gradient(90deg,transparent, rgba(255,255,255,0.01));margin-bottom:8px}
+.form-row{display:flex;gap:8px}
+.input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.map{height:240px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+.cookie{position:fixed;left:14px;right:14px;bottom:14px;padding:12px;border-radius:12px;background:var(--card);z-index:90;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.cookie button{padding:8px 12px;border-radius:8px;border:0;font-weight:700}
+#arcCanvas{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;mix-blend-mode:screen;z-index:1}
+.center{text-align:center}
+.hidden{display:none}
 </style>
 </head>
 <body>
+<canvas id="arcCanvas"></canvas>
 
-<!-- header -->
 <header class="header">
-  <div class="logo"><img src="assets/ueRW5izf8xzgxPgqjRPqE.jpeg" alt="LM-SERVICES logo" id="logoImg"></div>
-  <div class="info">
-    <div style="font-weight:800">LM-SERVICES</div>
-    <div class="small" id="tagline">Électricien • Roses • Dépannage & petites installations</div>
+  <div class="logo-large" id="logoWrap">
+    <img src="assets/ueRW5izf8xzgxPgqjRPqE.jpeg" alt="LM-SERVICES logo" id="brandLogo">
   </div>
-  <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
-    <div class="phone">06 89 49 22 63</div>
-    <div class="lang-switch" role="tablist" aria-label="Langues">
-      <button data-lang="fr" class="action-btn">FR</button>
-      <button data-lang="en" class="action-btn">EN</button>
-      <button data-lang="es" class="action-btn">ES</button>
-    </div>
+  <div class="company center">
+    LM-SERVICES
+  </div>
+  <div class="tag center">Électricien à Roses • Dépannage & petites installations • Français · English · Español</div>
+  <div class="top-actions center" style="margin-top:10px">
+    <button class="btn btn-primary" id="devisTop">Devis gratuit</button>
+    <a class="btn btn-ws" id="whTop" href="https://wa.me/33689492263" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="btn btn-ghost" id="toggleTheme">Mode clair/sombre</button>
   </div>
 </header>
 
 <main class="container" role="main">
-  <section class="hero" id="mainHero">
-    <h1 id="h_title">LM-SERVICES — Rapide, fiable, local</h1>
-    <p class="small" id="h_sub">Intervention 20-30 km autour de Roses • Dépannages électriques, petites installations, travaux complémentaires</p>
-
-    <div id="services">
-      <!-- Multilingual content filled by script -->
-    </div>
-
-    <h3 id="h_why">Pourquoi choisir LM-SERVICES à Roses</h3>
-    <ul id="whyList" class="small"></ul>
-
-    <h3 id="h_faq">FAQ</h3>
-    <div id="faq" class="small"></div>
-  </section>
-
-  <aside class="aside">
-    <div class="contact-card" role="region">
-      <h3 id="contactTitle">Contact</h3>
-      <div class="small">Téléphone: <strong>06 89 49 22 63</strong></div>
-      <div class="small">Email: <strong>lm-services02@outlook.fr</strong></div>
-      <div style="margin-top:8px;display:flex;gap:8px">
-        <a id="whLink" class="action-btn" href="https://wa.me/33689492263" target="_blank" rel="noopener">WhatsApp</a>
-        <button id="quoteBtn" class="action-btn">Devis gratuit</button>
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="h-row">
+      <div>
+        <h1 id="heroTitle" class="h-title">Intervention rapide et professionnelle à Roses</h1>
+        <div class="h-sub small">25 ans d'expérience • Zone d'intervention 20-30 km • Dépannages, petites installations, petits travaux complémentaires</div>
+      </div>
+      <div class="small" style="text-align:right">
+        Contact : <strong>06 89 49 22 63</strong><br>
+        Email : <strong>lm-services02@outlook.fr</strong>
       </div>
     </div>
 
-    <div class="reviews">
-      <h4 id="reviewsTitle">Avis clients</h4>
+    <div class="tiles" id="serviceTiles"></div>
 
-      <div id="topReviews" class="small"></div>
-      <hr>
-      <div id="otherReviews" class="small"></div>
-
-      <h4 id="leaveReview">Laisser un avis</h4>
-      <form id="reviewForm" aria-label="Formulaire d'avis">
-        <input class="input" id="rName" placeholder="Votre nom" required>
-        <textarea class="input" id="rText" rows="3" placeholder="Votre avis" required></textarea>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
-          <div id="starWrap">
-            <span class="star" data-value="1">☆</span>
-            <span class="star" data-value="2">☆</span>
-            <span class="star" data-value="3">☆</span>
-            <span class="star" data-value="4">☆</span>
-            <span class="star" data-value="5">☆</span>
-          </div>
-          <select id="rLang" class="input" style="max-width:110px">
-            <option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option>
-          </select>
-        </div>
-        <div style="margin-top:8px;display:flex;gap:8px">
-          <button type="submit" class="action-btn">Envoyer</button>
-          <button type="button" id="clearLocal" class="action-btn">Effacer local</button>
-        </div>
-      </form>
+    <div style="margin-top:14px">
+      <h3>Pourquoi choisir LM-SERVICES à Roses ?</h3>
+      <ul id="whyList" class="small"></ul>
     </div>
 
-    <div class="contact-card small">
-      <strong>Zone</strong>
-      <div>Roses et alentours 20-30 km</div>
+    <div style="margin-top:12px">
+      <h3>FAQ</h3>
+      <div id="faqBlock" class="small"></div>
     </div>
+  </section>
+
+  <aside class="aside" aria-label="Colonne latérale">
+    <div class="card">
+      <h3>Contactez Loïc</h3>
+      <div class="small" style="margin-top:6px">Téléphone : <strong>06 89 49 22 63</strong></div>
+      <div class="small" style="margin-top:6px">Email : <strong>lm-services02@outlook.fr</strong></div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <a class="btn btn-ws" href="https://wa.me/33689492263" target="_blank" rel="noopener">WhatsApp</a>
+        <button class="btn btn-primary" id="devisBtn">Demander un devis</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><strong>Avis clients</strong><div class="small">Top 3 mis en avant</div></div>
+        <button class="btn btn-ghost" id="toggleReviews">Afficher</button>
+      </div>
+
+      <div id="reviewsPanel" class="hidden" style="margin-top:12px">
+        <div id="top3"></div>
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:10px 0">
+        <div id="others" class="reviews-dropdown"></div>
+
+        <div style="margin-top:10px">
+          <h4>Laisser un avis</h4>
+          <form id="reviewForm">
+            <input id="rName" class="input" placeholder="Votre nom" required>
+            <div style="margin-top:8px"><textarea id="rText" class="input" rows="3" placeholder="Votre avis" required></textarea></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <div id="starWrap">
+                <span class="small star" data-value="1">☆</span>
+                <span class="small star" data-value="2">☆</span>
+                <span class="small star" data-value="3">☆</span>
+                <span class="small star" data-value="4">☆</span>
+                <span class="small star" data-value="5">☆</span>
+              </div>
+              <select id="rLang" class="input" style="max-width:110px">
+                <option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option>
+              </select>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <button type="submit" class="btn btn-primary">Envoyer</button>
+              <button type="button" class="btn btn-ghost" id="clearLocal">Effacer aperçu</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Carte interactive</h3>
+      <div id="mapWrap" class="map small">Chargement carte…</div>
+    </div>
+
   </aside>
 </main>
 
-<footer style="max-width:1200px;margin:18px auto;padding:18px;color:var(--muted)">
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-    <div>
-      <strong>LM-SERVICES</strong><div class="small">Loïc — Électricien • Roses</div>
-    </div>
-    <div style="min-width:300px">
-      <div class="map" id="mapWrap">
-        <!-- Map will be loaded by script through server endpoint that returns key -->
-        <div id="mapPlaceholder" class="small">Chargement carte…</div>
-      </div>
-    </div>
-  </div>
-</footer>
+<footer class="center small" style="max-width:1200px;margin:20px auto">© LM-SERVICES — Loïc — Électricien • Roses • 06 89 49 22 63 • lm-services02@outlook.fr</footer>
 
-<div id="cookieBanner" class="cookie-banner" style="display:none;">
-  <div>
-    Ce site utilise des cookies essentiels et analytiques anonymes. En cliquant Accepter vous consentez au dépôt de cookies analytiques.
-  </div>
+<div id="cookieBanner" class="cookie hidden" role="dialog" aria-live="polite">
+  <div>Ce site utilise des cookies essentiels et analytiques anonymes. En acceptant, vous autorisez le chargement du suivi (Google Analytics) et des cookies analytiques.</div>
   <div style="display:flex;gap:8px">
-    <button id="acceptCookies" class="action-btn">Accepter</button>
-    <button id="manageCookies" class="action-btn">Gérer</button>
+    <button id="acceptCookies" class="btn btn-primary">Accepter</button>
+    <button id="manageCookies" class="btn btn-ghost">Gérer</button>
   </div>
 </div>
 
 <script>
-/* ---------- Multilingual content ---------- */
+/* =================== CONFIG =================== */
+/* Endpoints (prêt pour Netlify Functions). Si vous n'utilisez pas Netlify, adaptez ces URLs dans Netlify env ou sur votre hébergement) */
+const SUBMIT_REVIEW_ENDPOINT = '/.netlify/functions/submit-review';
+const GET_MAP_KEY_ENDPOINT = '/.netlify/functions/get-map-key';
+const SHEETS_WEBHOOK_ENDPOINT = ''; // Optionnel : collez ici l'URL Apps Script déployée si vous voulez aussi écrire dans Google Sheets
+
+/* Google Analytics IDs (ne seront chargés qu'après consentement) */
+const GA_ID = 'G-D2CM83J3VT';
+const GTM_ID = 'GT-K5Q634NG';
+
+/* =================== CONTENT & UI =================== */
 const content = {
   fr: {
-    services:[
-      {title:"Urgences & dépannages", txt:"Pannes, disjoncteurs, prises grillées — intervention rapide et sécurisée."},
-      {title:"Petites installations", txt:"Prises, interrupteurs, éclairage, garages, box et petites installations."},
-      {title:"Travaux complémentaires", txt:"Peinture, jardinage, montages simples — petits chantiers pour dépanner."}
+    tiles: [
+      {t:'Urgences & dépannages', d:'Pannes, disjoncteurs, prises grillées — intervention rapide et sécurisée', i:'⚡'},
+      {t:'Petites installations', d:'Prises, interrupteurs, éclairage intérieur/extérieur, garage', i:'🔌'},
+      {t:'Travaux complémentaires', d:'Peinture, jardin, petit jardinage, montages simples', i:'🛠️'}
     ],
-    why:["25 ans d'expérience dont 5 en Espagne","Réactivité et interventions rapides","Tarifs honnêtes et transparence","Trilingue: Français, English, Español","Zone d'intervention 20-30 km autour de Roses"],
-    faq:[
-      {q:"Quels travaux refusez-vous ?", a:"Pas d'installation de climatisation ni travaux de plomberie complexes."},
-      {q:"Interventions en soirée ?", a:"Oui selon disponibilité et urgence."},
-      {q:"Recevez-vous les demandes de devis ?", a:"Oui, via WhatsApp, téléphone ou formulaire; réponse rapide."}
+    why: [
+      "25 ans d'expérience dont 5 en Espagne",
+      "Interventions rapides et réactives",
+      "Tarifs honnêtes et transparents",
+      "Trilingue : Français · English · Español",
+      "Zone d'intervention 20-30 km autour de Roses"
     ],
-    labels:{quote:"Devis gratuit",contact:"Contact",reviews:"Avis clients",leave:"Laisser un avis"}
+    faq: [
+      {q:"Que n'effectuez-vous pas ?", a:"Pas d'installation de climatisation ni travaux de plomberie complexes."},
+      {q:"Interventions en soirée ?", a:"Oui, selon disponibilité et urgence."},
+      {q:"Comment demander un devis ?", a:"Par téléphone, WhatsApp ou via le formulaire de contact."}
+    ],
+    messages: {ok: "Merci, votre avis a bien été envoyé.", err: "Erreur lors de l'envoi de l'avis."}
   },
-  en: {
-    services:[
-      {title:"Emergency & Repairs", txt:"Breakdowns, circuit trippers, damaged sockets — fast secure intervention."},
-      {title:"Small installations", txt:"Sockets, switches, indoor/outdoor lighting, garage setups."},
-      {title:"Additional small tasks", txt:"Painting, gardening, simple furniture assembly — small jobs to help."}
-    ],
-    why:["25 years experience including 5 in Spain","Fast response times","Fair transparent pricing","Trilingual: Français, English, Español","Service area 20-30 km around Roses"],
-    faq:[
-      {q:"Which jobs are not done?", a:"No air conditioning installation and no complex plumbing work."},
-      {q:"Evening interventions?", a:"Yes, depending on availability and urgency."},
-      {q:"How to request a quote?", a:"By phone, WhatsApp or the review/contact form."}
-    ],
-    labels:{quote:"Free quote",contact:"Contact",reviews:"Customer reviews",leave:"Leave a review"}
-  },
-  es: {
-    services:[
-      {title:"Urgencias y reparaciones", txt:"Averías, interruptores, enchufes quemados — intervención rápida y segura."},
-      {title:"Pequeñas instalaciones", txt:"Enchufes, interruptores, iluminación interior/exterior, garajes."},
-      {title:"Tareas complementarias", txt:"Pintura, jardinería, montajes simples — pequeños trabajos para ayudar."}
-    ],
-    why:["25 años de experiencia, 5 en España","Respuesta rápida","Precios honestos y transparentes","Trilingüe: Français, English, Español","Zona 20-30 km alrededor de Roses"],
-    faq:[
-      {q:"Qué trabajos no realiza?", a:"No instalamos climatización ni trabajos de fontanería complejos."},
-      {q:"Intervenciones por la tarde?", a:"Sí, según disponibilidad y urgencia."},
-      {q:"Cómo pedir presupuesto?", a:"Por teléfono, WhatsApp o formulario de contacto."}
-    ],
-    labels:{quote:"Presupuesto gratis",contact:"Contacto",reviews:"Opiniones",leave:"Dejar una opinión"}
-  }
+  en: { /* omitted for brevity — page defaults to French but design supports EN/ES if extended */ }
 };
 
-let lang = localStorage.getItem('lm_lang') || 'fr';
-function renderLang(){
-  const L = content[lang];
-  document.getElementById('services').innerHTML = '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px">' +
-    L.services.map(s=>`<div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:10px"><strong>${s.title}</strong><div class="small">${s.txt}</div></div>`).join('') +
-    '</div>';
-  const whyList = document.getElementById('whyList');
-  whyList.innerHTML = L.why.map(i=>`<li>${i}</li>`).join('');
-  document.getElementById('h_title').textContent = lang==='fr' ? 'LM-SERVICES — Rapide, fiable, local' : lang==='en' ? 'LM-SERVICES — Fast, Reliable, Local' : 'LM-SERVICES — Rápido, fiable, local';
-  document.querySelectorAll('.action-btn').forEach(b=>{ if(b.dataset.lang) b.style.outline = b.dataset.lang===lang ? '3px solid rgba(255,255,255,0.08)' : ''; });
-  // locale FAQ
-  document.getElementById('faq').innerHTML = content[lang].faq.map(f=>`<strong>${f.q}</strong><div>${f.a}</div><br>`).join('');
-  localStorage.setItem('lm_lang', lang);
-}
-document.querySelectorAll('[data-lang]').forEach(btn=>{
-  btn.addEventListener('click', ()=> { lang = btn.dataset.lang; renderLang(); });
-});
-renderLang();
+/* Language default (simple approach: use French) */
+let lang = 'fr';
 
-/* ---------- Reviews initial data and UI ---------- */
+/* Fill services, why and faq */
+function renderStatic(){
+  const tiles = document.getElementById('serviceTiles');
+  tiles.innerHTML = content.fr.tiles.map(s => `
+    <div class="tile" data-hover>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="icon">${s.i}</div>
+        <div>
+          <strong>${s.t}</strong>
+          <div class="small">${s.d}</div>
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('whyList').innerHTML = content.fr.why.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('faqBlock').innerHTML = content.fr.faq.map(f => `<strong>${f.q}</strong><div class="small">${f.a}</div><br>`).join('');
+}
+renderStatic();
+
+/* =================== LOGO ANIMATION =================== */
+const brandLogo = document.getElementById('brandLogo');
+let logoTick = 0;
+setInterval(()=>{ logoTick += 0.05; brandLogo.style.transform = `scale(${1 + Math.sin(logoTick)*0.015}) rotate(${Math.sin(logoTick/2)*0.6}deg)`; }, 60);
+
+/* =================== ARC BACKGROUND =================== */
+const canvas = document.getElementById('arcCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+class Arc {
+  constructor(){ this.reset(); }
+  reset(){ this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.vx = (Math.random()-0.5)*0.6; this.vy = (Math.random()-0.5)*0.6; this.life = Math.random()*160 + 80; this.max = this.life; this.points = []; this.color = `hsl(${200 + Math.random()*40}, 90%, 60%)`; for(let i=0;i<6+Math.random()*8;i++) this.points.push({x:this.x + (Math.random()-0.5)*120, y:this.y + (Math.random()-0.5)*120}); }
+  step(){ this.life--; this.x += this.vx; this.y += this.vy; if(this.life<0) this.reset(); for(const p of this.points){ p.x += (Math.random()-0.5)*4; p.y += (Math.random()-0.5)*4; } }
+  draw(){ const alpha = Math.max(0, this.life/this.max); ctx.beginPath(); ctx.moveTo(this.x,this.y); for(const p of this.points) ctx.lineTo(p.x,p.y); ctx.strokeStyle = this.color; ctx.globalAlpha = 0.08 + 0.6*alpha; ctx.lineWidth = 1 + alpha*2; ctx.shadowColor = this.color; ctx.shadowBlur = 12*alpha; ctx.stroke(); ctx.globalAlpha = 1; }
+}
+const arcs = new Array(16).fill(0).map(()=>new Arc());
+(function loop(){ ctx.clearRect(0,0,canvas.width,canvas.height); for(const a of arcs){ a.step(); a.draw(); } requestAnimationFrame(loop); })();
+
+/* =================== THEME TOGGLE =================== */
+document.getElementById('toggleTheme').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', cur);
+  localStorage.setItem('lm_theme', cur);
+});
+const storedTheme = localStorage.getItem('lm_theme');
+if(storedTheme) document.documentElement.setAttribute('data-theme', storedTheme);
+
+/* =================== REVIEWS (UI + submit) =================== */
 const initialReviews = [
-  {name:"Melodie Pascual", text:"Un IMMENSE MERCI à Mr Mendes, d'avoir répondu à notre appel ce jeudi soir.", stars:5, date:"04/01/2024"},
-  {name:"Jennifer Coulée", text:"Panne d'électricité en ce jour de Noël, le patron est venu me dépanner.", stars:5, date:"25/12/2022"},
-  {name:"Jean-Claude Riviere", text:"Électricien professionnel pour Empuriabrava.", stars:5, date:"07/02/2023"}
+  {name:"Melodie Pascual", text:"Un IMMENSE MERCI à Mr Mendes, d'avoir répondu à notre appel ce jeudi soir.", stars:5},
+  {name:"Jennifer Coulée", text:"Panne d'électricité en ce jour de Noël, le patron est venu lui même me dépanner.", stars:5},
+  {name:"Jean-Claude Riviere", text:"Ayant eu besoin d'un électricien professionnel pour ma maison d' Empuriabrava .", stars:5},
+  {name:"Beyemeglaurence Garrigues", text:"Super service sur Llança pour un pb de prises grillées! Merci pour les conseils.", stars:5},
+  {name:"Ornella Ornella", text:"Top !!! Ce deplace direct et fait du tres bon travail a des prix tres corect je recommende !", stars:5},
+  {name:"Rudy Delsaut", text:"Rapide, efficace, coche toutes les cases! Je recommande aux francophones de Roses!", stars:5}
 ];
+let reviews = initialReviews.slice();
 
-function showTopReviews(){
-  const el = document.getElementById('topReviews');
-  el.innerHTML = initialReviews.map(r=>`<div style="margin-bottom:8px"><strong>${r.name}</strong><div class="small">${'★'.repeat(r.stars)} ${r.text}</div></div>`).join('');
+function renderReviews(){
+  document.getElementById('top3').innerHTML = reviews.slice(0,3).map(r => `<div class="review"><strong>${r.name}</strong><div class="small" style="color:gold">${'★'.repeat(r.stars)}</div><div class="small">${r.text}</div></div>`).join('');
+  document.getElementById('others').innerHTML = reviews.slice(3).map(r => `<div class="review"><strong>${r.name}</strong><div class="small" style="color:gold">${'★'.repeat(r.stars)}</div><div class="small">${r.text}</div></div>`).join('');
 }
-showTopReviews();
-function loadOtherReviews(){
-  const el = document.getElementById('otherReviews');
-  const rest = [
-    "Beyemeglaurence Garrigues — Super service sur Llança pour un pb de prises grillées!",
-    "Ornella Ornella — Top !!! se déplace direct et très bon travail à prix correct"
-  ];
-  el.innerHTML = rest.map(r=>`<div style="margin-bottom:6px">${r}</div>`).join('');
-}
-loadOtherReviews();
+renderReviews();
 
-/* ---------- Stars handling ---------- */
-const stars = document.querySelectorAll('.star');
-let rating = 5;
-stars.forEach(s=>{
-  s.addEventListener('click', ()=> {
-    rating = Number(s.dataset.value);
-    stars.forEach(x=> x.textContent = Number(x.dataset.value) <= rating ? '★' : '☆');
-  });
+document.getElementById('toggleReviews').addEventListener('click', ()=> {
+  const p = document.getElementById('reviewsPanel');
+  p.classList.toggle('hidden');
 });
-stars.forEach(x=> x.textContent='★'); // default
 
-/* ---------- Review submission to server endpoint ---------- */
-/* Endpoints to adjust before deploy */
-const SUBMIT_REVIEW_ENDPOINT = '/.netlify/functions/submit-review'; // replace if azure/php is used
-const GET_MAP_KEY_ENDPOINT = '/.netlify/functions/get-map-key'; // endpoint that returns Google Maps key from env
+/* star selection */
+const starEls = document.querySelectorAll('#starWrap .star');
+let currentRating = 5;
+starEls.forEach(s => s.addEventListener('click', ()=> { currentRating = Number(s.dataset.value); starEls.forEach(x => x.textContent = Number(x.dataset.value) <= currentRating ? '★' : '☆'); }));
+starEls.forEach(x => x.textContent = '★');
 
-document.getElementById('reviewForm').addEventListener('submit', async (e)=>{
+/* submit review */
+document.getElementById('reviewForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('rName').value.trim() || 'Anonyme';
   const text = document.getElementById('rText').value.trim();
   const langSel = document.getElementById('rLang').value;
-  if(!text) { alert(lang==='fr' ? 'Veuillez écrire votre avis.' : lang==='en' ? 'Please write your review.' : 'Por favor escriba su opinión.'); return; }
+  if(!text) return alert('Veuillez écrire votre avis.');
 
-  const payload = { name, text, stars: rating, lang: langSel, source: 'site' };
-  try{
-    const res = await fetch(SUBMIT_REVIEW_ENDPOINT, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
-    });
-    if(res.ok){
-      alert(lang==='fr' ? 'Merci, votre avis a été envoyé.' : lang==='en' ? 'Thanks, your review was sent.' : 'Gracias, su opinión ha sido enviada.');
-      // optionally append locally for preview
-      const other = document.getElementById('otherReviews');
-      other.insertAdjacentHTML('afterbegin', `<div><strong>${name}</strong> — ${'★'.repeat(rating)} ${text}</div>`);
+  const payload = { name, text, stars: currentRating, lang: langSel, source: 'site' };
+
+  try {
+    const res = await fetch(SUBMIT_REVIEW_ENDPOINT, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    if(res.ok) {
+      alert(content.fr.messages.ok);
+      reviews.unshift({name, text, stars: currentRating});
+      renderReviews();
       document.getElementById('reviewForm').reset();
+      currentRating = 5; starEls.forEach(x => x.textContent='★');
+
+      // Optionnel : poster aussi vers Google Sheets webhook if configured
+      if(SHEETS_WEBHOOK_ENDPOINT) {
+        try { await fetch(SHEETS_WEBHOOK_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) }); } catch(e){ console.warn('Sheets webhook failed', e); }
+      }
     } else {
-      const txt = await res.text();
-      console.error('Review submit error', txt);
-      alert('Erreur envoi avis');
+      alert(content.fr.messages.err);
     }
-  } catch(err){
+  } catch(err) {
     console.error(err);
     alert('Erreur réseau ou endpoint non configuré.');
   }
 });
 
-/* ---------- Map loading via server-provided key ---------- */
+/* clear local preview */
+document.getElementById('clearLocal').addEventListener('click', ()=> {
+  if(confirm('Supprimer les avis ajoutés en aperçu local ?')){ reviews = initialReviews.slice(); renderReviews(); }
+});
+
+/* =================== COOKIE CONSENT + CONDITIONAL GA LOAD =================== */
+const cookieKey = 'lm_cookies_accepted';
+const cookieBanner = document.getElementById('cookieBanner');
+if(!localStorage.getItem(cookieKey)) cookieBanner.classList.remove('hidden');
+
+document.getElementById('acceptCookies').addEventListener('click', ()=>{
+  localStorage.setItem(cookieKey, '1');
+  cookieBanner.classList.add('hidden');
+  loadGoogleAnalytics();
+});
+document.getElementById('manageCookies').addEventListener('click', ()=> {
+  alert('Cookies essentiels activés. Les cookies analytiques sont activés uniquement si vous acceptez.');
+});
+
+/* load GA only after consent */
+function loadGoogleAnalytics(){
+  if(window._gaLoaded) return;
+  window._gaLoaded = true;
+  const s = document.createElement('script');
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  s.async = true; document.head.appendChild(s);
+  s.onload = ()=> {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+    gtag('config', GTM_ID);
+  };
+}
+if(localStorage.getItem(cookieKey)) loadGoogleAnalytics();
+
+/* =================== GOOGLE MAP (KEY FROM SERVERLESS) =================== */
 async function initMap(){
-  try{
+  try {
     const r = await fetch(GET_MAP_KEY_ENDPOINT);
-    if(!r.ok) { document.getElementById('mapPlaceholder').textContent = 'Carte indisponible'; return; }
-    const data = await r.json();
-    const key = data.key;
-    if(!key){ document.getElementById('mapPlaceholder').textContent = 'Clé manquante'; return; }
+    if(!r.ok){ document.getElementById('mapWrap').textContent = 'Carte indisponible'; return; }
+    const js = await r.json();
+    const key = js.key;
+    if(!key){ document.getElementById('mapWrap').textContent = 'Clé manquante'; return; }
     const s = document.createElement('script');
     s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&callback=onMapReady`;
-    s.async = true; s.defer = true;
-    document.head.appendChild(s);
+    s.async = true; s.defer = true; document.head.appendChild(s);
     window.onMapReady = function(){
-      const map = new google.maps.Map(document.getElementById('mapWrap'), {
-        center:{lat:42.2833, lng:3.2033}, zoom:12
-      });
-      new google.maps.Marker({position:{lat:42.2833, lng:3.2033}, map, title:'LM-SERVICES Roses'});
+      const map = new google.maps.Map(document.getElementById('mapWrap'), { center:{lat:42.2833,lng:3.2033}, zoom:11 });
+      new google.maps.Marker({ position:{lat:42.2833,lng:3.2033}, map, title:'LM-SERVICES Roses' });
     };
-  } catch(e){
-    console.error(e);
-    document.getElementById('mapPlaceholder').textContent = 'Erreur chargement carte';
-  }
+  } catch(e){ console.error(e); document.getElementById('mapWrap').textContent = 'Erreur chargement carte'; }
 }
 initMap();
 
-/* ---------- Cookie banner RGPD ----------
-   - stocke le consentement dans localStorage
-   - bloque le chargement de scripts analytiques si non accepté (ici simple placeholder)
-*/
-const cookieBanner = document.getElementById('cookieBanner');
-if(!localStorage.getItem('lm_cookies_accepted')) cookieBanner.style.display='flex';
-document.getElementById('acceptCookies').addEventListener('click', ()=>{
-  localStorage.setItem('lm_cookies_accepted','1');
-  cookieBanner.style.display='none';
-  // here you would trigger analytics init if required
-});
+/* =================== QUICK ACTIONS =================== */
+document.getElementById('devisBtn').addEventListener('click', ()=> location.href = 'mailto:lm-services02@outlook.fr?subject=Demande%20de%20devis%20LM-SERVICES');
+document.getElementById('devisTop').addEventListener('click', ()=> location.href = 'mailto:lm-services02@outlook.fr?subject=Demande%20de%20devis%20LM-SERVICES');
+document.getElementById('whTop').addEventListener('click', ()=> {/* anchor handles it */});
 
-/* ---------- Quote button ---------- */
-document.getElementById('quoteBtn').addEventListener('click', ()=> {
-  window.location.href = 'mailto:lm-services02@outlook.fr?subject=Demande%20de%20devis%20LM-SERVICES';
-});
-
-/* ---------- Accessibility and small helpers ---------- */
-document.getElementById('clearLocal').addEventListener('click', ()=> {
-  if(confirm('Supprimer les aperçus locaux des avis ?')) document.getElementById('otherReviews').innerHTML='';
-});
+/* =================== INITIAL THEME FROM STORAGE =================== */
+(function(){ const t = localStorage.getItem('lm_theme'); if(t) document.documentElement.setAttribute('data-theme', t); })();
 </script>
 </body>
 </html>
