@@ -82,17 +82,59 @@
       ::-webkit-scrollbar-thumb { background: #007BFF; border-radius: 4px; }
       ::-webkit-scrollbar-thumb:hover { background: #4dabf7; }
       html { scroll-behavior: smooth; }
-    </style>
+    
+
+/* Injected logo-pulse keyframes (requested) */
+@keyframes logo-pulse {
+  0%,100% { filter: drop-shadow(0 0 4px rgba(255,193,7,0.6)); }
+  50%     { filter: drop-shadow(0 0 12px rgba(255,193,7,1)); }
+}
+</style>
 </head>
 <body class="bg-neutral-light dark:bg-neutral-extradark">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-K5Q634NG"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- NATIVE LOGO SVG (replaces JSX <Logo /> when rendering static HTML) -->
+    <div style="display:flex; justify-content:center; margin-top:1.5rem;">
+      <svg class="lm-logo-svg" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:6rem; animation:logo-pulse 4s infinite cubic-bezier(0.4,0,0.6,1);">
+        <defs>
+          <filter id="logo-glow-yellow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="logo-glow-white" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <linearGradient id="text-fill-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="50%" stop-color="#D1D5DB"/>
+            <stop offset="100%" stop-color="#9CA3AF"/>
+          </linearGradient>
+        </defs>
+        <path d="M5 40 Q 60 15, 120 40 T 235 40" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" filter="url(#logo-glow-yellow)" opacity="0.8"/>
+        <path d="M10 42 Q 70 65, 120 42 T 230 42" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" filter="url(#logo-glow-white)" opacity="0.6"/>
+        <path d="M20 38 C 80 50, 160 30, 220 42" stroke="#FFC107" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+        <g style="font-family:'Arial Black', Gadget, sans-serif;font-size:34px;text-anchor:middle;letter-spacing:-1px;">
+          <text x="121" y="53" fill="#1F2327" opacity="0.7">LM-SERVICES</text>
+          <text x="120" y="52" fill="url(#text-fill-gradient)" stroke="#4B5563" stroke-width="0.5">LM-SERVICES</text>
+        </g>
+      </svg>
+    </div>
+
     <div id="root"></div>
 
     <script type="module">
         import React, { useState, useEffect, useCallback, createContext, useContext, useRef } from 'https://esm.sh/react@18.3.1';
         import ReactDOM from 'https://esm.sh/react-dom@18.3.1/client';
-        import { GoogleGenAI, Modality } from 'https://esm.sh/@google/genai';
+        import { GoogleGenAI } from 'https://esm.sh/@google/genai';
 
         // =================================================================
         // IMPORTANT: API KEY CONFIGURATION
@@ -162,7 +204,7 @@
               about: { title: 'Pourquoi Choisir LM-SERVICES à Roses ?', subtitle: 'La tranquillité d\'esprit, c\'est savoir que le travail sera bien fait. C\'est ce que je vous offre.', features: { experience: { title: '25 Ans d\'Expérience', description: 'Une expertise solide en électricité, dont 5 ans en Espagne, garantissant un travail de qualité et conforme aux normes.' }, versatility: { title: 'Polyvalence & Fiabilité', description: 'De l\'électricité à la peinture, en passant par le jardinage. Une seule personne de confiance pour de multiples besoins.' }, local: { title: 'Artisan Local', description: 'Basé à Roses, j\'interviens rapidement dans un rayon de 20-30 km. Un service de proximité réactif et personnalisé.' }, service: { title: 'Service Client', description: 'Je parle français, anglais et espagnol. Une communication claire et un service client irréprochable sont mes priorités.' } } },
               services: { title: 'Nos Services Complets', subtitle: 'Solutions professionnelles pour votre domicile. En dehors de la climatisation et de la plomberie, je m\'occupe de presque tout.', list: { emergency: { title: 'Dépannage Électrique Urgent', description: 'Panne de courant, court-circuit, problème de tableau électrique... Intervention rapide pour votre sécurité.' }, installations: { title: 'Petites Installations', description: 'Installation de prises, interrupteurs, luminaires, mise à la terre, et petites rénovations électriques.' }, repairs: { title: 'Réparations Diverses', description: 'Réparation d\'appareils électroménagers, volets roulants, et autres petits équipements de la maison.' }, painting: { title: 'Peinture', description: 'Petits travaux de peinture intérieure et extérieure pour rafraîchir votre espace de vie.' }, gardening: { title: 'Entretien Jardin', description: 'Tonte de pelouse, taille de haies, et petit entretien pour un jardin impeccable.' }, multiservices: { title: 'Autres Petits Travaux', description: 'Montage de meubles, petites réparations, et divers services pour vous faciliter la vie.' } } },
               reviews: { title: 'Nos clients parlent pour nous', subtitle: 'La satisfaction de mes clients est ma meilleure publicité.', show_more: 'Voir plus d\'avis', show_less: 'Voir moins d\'avis', form: { title: 'Laissez votre avis', name: 'Votre nom', rating: 'Votre note', comment: 'Votre commentaire', submit: 'Envoyer mon avis', submitting: 'Envoi en cours...', success: 'Merci ! Votre avis a été soumis.', error_all_fields: 'Veuillez remplir tous les champs et donner une note.', error_generic: 'Une erreur est survenue. Veuillez réessayer.' }, list: { 1: { comment: 'Merci à Loic qui est intervenu très rapidement un dimanche, une personne très à l\'écoute et très sympathique.' }, 2: { comment: 'Suite à des problèmes sur le disjoncteur, il est intervenu très rapidement un samedi matin, avec beaucoup de compétence et un prix très correct. Je recommande en toute confiance.' }, 3: { comment: 'Panne d’électricité en ce jour de Noël, le patron est venu lui même me dépanner. Très sympathique, très professionnel, prix très démocratique. Probablement le meilleur électricien français à Rosas.' }, 4: { comment: 'Service irréprochable ! Appel la veille au soir pour une intervention le lendemain matin. Monsieur s’est démené pour trouver une solution. Très professionnel et efficace.' }, 5: { comment: 'Intervention efficace. Prix raisonnable. Rien à redire.' }, 6: { comment: 'Super service sur Llança pour un problème de prises grillées! Merci pour les conseils. Je recommande LM services et reviendrai vers ce monsieur certainement !' }, 7: { comment: 'J\'ai contacté cette société pour établir une attestation de conformité sur Llança. Service rapide, efficace et à un prix raisonnable. Je recommande.' }, 8: { comment: 'J\'ai appelé Loîc un dimanche matin, l\'après-midi le problème a été résolu. Très bon professionnel, serviable. Je recommande ses services !' }, 9: { comment: 'Très bon professionnel, à l\'écoute et hyper réactif. Merci Loic pour votre intervention rapide et efficace.' }, 10: { comment: 'Technicien très sympathique et compétent qui a bien voulu venir nous dépanner à 20h30. Je recommande cette entreprise.' }, 11: { comment: 'Un IMMENSE MERCI à Mr Mendes, d\'avoir répondu à notre appel ce jeudi soir. Il a résolu notre problème de tableau électrique avec un grand professionnalisme.' }, 12: { comment: 'Un électricien au top ! Loic est intervenu un quart d’heure après mon appel. Super gentil et à l’écoute, même un samedi après-midi, c’est super.' }, 13: { comment: 'Bon travail, nous souhaitions mettre des prises électriques dans nos garages pour charger nos voitures. Le résultat est parfait et le travail a été fait proprement.' }, 14: { comment: 'Très gentil, professionnel et efficace. Je recommande vivement.' }, 15: { comment: 'Un grand merci à Loïc qui est intervenu chez nous très rapidement alors qu’il était 19h passé. Un vrai professionnel que je recommande.' }, 16: { comment: 'Loic est une superbe personne et un très bon technicien, serviable, efficace mais surtout adorable et arrangeant ! Merci de votre efficacité !' }, 17: { comment: 'Rapidité du service. Amabilité et efficacité. À recommander vivement.' }, 18: { comment: 'Top! Ponctuel, professionnel, à l’écoute du client. Rapport qualité prix top ! Je recommande sans hésiter.' }, 19: { comment: 'Ayant eu besoin d\'un électricien professionnel pour ma maison d\'Empuriabrava, j\'ai fait venir ce Monsieur. Très compétent, de bon conseil et sympathique.' }, 20: { comment: 'Nous avons eu un problème électrique, ils sont venus dans l’heure et ont résolu la panne. Prix très honnêtes. Patron très sympa et compétent. A recommander vivement !' }, 21: { comment: 'Top ! Se déplace directement et fait du très bon travail à des prix très corrects. Je recommande !' }, 22: { comment: 'Un grand merci pour votre réactivité et votre professionnalisme ! Suite à un problème électrique, j’ai été dépanné en moins d\'une heure. Service impeccable.' }, 23: { comment: 'Super électricien, qui connaît son métier. Il est méga rapide et le prix est super. Fortement recommandé !' }, 24: { comment: 'Grand professionnel, service impeccable, recommandé à 100%.' }, 25: { comment: 'Nous l’avons appelé à 19h pour un bruit suspect, il est intervenu 15 mins plus tard. Diagnostic rapide et problème résolu. Un vrai soulagement !' }, 26: { comment: 'Rapide, efficace, coche toutes les cases! Je recommande aux francophones de Roses!' } } },
-              ai_generator: { title: 'Visualisez Votre Projet avec l\'IA', subtitle: 'Vous avez une idée ? Décrivez-la et laissez notre intelligence artificielle créer une image pour vous aider à visualiser le résultat final.', prompt_label: 'Décrivez ce que vous voulez voir', prompt_placeholder: 'Ex: un salon moderne avec un nouvel éclairage LED au plafond et des murs bleu pastel...', aspect_ratio_label: 'Format de l\'image', generate_button: 'Générer l\'Image', generating: 'Génération en cours...', loading_message: 'L\'IA réfléchit... Cela peut prendre un moment.', placeholder_image: 'Votre image générée apparaîtra ici.', error: { api_key_missing: 'Veuillez configurer votre clé API Gemini dans le code.', prompt_required: 'Veuillez décrire votre projet.', generic: 'La génération d\'image a échoué. Veuillez réessayer.' } },
+              ai_generator: { title: 'Visualisez Votre Projet avec l\'IA', subtitle: 'Vous avez une idée ? Décrivez-la et laissez notre intelligence artificielle créer une image pour vous aider à visualiser le résultat final.', prompt_label: 'Décrivez ce que vous voulez voir', prompt_placeholder: 'Ex: un salon moderne avec un nouvel éclairage LED au plafond et des murs bleu pastel...', aspect_ratio_label: 'Format de l\'image', generate_button: 'Générer l\'Image', generating: 'Génération en cours...', loading_message: 'L\'IA réfléchit... Cela peut prendre un moment.', placeholder_image: 'Votre image générée apparaîtra ici.', error: { prompt_required: 'Veuillez décrire votre projet.', generic: 'La génération d\'image a échoué. Veuillez réessayer.' } },
               faq: { title: 'Questions Fréquentes', subtitle: 'Vous avez des questions ? J\'ai les réponses.', list: { 1: { question: 'Dans quelle zone intervenez-vous ?', answer: 'Je suis basé à Roses et j\'interviens principalement dans un rayon de 20 à 30 kilomètres, couvrant des villes comme Empuriabrava, Figueres, Cadaqués, etc.' }, 2: { question: 'Quels sont vos tarifs ?', answer: 'Chaque intervention est unique. Contactez-moi pour un devis gratuit et personnalisé. Mes tarifs sont transparents et compétitifs.' }, 3: { question: 'Quels types de travaux ne faites-vous pas ?', answer: 'Je ne fais pas les gros travaux de plomberie ni l\'installation ou la réparation de systèmes de climatisation.' }, 4: { question: 'Parlez-vous plusieurs langues ?', answer: 'Oui, je suis français et je parle couramment français et anglais, ainsi qu\'un peu d\'espagnol pour faciliter la communication.' }, 5: { question: 'Êtes-vous disponible pour les urgences ?', answer: 'Oui, je propose un service de dépannage pour les urgences électriques. N\'hésitez pas à m\'appeler directement.' } } },
               contact: { title: 'Contactez-moi', subtitle: 'Une question ? Un projet ? Besoin d\'un dépannage ? Je suis à votre écoute.', quote_button: 'Demander un Devis Gratuit' },
               footer: { description: 'Votre partenaire de confiance pour tous vos besoins en électricité et petits travaux à Roses et ses environs.', rights_reserved: 'Tous droits réservés.', privacy_policy: 'Politique de confidentialité', terms_of_service: 'Conditions d\'utilisation' },
@@ -175,7 +217,7 @@
               about: { title: 'Why Choose LM-SERVICES in Roses?', subtitle: 'Peace of mind is knowing the job will be done right. That\'s what I offer.', features: { experience: { title: '25 Years of Experience', description: 'Solid expertise in electricity, including 5 years in Spain, ensuring high-quality work that meets all standards.' }, versatility: { title: 'Versatility & Reliability', description: 'From electricity to painting and gardening. A single trusted professional for multiple needs.' }, local: { title: 'Local Craftsman', description: 'Based in Roses, I provide prompt service within a 20-30 km radius. A responsive and personalized local service.' }, service: { title: 'Customer Service', description: 'I speak French, English, and Spanish. Clear communication and impeccable customer service are my priorities.' } } },
               services: { title: 'Our Complete Services', subtitle: 'Professional solutions for your home. Apart from air conditioning and plumbing, I handle almost everything.', list: { emergency: { title: 'Urgent Electrical Repair', description: 'Power outage, short circuit, electrical panel issues... Fast intervention for your safety.' }, installations: { title: 'Small Installations', description: 'Installation of outlets, switches, light fixtures, grounding, and small electrical renovations.' }, repairs: { title: 'Various Repairs', description: 'Repair of home appliances, roller shutters, and other small household equipment.' }, painting: { title: 'Painting', description: 'Small interior and exterior painting jobs to freshen up your living space.' }, gardening: { title: 'Garden Maintenance', description: 'Lawn mowing, hedge trimming, and small maintenance for a pristine garden.' }, multiservices: { title: 'Other Small Jobs', description: 'Furniture assembly, minor repairs, and various services to make your life easier.' } } },
               reviews: { title: 'Our Customers Speak for Us', subtitle: 'My customers\' satisfaction is my best advertisement.', show_more: 'Show more reviews', show_less: 'Show fewer reviews', form: { title: 'Leave a review', name: 'Your name', rating: 'Your rating', comment: 'Your comment', submit: 'Submit my review', submitting: 'Submitting...', success: 'Thank you! Your review has been submitted.', error_all_fields: 'Please fill in all fields and provide a rating.', error_generic: 'An error occurred. Please try again.' }, list: { 1: { comment: 'Thanks to Loic who came very quickly on a Sunday. He was a very attentive and friendly person.' }, 2: { comment: 'Following issues with the circuit breaker, he responded very quickly on a Saturday morning, with great skill and a very fair price. I recommend him with full confidence.' }, 3: { comment: 'Power outage on Christmas Day, and the owner came himself to fix it. Very friendly, professional, and at a great price. Probably the best French electrician in Rosas.' }, 4: { comment: 'Impeccable service! Called the night before for an appointment the next morning. He went out of his way to find a solution. Very professional and efficient.' }, 5: { comment: 'Efficient service. Reasonable price. Nothing to complain about.' }, 6: { comment: 'Great service in Llança for an issue with burnt-out sockets! Thanks for the advice. I recommend LM Services and will definitely call him again!' }, 7: { comment: 'I contacted this company to get a certificate of conformity in Llança. Fast, efficient service at a reasonable price. I recommend them.' }, 8: { comment: 'I called Loîc on a Sunday morning, and by the afternoon the problem was solved. A very good, helpful professional. I recommend his services!' }, 9: { comment: 'Very good professional, attentive and super responsive. Thank you Loic for your quick and effective intervention.' }, 10: { comment: 'Very friendly and competent technician who was willing to come and help us at 8:30 PM. I recommend this company.' }, 11: { comment: 'A HUGE THANKS to Mr. Mendes for answering our call on a Thursday evening. He solved our electrical panel issue with great professionalism.' }, 12: { comment: 'A top-notch electrician! Loic arrived fifteen minutes after my call. Super nice and attentive, even on a Saturday afternoon, which is great.' }, 13: { comment: 'Good work. We wanted to install electrical outlets in our garages to charge our cars. The result is perfect and the work was done cleanly.' }, 14: { comment: 'Very kind, professional, and efficient. I highly recommend him.' }, 15: { comment: 'A big thank you to Loïc who came to our place very quickly even though it was past 7 PM. A true professional whom I recommend.' }, 16: { comment: 'Loic is a wonderful person and a very good technician: helpful, efficient, but above all, lovely and accommodating! Thank you for your efficiency!' }, 17: { comment: 'Speed of service. Friendliness and efficiency. Highly recommended.' }, 18: { comment: 'Top-notch! Punctual, professional, attentive to the client. Great value for money! I recommend without hesitation.' }, 19: { comment: 'Needing a professional electrician for my house in Empuriabrava, I called this gentleman. Very competent, gave good advice, and was friendly.' }, 20: { comment: 'We had an electrical problem, they came within the hour and solved the issue. Very fair prices. The owner is very nice and competent. Highly recommend!' }, 21: { comment: 'Top! Comes right away and does a very good job at very fair prices. I recommend!' }, 22: { comment: 'A big thank you for your responsiveness and professionalism! Following an electrical problem, I was helped in less than an hour. Impeccable service.' }, 23: { comment: 'Great electrician who knows his craft. He is super fast and the price is great. Highly recommended!' }, 24: { comment: 'Great professional, impeccable service, 100% recommended.' }, 25: { comment: 'We called him at 7 PM for a suspicious noise, and he arrived 15 minutes later. Quick diagnosis and problem solved. A real relief!' }, 26: { comment: 'Fast, efficient, checks all the boxes! I recommend him to French speakers in Roses!' } } },
-              ai_generator: { title: 'Visualize Your Project with AI', subtitle: 'Have an idea? Describe it and let our artificial intelligence create an image to help you visualize the final result.', prompt_label: 'Describe what you want to see', prompt_placeholder: 'E.g., a modern living room with new LED ceiling lights and pastel blue walls...', aspect_ratio_label: 'Image Aspect Ratio', generate_button: 'Generate Image', generating: 'Generating...', loading_message: 'The AI is thinking... This may take a moment.', placeholder_image: 'Your generated image will appear here.', error: { api_key_missing: 'Please configure your Gemini API key in the code.', prompt_required: 'Please describe your project.', generic: 'Image generation failed. Please try again.' } },
+              ai_generator: { title: 'Visualize Your Project with AI', subtitle: 'Have an idea? Describe it and let our artificial intelligence create an image to help you visualize the final result.', prompt_label: 'Describe what you want to see', prompt_placeholder: 'E.g., a modern living room with new LED ceiling lights and pastel blue walls...', aspect_ratio_label: 'Image Aspect Ratio', generate_button: 'Generate Image', generating: 'Generating...', loading_message: 'The AI is thinking... This may take a moment.', placeholder_image: 'Your generated image will appear here.', error: { prompt_required: 'Please describe your project.', generic: 'Image generation failed. Please try again.' } },
               faq: { title: 'Frequently Asked Questions', subtitle: 'You have questions? I have answers.', list: { 1: { question: 'What area do you serve?', answer: 'I am based in Roses and primarily serve a 20 to 30-kilometer radius, covering towns like Empuriabrava, Figueres, Cadaqués, etc.' }, 2: { question: 'What are your rates?', answer: 'Every job is unique. Contact me for a free, personalized quote. My prices are transparent and competitive.' }, 3: { question: 'What types of work do you not do?', answer: 'I do not handle major plumbing jobs or the installation or repair of air conditioning systems.' }, 4: { question: 'Do you speak multiple languages?', answer: 'Yes, I am French and speak fluent French and English, as well as some Spanish to facilitate communication.' }, 5: { question: 'Are you available for emergencies?', answer: 'Yes, I offer an emergency repair service for electrical issues. Do not hesitate to call me directly.' } } },
               contact: { title: 'Contact Me', subtitle: 'A question? A project? Need a repair? I\'m here to help.', quote_button: 'Request a Free Quote' },
               footer: { description: 'Your trusted partner for all your electricity and small job needs in Roses and the surrounding area.', rights_reserved: 'All rights reserved.', privacy_policy: 'Privacy Policy', terms_of_service: 'Terms of Service' },
@@ -188,7 +230,7 @@
               about: { title: '¿Por Qué Elegir LM-SERVICES en Roses?', subtitle: 'La tranquilidad es saber que el trabajo estará bien hecho. Eso es lo que le ofrezco.', features: { experience: { title: '25 Años de Experiencia', description: 'Sólida experiencia en electricidad, incluyendo 5 años en España, garantizando un trabajo de calidad y conforme a las normativas.' }, versatility: { title: 'Versatilidad y Fiabilidad', description: 'Desde la electricidad hasta la pintura y la jardinería. Un único profesional de confianza para múltiples necesidades.' }, local: { title: 'Artesano Local', description: 'Con sede en Roses, intervengo rápidamente en un radio de 20-30 km. Un servicio local, receptivo y personalizado.' }, service: { title: 'Servicio al Cliente', description: 'Hablo francés, inglés y un poco de español. Una comunicación clara y un servicio al cliente impecable son mis prioridades.' } } },
               services: { title: 'Nuestros Servicios Completos', subtitle: 'Soluciones profesionales para su hogar. Aparte del aire acondicionado y la fontanería, me encargo de casi todo.', list: { emergency: { title: 'Reparación Eléctrica Urgente', description: 'Apagón, cortocircuito, problemas en el cuadro eléctrico... Intervención rápida para su seguridad.' }, installations: { title: 'Pequeñas Instalaciones', description: 'Instalación de enchufes, interruptores, lámparas, tomas de tierra y pequeñas reformas eléctricas.' }, repairs: { title: 'Reparaciones Varias', description: 'Reparación de electrodomésticos, persianas eléctricas y otros pequeños equipos del hogar.' }, painting: { title: 'Pintura', description: 'Pequeños trabajos de pintura interior y exterior para renovar su espacio vital.' }, gardening: { title: 'Mantenimiento de Jardín', description: 'Corte de césped, poda de setos y pequeño mantenimiento para un jardín impecable.' }, multiservices: { title: 'Otros Pequeños Trabajos', description: 'Montaje de muebles, pequeñas reparaciones y diversos servicios para facilitarle la vida.' } } },
               reviews: { title: 'Nuestros clientes hablan por nosotros', subtitle: 'La satisfacción de mis clientes es mi mejor publicidad.', show_more: 'Ver más opiniones', show_less: 'Ver menos opiniones', form: { title: 'Deje su opinión', name: 'Su nombre', rating: 'Su valoración', comment: 'Su comentario', submit: 'Enviar mi opinión', submitting: 'Enviando...', success: '¡Gracias! Su opinión ha sido enviada.', error_all_fields: 'Por favor, rellene todos los campos y dé una valoración.', error_generic: 'Ocurrió un error. Por favor, inténtelo de nuevo.' }, list: { 1: { comment: 'Gracias a Loic que intervino muy rápidamente un domingo. Es una persona muy atenta y muy amable.' }, 2: { comment: 'Tras problemas en el disyuntor, intervino muy rápidamente un sábado por la mañana, con mucha competencia y un precio muy correcto. Lo recomiendo con total confianza.' }, 3: { comment: 'Corte de luz el día de Navidad, y el jefe vino él mismo a solucionarlo. Muy simpático, muy profesional, precio muy democrático. Probablemente el mejor electricista francés de Rosas.' }, 4: { comment: '¡Servicio impecable! Llamé la noche anterior para una intervención a la mañana siguiente. Se esforzó por encontrar una solución. Muy profesional y eficaz.' }, 5: { comment: 'Intervención eficaz. Precio razonable. Nada que objetar.' }, 6: { comment: '¡Super servicio en Llança por un problema de enchufes quemados! Gracias por los consejos. Recomiendo LM services y sin duda volveré a contactar con este señor.' }, 7: { comment: 'Contacté con esta empresa para establecer un certificado de conformidad en Llança. Servicio rápido, eficaz y a un precio razonable. Lo recomiendo.' }, 8: { comment: 'Llamé a Loîc un domingo por la mañana, y por la tarde el problema estaba resuelto. Muy buen profesional, servicial. ¡Recomiendo sus servicios!' }, 9: { comment: 'Muy buen profesional, atento e híper reactivo. Gracias Loic por tu intervención rápida y eficaz.' }, 10: { comment: 'Técnico muy simpático y competente que tuvo la amabilidad de venir a ayudarnos a las 20:30. Recomiendo esta empresa.' }, 11: { comment: 'UN INMENSO GRACIAS al Sr. Mendes por responder a nuestra llamada este jueves por la noche. Solucionó nuestro problema del cuadro eléctrico con gran profesionalidad.' }, 12: { comment: '¡Un electricista de primera! Loic intervino un cuarto de hora después de mi llamada. Súper amable y atento, incluso un sábado por la tarde, es genial.' }, 13: { comment: 'Buen trabajo, queríamos instalar enchufes en nuestros garajes para cargar nuestros coches. El resultado es perfecto y el trabajo se hizo de forma limpia.' }, 14: { comment: 'Muy amable, profesional y eficaz. Lo recomiendo encarecidamente.' }, 15: { comment: 'Muchas gracias a Loïc, que vino a nuestra casa muy rápidamente cuando ya pasaban las 19h. Un verdadero profesional que recomiendo.' }, 16: { comment: '¡Loic es una persona estupenda y un muy buen técnico, servicial, eficaz pero sobre todo adorable y flexible! ¡Gracias por tu eficacia!' }, 17: { comment: 'Rapidez del servicio. Amabilidad y eficacia. Muy recomendable.' }, 18: { comment: '¡Genial! Puntual, profesional, atento al cliente. ¡Excelente relación calidad-precio! Lo recomiendo sin dudarlo.' }, 19: { comment: 'Necesitando un electricista profesional para mi casa en Empuriabrava, llamé a este señor. Muy competente, de buen consejo y simpático.' }, 20: { comment: 'Tuvimos un problema eléctrico, vinieron en menos de una hora y resolvieron la avería. Precios muy honestos. Jefe muy simpático y competente. ¡Muy recomendable!' }, 21: { comment: '¡Genial! Se desplaza directamente y hace un muy buen trabajo a precios muy correctos. ¡Lo recomiendo!' }, 22: { comment: '¡Muchas gracias por su rapidez y profesionalidad! Tras un problema eléctrico, me atendieron en menos de una hora. Servicio impecable.' }, 23: { comment: 'Gran electricista que conoce su oficio. Es súper rápido y el precio es genial. ¡Muy recomendable!' }, 24: { comment: 'Gran profesional, servicio impecable, recomendado al 100%.' }, 25: { comment: 'Le llamamos a las 19h por un ruido sospechoso, intervino 15 minutos después. Diagnóstico rápido y problema resuelto. ¡Un verdadero alivio!' }, 26: { comment: '¡Rápido, eficaz, cumple con todo! ¡Lo recomiendo a los francófonos de Roses!' } } },
-              ai_generator: { title: 'Visualice su Proyecto con IA', subtitle: '¿Tiene una idea? Descríbala y deje que nuestra inteligencia artificial cree una imagen para ayudarle a visualizar el resultado final.', prompt_label: 'Describa lo que quiere ver', prompt_placeholder: 'Ej: un salón moderno con nueva iluminación LED en el techo y paredes de color azul pastel...', aspect_ratio_label: 'Formato de la imagen', generate_button: 'Generar Imagen', generating: 'Generando...', loading_message: 'La IA está pensando... Esto puede tardar un momento.', placeholder_image: 'Su imagen generada aparecerá aquí.', error: { api_key_missing: 'Por favor, configure su clave API de Gemini en el código.', prompt_required: 'Por favor, describa su proyecto.', generic: 'La generación de la imagen ha fallado. Por favor, inténtelo de nuevo.' } },
+              ai_generator: { title: 'Visualice su Proyecto con IA', subtitle: '¿Tiene una idea? Descríbala y deje que nuestra inteligencia artificial cree una imagen para ayudarle a visualizar el resultado final.', prompt_label: 'Describa lo que quiere ver', prompt_placeholder: 'Ej: un salón moderno con nueva iluminación LED en el techo y paredes de color azul pastel...', aspect_ratio_label: 'Formato de la imagen', generate_button: 'Generar Imagen', generating: 'Generando...', loading_message: 'La IA está pensando... Esto puede tardar un momento.', placeholder_image: 'Su imagen generada aparecerá aquí.', error: { prompt_required: 'Por favor, describa su proyecto.', generic: 'La generación de la imagen ha fallado. Por favor, inténtelo de nuevo.' } },
               faq: { title: 'Preguntas Frecuentes', subtitle: '¿Tiene preguntas? Tengo las respuestas.', list: { 1: { question: '¿En qué zona trabaja?', answer: 'Estoy basado en Roses e intervengo principalmente en un radio de 20 a 30 kilómetros, cubriendo ciudades como Empuriabrava, Figueres, Cadaqués, etc.' }, 2: { question: '¿Cuáles son sus tarifas?', answer: 'Cada trabajo es único. Contácteme para un presupuesto gratuito y personalizado. Mis precios son transparentes y competitivos.' }, 3: { question: '¿Qué tipo de trabajos no realiza?', answer: 'No realizo grandes trabajos de fontanería ni la instalación o reparación de sistemas de aire acondicionado.' }, 4: { question: '¿Habla varios idiomas?', answer: 'Sí, soy francés y hablo con fluidez francés e inglés, además de un poco de español para facilitar la comunicación.' }, 5: { question: '¿Está disponible para emergencias?', answer: 'Sí, ofrezco un servicio de reparación para emergencias eléctricas. No dude en llamarme directamente.' } } },
               contact: { title: 'Contácteme', subtitle: '¿Una pregunta? ¿Un proyecto? ¿Necesita una reparación? Estoy a su disposición.', quote_button: 'Solicitar Presupuesto Gratis' },
               footer: { description: 'Su socio de confianza para todas sus necesidades de electricidad y pequeños trabajos en Roses y sus alrededores.', rights_reserved: 'Todos los derechos reservados.', privacy_policy: 'Política de privacidad', terms_of_service: 'Términos de servicio' },
@@ -235,23 +277,23 @@
         // =================================================================
         // ICONS (components/icons/*)
         // =================================================================
-        
-        const Logo = ({ className }) => React.createElement("svg", { viewBox: "0 0 240 80", className: className, xmlns: "http://www.w3.org/2000/svg" },
+
+        const Logo = ({ className }) => React.createElement("svg", { className: className, viewBox: "0 0 240 80", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
           React.createElement("defs", null,
-            React.createElement("filter", { id: "logo-glow-yellow" },
-              React.createElement("feGaussianBlur", { stdDeviation: "3", result: "coloredBlur" }),
+            React.createElement("filter", { id: "logo-glow-yellow", x: "-50%", y: "-50%", width: "200%", height: "200%" },
+              React.createElement("feGaussianBlur", { stdDeviation: "3.5", result: "coloredBlur" }),
               React.createElement("feMerge", null, React.createElement("feMergeNode", { in: "coloredBlur" }), React.createElement("feMergeNode", { in: "SourceGraphic" }))),
-            React.createElement("filter", { id: "logo-glow-white" },
-              React.createElement("feGaussianBlur", { stdDeviation: "1.5", result: "coloredBlur" }),
+            React.createElement("filter", { id: "logo-glow-white", x: "-50%", y: "-50%", width: "200%", height: "200%" },
+              React.createElement("feGaussianBlur", { stdDeviation: "2", result: "coloredBlur" }),
               React.createElement("feMerge", null, React.createElement("feMergeNode", { in: "coloredBlur" }), React.createElement("feMergeNode", { in: "SourceGraphic" }))),
             React.createElement("linearGradient", { id: "text-fill-gradient", x1: "0%", y1: "0%", x2: "0%", y2: "100%" },
               React.createElement("stop", { offset: "0%", stopColor: "#FFFFFF" }),
               React.createElement("stop", { offset: "50%", stopColor: "#D1D5DB" }),
               React.createElement("stop", { offset: "100%", stopColor: "#9CA3AF" }))
           ),
-          React.createElement("path", { d: "M5 40 Q 60 15, 120 40 T 235 40", stroke: "#FFC107", strokeWidth: "2.5", strokeLinecap: "round", filter: "url(#logo-glow-yellow)", className: "opacity-80", fill:"none" }),
-          React.createElement("path", { d: "M10 42 Q 70 65, 120 42 T 230 42", stroke: "#FFFFFF", strokeWidth: "1.5", strokeLinecap: "round", filter: "url(#logo-glow-white)", className: "opacity-60", fill:"none" }),
-          React.createElement("path", { d: "M20 38 C 80 50, 160 30, 220 42", stroke: "#FFC107", strokeWidth: "1", strokeLinecap: "round", className: "opacity-50", fill:"none" }),
+          React.createElement("path", { d: "M5 40 Q 60 15, 120 40 T 235 40", stroke: "#FFC107", strokeWidth: "2.5", strokeLinecap: "round", filter: "url(#logo-glow-yellow)", className: "opacity-80" }),
+          React.createElement("path", { d: "M10 42 Q 70 65, 120 42 T 230 42", stroke: "#FFFFFF", strokeWidth: "1.5", strokeLinecap: "round", filter: "url(#logo-glow-white)", className: "opacity-60" }),
+          React.createElement("path", { d: "M20 38 C 80 50, 160 30, 220 42", stroke: "#FFC107", strokeWidth: "1", strokeLinecap: "round", className: "opacity-50" }),
           React.createElement("g", { style: { fontFamily: "'Arial Black', Gadget, sans-serif", fontSize: "34px", textAnchor: "middle", letterSpacing: "-1px" } },
             React.createElement("text", { x: "121", y: "53", fill: "#1F2327", opacity: "0.7" }, "LM-SERVICES"),
             React.createElement("text", { x: "120", y: "52", fill: "url(#text-fill-gradient)", stroke: "#4B5563", strokeWidth: "0.5" }, "LM-SERVICES")
@@ -266,242 +308,322 @@
           React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" })
         );
 
-        const ZapIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("polygon", { points: "13 2 3 14 12 14 11 22 21 10 12 10 13 2" }));
-        const LightbulbIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "M9 18h6" }), React.createElement("path", { d: "M10 22h4" }), React.createElement("path", { d: "M12 2a7 7 0 0 0-7 7c0 3 2 5 2 7h10c0-2 2-4 2-7a7 7 0 0 0-7-7Z" }));
-        const WrenchIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" }));
-        const PaintbrushIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" }), React.createElement("path", { d: "m15 5 4 4" }));
-        const SparklesIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "m12 3-1.9 3.9-3.9 1.9 3.9 1.9 1.9 3.9 1.9-3.9 3.9-1.9-3.9-1.9Z" }), React.createElement("path", { d: "M5 11.5 3 13l2 1.5L6.5 17l1.5-2.5L10 13l-2-1.5Z" }), React.createElement("path", { d: "M18 5.5 19.5 3 21 5.5 22.5 7l-1.5 1.5L19.5 11l-1.5-2.5Z" }));
+        const ZapIcon = ({ className }) => React.createElement("svg", { className: className, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M13 10V3L4 14h7v7l9-11h-7z" }));
+        const ShieldCheckIcon = ({ className }) => React.createElement("svg", { className: className, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.944A12.02 12.02 0 0012 22a12.02 12.02 0 009-1.056c.343-.344.65-.724.924-1.116s.484-.81.65-1.282c.165-.472.285-.968.357-1.488A11.955 11.955 0 0021 12c0-1.03-.127-2.03-.362-3.004-.234-.974-.55-1.9-.924-2.756z" }));
+        const MapPinIcon = ({ className }) => React.createElement("svg", { className: className, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" }), React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M15 11a3 3 0 11-6 0 3 3 0 016 0z" }));
+        const SmileIcon = ({ className }) => React.createElement("svg", { className: className, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }));
+        const WrenchScrewdriverIcon = ({ className }) => React.createElement("svg", { className: className, xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.664 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.474-4.474c-.012-.58-.078-1.157-.164-1.743L12 1.956 2.45 12l9.742 1.474c.542.082 1.1.056 1.628-.081z" }));
+        const LightBulbIcon = ({ className }) => React.createElement("svg", { className: className, xmlns: "http://www.w.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311a7.5 7.5 0 01-7.5 0c-1.42-1.42-2.5-3.52-2.5-5.811 0-2.29 1.08-4.39 2.5-5.811a7.5 7.5 0 017.5 0c1.42 1.42 2.5 3.52 2.5 5.811 0 2.29-1.08 4.39-2.5 5.811z" }));
+        const PaintBrushIcon = ({ className }) => React.createElement("svg", { className: className, xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.385m5.043.025a2.25 2.25 0 012.4 2.245a4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 00-3.388-1.62m-5.043-.025a15.994 15.994 0 01-1.622-3.385m12.121 3.553a2.25 2.25 0 012.4 2.245a4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 00-3.388-1.62m-5.043-.025a15.994 15.994 0 01-1.622-3.385" }));
+        const SparklesIcon = ({ className }) => React.createElement("svg", { className: className, xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 21.75l-.648-1.188a2.25 2.25 0 01-1.4-1.4l-1.188-.648.648-1.188a2.25 2.25 0 011.4-1.4l1.188-.648-.648 1.188a2.25 2.25 0 01-1.4 1.4l-1.188.648z" }));
 
-        const serviceIcons = { zap: ZapIcon, lightbulb: LightbulbIcon, wrench: WrenchIcon, paintbrush: PaintbrushIcon, sparkles: SparklesIcon };
+        const PhoneIcon = ({ className }) => React.createElement("svg", { className: className, xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" }));
+        const EmailIcon = ({ className }) => React.createElement("svg", { className: className, xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" }));
+        const WhatsAppIcon = ({ className }) => React.createElement("svg", { className: className, fill: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg" }, React.createElement("path", { d: "M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.956-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.296-1.04 1.016-1.04 2.479s1.065 2.871 1.213 3.07c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" }));
 
-        const PhoneIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" }));
-        const WhatsAppIcon = ({ className }) => React.createElement("svg", { className, xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor" }, React.createElement("path", { d: "M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.74.45 3.39 1.22 4.84l-1.28 4.68 4.79-1.26c1.4.74 2.99 1.15 4.68 1.15h.01c5.46 0 9.91-4.45 9.91-9.92 0-5.46-4.45-9.91-9.92-9.91zM17.48 15.3c-.28-.14-1.66-.82-1.92-.91s-.45-.14-.64.14-.73.91-.89 1.1s-.33.21-.61.07c-1.35-.5-2.5-1.51-3.41-2.97-.24-.4-.01-.6.13-.74s.28-.35.42-.52c.12-.14.16-.24.25-.41.09-.17.05-.31-.02-.45s-.64-1.53-.87-2.1c-.24-.55-.48-.48-.64-.48-.17 0-.36-.01-.54-.01s-.45.07-.69.35c-.24.28-.93.9-1.13 2.17s-.21 2.4.05 2.96c.24.52 1.15 1.83 2.79 3.25 2.22 1.91 3.24 2.22 4.16 2.02.73-.15 1.66-.68 1.89-1.34s.24-1.22.16-1.34c-.06-.13-.2-.2-.47-.34z" }));
 
         // =================================================================
-        // MAIN APP COMPONENTS
+        // SERVICES (services/geminiService.ts)
         // =================================================================
+        
+        const ai = new GoogleGenAI({ apiKey: YOUR_GEMINI_API_KEY });
 
-        const useDarkMode = () => {
-            const [isDarkMode, setIsDarkMode] = useState(() => {
-                if (typeof window !== 'undefined') {
-                    const storedTheme = localStorage.getItem('theme');
-                    return storedTheme === 'dark' || (storedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                }
-                return false;
+        const generateImage = async (prompt, aspectRatio) => {
+          if (!YOUR_GEMINI_API_KEY || YOUR_GEMINI_API_KEY === "METTEZ_VOTRE_CLÉ_API_GEMINI_ICI") {
+            console.error("Gemini API Key is not configured.");
+            throw new Error("La clé API Gemini n'est pas configurée. Veuillez l'ajouter dans le fichier HTML.");
+          }
+          try {
+            const response = await ai.models.generateImages({
+              model: 'imagen-4.0-generate-001',
+              prompt: prompt,
+              config: { numberOfImages: 1, outputMimeType: 'image/jpeg', aspectRatio: aspectRatio },
             });
-
-            useEffect(() => {
-                const root = window.document.documentElement;
-                root.classList.toggle('dark', isDarkMode);
-                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-            }, [isDarkMode]);
-
-            return [isDarkMode, setIsDarkMode];
+            if (response.generatedImages && response.generatedImages.length > 0) {
+              return `data:image/jpeg;base64,${response.generatedImages[0].image.imageBytes}`;
+            } else {
+              throw new Error("No image was generated.");
+            }
+          } catch (error) {
+            console.error("Error generating image with Gemini API:", error);
+            throw new Error("Failed to generate image. Please check the console for more details.");
+          }
         };
 
-        const Header = () => {
-            const { t, language, setLanguage } = useI18n();
-            const [isDarkMode, setIsDarkMode] = useDarkMode();
-            const [isScrolled, setIsScrolled] = useState(false);
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
+        const submitReview = async (review) => {
+          // This is a mock. The real version requires a serverless function.
+          // See the comments at the bottom of the HTML file.
+          console.log("Submitting review (mock):", review);
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          if (review.comment.toLowerCase().includes("fail")) {
+            return { success: false, message: "Mock submission failed." };
+          }
+          return { success: true, message: "Avis soumis avec succès (simulation) ! Pour l'envoi réel par e-mail, consultez les instructions dans le code." };
+        };
 
-            useEffect(() => {
-                const handleScroll = () => setIsScrolled(window.scrollY > 10);
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
+        // =================================================================
+        // UI COMPONENTS (components/*.tsx)
+        // =================================================================
 
-            const navLinks = [
-                { href: '#about', key: 'nav.about' },
-                { href: '#services', key: 'nav.services' },
-                { href: '#reviews', key: 'nav.reviews' },
-                { href: '#ai-generator', key: 'nav.ai_generator' },
-                { href: '#faq', key: 'nav.faq' },
-                { href: '#contact', key: 'nav.contact' },
-            ];
-
-            return React.createElement("header", { className: `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 dark:bg-neutral-dark/80 backdrop-blur-sm shadow-md' : 'bg-transparent'}` },
-                React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "flex items-center justify-between h-20" },
-                        React.createElement("a", { href: "#hero", className: "flex-shrink-0 flex items-center group" },
-                            React.createElement(Logo, { className: "h-16 w-auto transition-transform duration-300 group-hover:scale-105 animate-logo-pulse" }),
-                            React.createElement("span", { className: "text-xl font-bold text-primary-dark dark:text-white ml-2" }, "LM-SERVICES")
-                        ),
-                        React.createElement("nav", { className: "hidden md:flex md:items-center md:space-x-4" },
-                            navLinks.map(link => React.createElement("a", { key: link.key, href: link.href, className: "text-sm font-medium text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-secondary transition-colors duration-200 px-3 py-2 rounded-md" }, t(link.key)))
-                        ),
-                        React.createElement("div", { className: "flex items-center" },
-                            React.createElement("button", { onClick: () => setIsDarkMode(!isDarkMode), "aria-label": "Toggle theme", className: "p-2 rounded-full text-neutral-dark dark:text-neutral-light hover:bg-gray-200 dark:hover:bg-neutral-dark transition-colors" },
-                                isDarkMode ? React.createElement(SunIcon, { className: "h-5 w-5 text-secondary" }) : React.createElement(MoonIcon, { className: "h-5 w-5 text-primary" })
-                            ),
-                            React.createElement("div", { className: "relative ml-2" },
-                                React.createElement("select", { onChange: (e) => setLanguage(e.target.value), value: language, className: "bg-transparent text-sm font-medium text-neutral-dark dark:text-neutral-light focus:outline-none" },
-                                    React.createElement("option", { value: "fr" }, "FR"),
-                                    React.createElement("option", { value: "en" }, "EN"),
-                                    React.createElement("option", { value: "es" }, "ES")
-                                )
-                            ),
-                            React.createElement("div", { className: "md:hidden ml-2" },
-                                React.createElement("button", { onClick: () => setIsMenuOpen(!isMenuOpen), className: "p-2 rounded-md text-neutral-dark dark:text-neutral-light" },
-                                    React.createElement("svg", { className: "h-6 w-6", stroke: "currentColor", fill: "none", viewBox: "0 0 24 24" },
-                                        isMenuOpen
-                                            ? React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" })
-                                            : React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16M4 18h16" })
-                                    )
-                                )
-                            )
-                        )
-                    )
+        const ElectricArcBackground = () => {
+          return React.createElement("div", { className: "absolute inset-0 z-0 overflow-hidden pointer-events-none" },
+            React.createElement("svg", { width: "100%", height: "100%", className: "absolute inset-0" },
+              React.createElement("defs", null,
+                React.createElement("filter", { id: "glow" },
+                  React.createElement("feGaussianBlur", { stdDeviation: "3.5", result: "coloredBlur" }),
+                  React.createElement("feMerge", null,
+                    React.createElement("feMergeNode", { in: "coloredBlur" }),
+                    React.createElement("feMergeNode", { in: "SourceGraphic" })
+                  )
                 ),
-                isMenuOpen && React.createElement("div", { className: "md:hidden bg-white dark:bg-neutral-dark" },
-                    React.createElement("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3" },
-                        navLinks.map(link => React.createElement("a", { key: link.key, href: link.href, onClick: () => setIsMenuOpen(false), className: "block px-3 py-2 rounded-md text-base font-medium text-neutral-dark dark:text-neutral-light hover:text-white hover:bg-primary" }, t(link.key)))
-                    )
+                React.createElement("linearGradient", { id: "grad1", x1: "0%", y1: "0%", x2: "100%", y2: "0%" },
+                  React.createElement("stop", { offset: "0%", style: { stopColor: '#FFC107', stopOpacity: 1 } }),
+                  React.createElement("stop", { offset: "100%", style: { stopColor: '#007BFF', stopOpacity: 1 } })
+                ),
+                React.createElement("linearGradient", { id: "grad2", x1: "0%", y1: "0%", x2: "100%", y2: "0%" },
+                  React.createElement("stop", { offset: "0%", style: { stopColor: '#17A2B8', stopOpacity: 1 } }),
+                  React.createElement("stop", { offset: "100%", style: { stopColor: '#f8f9fa', stopOpacity: 1 } })
                 )
+              ),
+              React.createElement("path", { d: "M -100 100 Q 250 200, 500 100 T 1000 200 T 1500 100 T 2000 200", stroke: "url(#grad1)", strokeWidth: "2", fill: "none", filter: "url(#glow)", className: "animate-arc-flow opacity-20 dark:opacity-40", style: { strokeDasharray: 1000, animationDuration: '12s' } }),
+              React.createElement("path", { d: "M 2200 800 Q 1800 600, 1500 700 T 1000 650 T 500 750 T 0 600 T -200 800", stroke: "url(#grad2)", strokeWidth: "1.5", fill: "none", filter: "url(#glow)", className: "animate-arc-flow opacity-10 dark:opacity-30", style: { strokeDasharray: 1000, animationDuration: '15s', animationDirection: 'reverse' } }),
+              React.createElement("path", { d: "M -100 500 Q 400 300, 800 500 T 1400 400 T 2000 500", stroke: "url(#grad1)", strokeWidth: "1", fill: "none", filter: "url(#glow)", className: "animate-arc-flow opacity-15 dark:opacity-35", style: { strokeDasharray: 800, animationDuration: '20s' } })
+            )
+          );
+        };
+        
+        const StarRating = ({ rating, interactive = false, onRatingChange }) => {
+            const [hoverRating, setHoverRating] = React.useState(0);
+            const handleRatingChange = (newRating) => {
+                if (interactive && onRatingChange) onRatingChange(newRating);
+            };
+            const Star = ({ filled, onHover, onClick, interactive }) => React.createElement("svg", { className: `w-6 h-6 transition-colors duration-200 ${filled ? 'text-secondary' : 'text-gray-300 dark:text-gray-600'} ${interactive ? 'cursor-pointer hover:scale-125 transition-transform' : ''}`, fill: "currentColor", viewBox: "0 0 20 20", onMouseEnter: onHover, onClick: onClick }, React.createElement("path", { d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" }));
+            return React.createElement("div", { className: "flex items-center", onMouseLeave: interactive ? () => setHoverRating(0) : undefined },
+                [1, 2, 3, 4, 5].map(star => React.createElement("span", { key: star, onMouseEnter: interactive ? () => setHoverRating(star) : undefined, onClick: () => handleRatingChange(star) },
+                    React.createElement(Star, { filled: star <= (hoverRating || rating), interactive: interactive })
+                ))
             );
+        };
+        
+        const Header = () => {
+          const { language, setLanguage, t } = useI18n();
+          const [isScrolled, setIsScrolled] = useState(false);
+          const [isMenuOpen, setIsMenuOpen] = useState(false);
+          const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+          
+          const toggleTheme = () => {
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            document.documentElement.classList.toggle('dark', newTheme === 'dark');
+          };
+          
+          useEffect(() => {
+            const handleScroll = () => setIsScrolled(window.scrollY > 10);
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
+          const navLinks = [
+              { href: '#about', key: 'nav.about' }, { href: '#services', key: 'nav.services' },
+              { href: '#reviews', key: 'nav.reviews' }, { href: '#ai-generator', key: 'nav.ai_generator' },
+              { href: '#faq', key: 'nav.faq' }, { href: '#contact', key: 'nav.contact' },
+          ];
+
+          return React.createElement("header", { className: `sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-neutral-light/80 dark:bg-neutral-extradark/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}` },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+              React.createElement("div", { className: "flex items-center justify-between h-20" },
+                React.createElement("a", { href: "#hero", className: "flex-shrink-0 flex items-center group" },
+                  React.createElement(Logo, { className: "h-16 w-auto transition-transform duration-300 group-hover:scale-105" }),
+                  React.createElement("span", { className: "text-xl font-bold text-primary-dark dark:text-white ml-2 animate-logo-pulse" }, "LM-SERVICES")
+                ),
+                React.createElement("nav", { className: "hidden md:flex md:items-center md:space-x-4" },
+                  navLinks.map(link => React.createElement("a", { key: link.key, href: link.href, className: "text-sm font-medium text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-secondary transition-colors duration-200 px-3 py-2 rounded-md" }, t(link.key)))
+                ),
+                React.createElement("div", { className: "flex items-center gap-2" },
+                  React.createElement("div", { className: "relative" },
+                    React.createElement("select", { value: language, onChange: (e) => setLanguage(e.target.value), className: "bg-transparent text-sm font-medium border-none focus:ring-0 cursor-pointer text-neutral-dark dark:text-neutral-light appearance-none pr-6", style: { backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'right 0.5rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.25em 1.25em' } },
+                      React.createElement("option", { value: "fr" }, "FR"),
+                      React.createElement("option", { value: "en" }, "EN"),
+                      React.createElement("option", { value: "es" }, "ES")
+                    )
+                  ),
+                  React.createElement("button", { onClick: toggleTheme, className: "p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" },
+                    theme === 'light' ? React.createElement(MoonIcon, { className: "h-5 w-5 text-primary-dark" }) : React.createElement(SunIcon, { className: "h-5 w-5 text-secondary" })
+                  ),
+                  React.createElement("div", { className: "md:hidden" },
+                    React.createElement("button", { onClick: () => setIsMenuOpen(!isMenuOpen), className: "p-2 rounded-md text-neutral-dark dark:text-neutral-light" },
+                      isMenuOpen ? React.createElement("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" })) : React.createElement("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16m-7 6h7" }))
+                    )
+                  )
+                )
+              )
+            ),
+            isMenuOpen && React.createElement("div", { className: "md:hidden animate-fade-in bg-neutral-light/95 dark:bg-neutral-extradark/95 backdrop-blur-sm" },
+              React.createElement("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3" },
+                navLinks.map(link => React.createElement("a", { key: link.key, href: link.href, onClick: () => setIsMenuOpen(false), className: "block px-3 py-2 rounded-md text-base font-medium text-neutral-dark dark:text-neutral-light hover:text-white hover:bg-primary dark:hover:bg-primary-dark" }, t(link.key)))
+              )
+            )
+          );
         };
         
         const Hero = () => {
-            const { t } = useI18n();
-            return React.createElement("section", { id: "hero", className: "relative h-screen flex items-center justify-center text-center overflow-hidden" },
-                React.createElement("div", { className: "absolute inset-0 bg-cover bg-center", style: { backgroundImage: "url('https://images.unsplash.com/photo-1512411364375-35a0adec3412?q=80&w=2070&auto=format&fit=crop')" } }),
-                React.createElement("div", { className: "absolute inset-0 bg-black/60" }),
-                React.createElement("div", { className: "relative z-10 px-4" },
-                    React.createElement("h1", { className: "text-4xl md:text-6xl font-extrabold text-white" },
-                        React.createElement("span", { className: "block" }, t('hero.title.line1')),
-                        React.createElement("span", { className: "block text-secondary" }, t('hero.title.line2'))
-                    ),
-                    React.createElement("p", { className: "mt-4 max-w-2xl mx-auto text-lg md:text-xl text-neutral-light" }, t('hero.subtitle')),
-                    React.createElement("div", { className: "mt-8 flex flex-col sm:flex-row items-center justify-center gap-4" },
-                        React.createElement("a", { href: "#contact", className: "flex items-center justify-center gap-2 w-full sm:w-auto bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105" }, React.createElement(PhoneIcon, { className: "h-5 w-5" }), t('hero.cta.quote')),
-                        React.createElement("a", { href: "https://wa.me/34645062534", target: "_blank", rel: "noopener noreferrer", className: "flex items-center justify-center gap-2 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105" }, React.createElement(WhatsAppIcon, { className: "h-5 w-5" }), t('hero.cta.whatsapp'))
-                    )
-                )
-            );
+          const { t } = useI18n();
+          return React.createElement("section", { id: "hero", className: "relative flex items-center justify-center min-h-screen text-center px-4" },
+            React.createElement("div", { className: "relative z-10 max-w-4xl animate-fade-in" },
+              React.createElement("h1", { className: "text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight" },
+                React.createElement("span", { className: "block text-primary-dark dark:text-white" }, t('hero.title.line1')),
+                React.createElement("span", { className: "block text-primary dark:text-secondary" }, t('hero.title.line2'))
+              ),
+              React.createElement("p", { className: "mt-6 max-w-2xl mx-auto text-lg md:text-xl text-neutral-dark/80 dark:text-neutral-light/80" }, t('hero.subtitle')),
+              React.createElement("div", { className: "mt-10 flex flex-col sm:flex-row items-center justify-center gap-4" },
+                React.createElement("a", { href: "#contact", className: "w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark dark:bg-secondary dark:text-neutral-extradark dark:hover:bg-yellow-400 transition-transform transform hover:scale-105" }, t('hero.cta.quote')),
+                React.createElement("a", { href: "https://wa.me/33689492263", target: "_blank", rel: "noopener noreferrer", className: "w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border-2 border-primary dark:border-secondary text-primary dark:text-secondary font-medium rounded-md bg-transparent hover:bg-primary/10 dark:hover:bg-secondary/10 transition-transform transform hover:scale-105" }, React.createElement(WhatsAppIcon, { className: "w-5 h-5 mr-2" }), t('hero.cta.whatsapp'))
+              )
+            )
+          );
         };
-        
+
         const About = () => {
             const { t } = useI18n();
             const features = [
-                { key: 'experience', icon: React.createElement(ZapIcon, { className: "h-8 w-8 text-secondary" }) },
-                { key: 'versatility', icon: React.createElement(WrenchIcon, { className: "h-8 w-8 text-secondary" }) },
-                { key: 'local', icon: React.createElement(LightbulbIcon, { className: "h-8 w-8 text-secondary" }) },
-                { key: 'service', icon: React.createElement(SparklesIcon, { className: "h-8 w-8 text-secondary" }) },
+                { icon: ZapIcon, titleKey: 'about.features.experience.title', descriptionKey: 'about.features.experience.description' },
+                { icon: ShieldCheckIcon, titleKey: 'about.features.versatility.title', descriptionKey: 'about.features.versatility.description' },
+                { icon: MapPinIcon, titleKey: 'about.features.local.title', descriptionKey: 'about.features.local.description' },
+                { icon: SmileIcon, titleKey: 'about.features.service.title', descriptionKey: 'about.features.service.description' },
             ];
-
-            return React.createElement("section", { id: "about", className: "py-16 sm:py-24" },
-                React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "text-center" },
-                        React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-primary-dark dark:text-white" }, t('about.title')),
-                        React.createElement("p", { className: "mt-4 text-lg text-neutral-dark dark:text-neutral-light max-w-2xl mx-auto" }, t('about.subtitle'))
-                    ),
-                    React.createElement("div", { className: "mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" },
-                        features.map(feature => React.createElement("div", { key: feature.key, className: "text-center p-6 bg-white dark:bg-neutral-dark rounded-lg shadow-lg" },
-                            React.createElement("div", { className: "flex items-center justify-center h-16 w-16 rounded-full bg-secondary/10 mx-auto" }, feature.icon),
-                            React.createElement("h3", { className: "mt-5 text-xl font-semibold" }, t(`about.features.${feature.key}.title`)),
-                            React.createElement("p", { className: "mt-2 text-base" }, t(`about.features.${feature.key}.description`))
-                        ))
-                    )
+            return React.createElement("section", { id: "about", className: "animate-fade-in", style: { animationDelay: '200ms', opacity: 0 } },
+                React.createElement("div", { className: "text-center" },
+                    React.createElement("h2", { className: "text-3xl font-extrabold sm:text-4xl text-primary-dark dark:text-white" }, t('about.title')),
+                    React.createElement("p", { className: "mt-4 max-w-2xl mx-auto text-lg text-neutral-dark/80 dark:text-neutral-light/80" }, t('about.subtitle'))
+                ),
+                React.createElement("div", { className: "mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4" },
+                    features.map((feature, index) => React.createElement("div", { key: index, className: "flex flex-col items-center text-center p-6 bg-white/50 dark:bg-neutral-dark/50 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2" },
+                        React.createElement("div", { className: "flex-shrink-0" }, React.createElement("div", { className: "flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white dark:bg-secondary dark:text-neutral-extradark" }, React.createElement(feature.icon, { className: "h-6 w-6" }))),
+                        React.createElement("div", { className: "mt-4" },
+                            React.createElement("h3", { className: "text-lg font-semibold text-primary-dark dark:text-white" }, t(feature.titleKey)),
+                            React.createElement("p", { className: "mt-2 text-base text-neutral-dark/80 dark:text-neutral-light/80" }, t(feature.descriptionKey))
+                        )
+                    ))
                 )
             );
         };
         
         const Services = () => {
             const { t } = useI18n();
-            return React.createElement("section", { id: "services", className: "py-16 sm:py-24 bg-neutral-light/50 dark:bg-neutral-extradark/50" },
-                React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "text-center" },
-                        React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-primary-dark dark:text-white" }, t('services.title')),
-                        React.createElement("p", { className: "mt-4 text-lg text-neutral-dark dark:text-neutral-light max-w-3xl mx-auto" }, t('services.subtitle'))
-                    ),
-                    React.createElement("div", { className: "mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" },
-                        servicesList.map(service => {
-                            const IconComponent = serviceIcons[service.iconKey];
-                            return React.createElement("div", { key: service.titleKey, className: "p-8 bg-white dark:bg-neutral-dark rounded-xl shadow-lg flex flex-col items-center text-center transition-transform transform hover:-translate-y-2" },
-                                React.createElement("div", { className: "p-4 bg-primary/10 rounded-full" }, React.createElement(IconComponent, { className: "h-8 w-8 text-primary" })),
-                                React.createElement("h3", { className: "mt-6 text-xl font-bold" }, t(service.titleKey)),
-                                React.createElement("p", { className: "mt-2 text-base" }, t(service.descriptionKey))
-                            );
-                        })
-                    )
+            const iconMap = { zap: ZapIcon, lightbulb: LightBulbIcon, wrench: WrenchScrewdriverIcon, paintbrush: PaintBrushIcon, sparkles: SparklesIcon };
+            return React.createElement("section", { id: "services", className: "animate-fade-in", style: { animationDelay: '300ms', opacity: 0 } },
+                React.createElement("div", { className: "text-center" },
+                    React.createElement("h2", { className: "text-3xl font-extrabold sm:text-4xl text-primary-dark dark:text-white" }, t('services.title')),
+                    React.createElement("p", { className: "mt-4 max-w-3xl mx-auto text-lg text-neutral-dark/80 dark:text-neutral-light/80" }, t('services.subtitle'))
+                ),
+                React.createElement("div", { className: "mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3" },
+                    servicesList.map((service, index) => {
+                        const IconComponent = iconMap[service.iconKey];
+                        if (!IconComponent) return null;
+                        return React.createElement("div", { key: index, className: "p-8 bg-white/50 dark:bg-neutral-dark/50 rounded-lg shadow-lg hover:shadow-primary/30 dark:hover:shadow-secondary/30 transition-shadow duration-300 flex flex-col items-start group" },
+                            React.createElement("div", { className: "flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary mb-4 transition-transform duration-300 group-hover:scale-110" }, React.createElement(IconComponent, { className: "h-8 w-8" })),
+                            React.createElement("h3", { className: "text-xl font-bold text-primary-dark dark:text-white" }, t(service.titleKey)),
+                            React.createElement("p", { className: "mt-2 text-base text-neutral-dark/80 dark:text-neutral-light/80 flex-grow" }, t(service.descriptionKey))
+                        );
+                    })
                 )
             );
         };
         
-        const StarRating = ({ rating }) => React.createElement("div", { className: "flex items-center" }, [...Array(5)].map((_, i) => React.createElement("svg", { key: i, className: `h-5 w-5 ${i < rating ? 'text-secondary' : 'text-gray-300 dark:text-gray-500'}`, fill: "currentColor", viewBox: "0 0 20 20" }, React.createElement("path", { d: "M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" }))));
-
         const ReviewForm = ({ onReviewSubmit }) => {
-            const { t } = useI18n();
-            const [name, setName] = useState('');
-            const [rating, setRating] = useState(0);
-            const [comment, setComment] = useState('');
-            const [status, setStatus] = useState({ type: 'idle' });
+          const { t } = useI18n();
+          const [name, setName] = useState('');
+          const [rating, setRating] = useState(0);
+          const [comment, setComment] = useState('');
+          const [status, setStatus] = useState('idle');
+          const [message, setMessage] = useState('');
 
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                if (!name || !comment || rating === 0) {
-                    setStatus({ type: 'error', message: t('reviews.form.error_all_fields') });
-                    return;
-                }
-                setStatus({ type: 'submitting' });
-                try {
-                    // This is a placeholder for a real API call.
-                    // In a real app, you would send this data to your backend.
-                    await new Promise(res => setTimeout(res, 1000));
-                    onReviewSubmit({ author: name, rating, comment: `"${comment}"`, date: new Date().toLocaleDateString(t('locale')) });
-                    setStatus({ type: 'success', message: t('reviews.form.success') });
-                    setName(''); setRating(0); setComment('');
-                } catch (error) {
-                    setStatus({ type: 'error', message: t('reviews.form.error_generic') });
-                }
-            };
+          const handleSubmit = async (e) => {
+            e.preventDefault();
+            if (rating === 0 || !name || !comment) {
+              setStatus('error');
+              setMessage(t('reviews.form.error_all_fields'));
+              return;
+            }
+            setStatus('submitting');
+            setMessage('');
+            try {
+              const result = await submitReview({ name, rating, comment });
+              if (result.success) {
+                const newReview = { id: Date.now(), author: name, rating, comment, date: new Date().toLocaleDateString(t('locale')) };
+                onReviewSubmit(newReview);
+                setStatus('success');
+                setMessage(result.message);
+                setName(''); setRating(0); setComment('');
+              } else {
+                setStatus('error');
+                setMessage(result.message || t('reviews.form.error_generic'));
+              }
+            } catch (error) {
+              setStatus('error');
+              setMessage(error instanceof Error ? error.message : t('reviews.form.error_generic'));
+            }
+          };
 
-            return React.createElement("form", { onSubmit: handleSubmit, className: "mt-8 max-w-xl mx-auto p-8 bg-white dark:bg-neutral-dark rounded-lg shadow-xl space-y-4" },
-                React.createElement("h3", { className: "text-2xl font-bold text-center" }, t('reviews.form.title')),
-                React.createElement("input", { type: "text", value: name, onChange: e => setName(e.target.value), placeholder: t('reviews.form.name'), className: "w-full p-3 rounded bg-neutral-light/50 dark:bg-neutral-extradark/50 border border-gray-300 dark:border-neutral-dark" }),
-                React.createElement("div", { className: "flex items-center justify-center space-x-2" },
-                    [...Array(5)].map((_, i) => React.createElement("button", { key: i, type: "button", onClick: () => setRating(i + 1), className: `text-3xl ${i < rating ? 'text-secondary' : 'text-gray-300 dark:text-gray-500'}` }, "★"))
-                ),
-                React.createElement("textarea", { value: comment, onChange: e => setComment(e.target.value), placeholder: t('reviews.form.comment'), rows: "4", className: "w-full p-3 rounded bg-neutral-light/50 dark:bg-neutral-extradark/50 border border-gray-300 dark:border-neutral-dark" }),
-                React.createElement("button", { type: "submit", disabled: status.type === 'submitting', className: "w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition disabled:opacity-50" },
-                    status.type === 'submitting' ? t('reviews.form.submitting') : t('reviews.form.submit')
-                ),
-                status.type === 'success' && React.createElement("p", { className: "text-center text-green-500" }, status.message),
-                status.type === 'error' && React.createElement("p", { className: "text-center text-red-500" }, status.message)
-            );
+          return React.createElement("div", { className: "max-w-2xl mx-auto p-8 bg-white/50 dark:bg-neutral-dark/50 rounded-lg shadow-xl" },
+            React.createElement("h3", { className: "text-2xl font-bold text-center text-primary-dark dark:text-white" }, t('reviews.form.title')),
+            React.createElement("form", { onSubmit: handleSubmit, className: "mt-6 space-y-6" },
+              React.createElement("div", null,
+                React.createElement("label", { htmlFor: "name", className: "block text-sm font-medium text-neutral-dark dark:text-neutral-light" }, t('reviews.form.name')),
+                React.createElement("input", { type: "text", id: "name", value: name, onChange: (e) => setName(e.target.value), className: "mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-dark border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm", required: true })
+              ),
+              React.createElement("div", null,
+                React.createElement("label", { className: "block text-sm font-medium text-neutral-dark dark:text-neutral-light" }, t('reviews.form.rating')),
+                React.createElement("div", { className: "mt-2 flex" }, React.createElement(StarRating, { rating: rating, onRatingChange: setRating, interactive: true }))
+              ),
+              React.createElement("div", null,
+                React.createElement("label", { htmlFor: "comment", className: "block text-sm font-medium text-neutral-dark dark:text-neutral-light" }, t('reviews.form.comment')),
+                React.createElement("textarea", { id: "comment", rows: 4, value: comment, onChange: (e) => setComment(e.target.value), className: "mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-dark border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm", required: true })
+              ),
+              React.createElement("div", null,
+                React.createElement("button", { type: "submit", disabled: status === 'submitting', className: "w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-gray-400 dark:disabled:bg-gray-600 transition-colors" },
+                  status === 'submitting' ? t('reviews.form.submitting') : t('reviews.form.submit')
+                )
+              ),
+              message && React.createElement("p", { className: `text-center text-sm font-medium ${status === 'success' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}` }, message)
+            )
+          );
         };
-
+        
         const Testimonials = () => {
             const { t } = useI18n();
-            const [reviews, setReviews] = useState(reviewsData);
-            const [visibleCount, setVisibleCount] = useState(6);
+            const [reviews, setReviews] = useState([...reviewsData].map(r => ({...r})));
+            const [showAll, setShowAll] = useState(false);
+            const topReviews = reviews.slice(0, 3);
+            const otherReviews = reviews.slice(3);
 
-            const handleNewReview = (review) => setReviews(prev => [review, ...prev]);
+            const handleNewReview = (review) => setReviews([review, ...reviews]);
 
-            return React.createElement("section", { id: "reviews", className: "py-16 sm:py-24" },
-                React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "text-center" },
-                        React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-primary-dark dark:text-white" }, t('reviews.title')),
-                        React.createElement("p", { className: "mt-4 text-lg text-neutral-dark dark:text-neutral-light" }, t('reviews.subtitle'))
-                    ),
-                    React.createElement("div", { className: "mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" },
-                        reviews.slice(0, visibleCount).map(review => React.createElement("div", { key: review.id, className: "bg-white dark:bg-neutral-dark p-6 rounded-lg shadow-lg flex flex-col" },
-                            React.createElement("div", { className: "flex items-center mb-4" },
-                                React.createElement("div", { className: "w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl" }, review.author.charAt(0)),
-                                React.createElement("div", { className: "ml-4" },
-                                    React.createElement("p", { className: "font-semibold" }, review.author),
-                                    React.createElement(StarRating, { rating: review.rating })
-                                )
-                            ),
-                            React.createElement("p", { className: "text-neutral-dark dark:text-neutral-light flex-grow" }, `“${t(review.comment)}”`),
-                            React.createElement("p", { className: "text-sm text-gray-500 mt-4" }, review.date)
-                        ))
-                    ),
-                    visibleCount < reviews.length && React.createElement("div", { className: "mt-12 text-center" },
-                        React.createElement("button", { onClick: () => setVisibleCount(c => c + 6), className: "bg-secondary text-black font-bold py-3 px-8 rounded-lg" }, t('reviews.show_more'))
-                    ),
-                    React.createElement(ReviewForm, { onReviewSubmit: handleNewReview })
-                )
+            const ReviewCard = ({ review }) => React.createElement("blockquote", { className: "p-6 bg-white/50 dark:bg-neutral-dark/50 rounded-lg shadow-lg flex flex-col" },
+                React.createElement("div", { className: "flex-grow" },
+                    React.createElement(StarRating, { rating: review.rating }),
+                    React.createElement("p", { className: "mt-4 text-base text-neutral-dark/80 dark:text-neutral-light/80" }, `"${t(review.comment)}"`)),
+                React.createElement("footer", { className: "mt-6" },
+                    React.createElement("p", { className: "font-semibold text-primary-dark dark:text-white" }, review.author),
+                    React.createElement("p", { className: "text-sm text-neutral-dark/60 dark:text-neutral-light/60" }, review.date))
+            );
+
+            return React.createElement("section", { id: "reviews", className: "animate-fade-in", style: { animationDelay: '400ms', opacity: 0 } },
+                React.createElement("div", { className: "text-center" },
+                    React.createElement("h2", { className: "text-3xl font-extrabold sm:text-4xl text-primary-dark dark:text-white" }, t('reviews.title')),
+                    React.createElement("p", { className: "mt-4 max-w-2xl mx-auto text-lg text-neutral-dark/80 dark:text-neutral-light/80" }, t('reviews.subtitle'))
+                ),
+                React.createElement("div", { className: "mt-16 grid gap-8 lg:grid-cols-3" },
+                    topReviews.map(review => React.createElement(ReviewCard, { key: review.id, review: review }))
+                ),
+                otherReviews.length > 0 && React.createElement("div", { className: "mt-12 text-center" },
+                    React.createElement("button", { onClick: () => setShowAll(!showAll), className: "px-6 py-2 border border-primary dark:border-secondary text-primary dark:text-secondary rounded-md hover:bg-primary/10 dark:hover:bg-secondary/10 transition-colors" }, showAll ? t('reviews.show_less') : t('reviews.show_more')),
+                    showAll && React.createElement("div", { className: "mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 animate-fade-in" },
+                        otherReviews.map(review => React.createElement(ReviewCard, { key: review.id, review: review }))
+                    )
+                ),
+                React.createElement("div", { className: "mt-20" }, React.createElement(ReviewForm, { onReviewSubmit: handleNewReview }))
             );
         };
         
@@ -509,241 +631,348 @@
             const { t } = useI18n();
             const [prompt, setPrompt] = useState('');
             const [aspectRatio, setAspectRatio] = useState('1:1');
-            const [image, setImage] = useState(null);
-            const [loading, setLoading] = useState(false);
+            const [imageUrl, setImageUrl] = useState(null);
+            const [isLoading, setIsLoading] = useState(false);
             const [error, setError] = useState(null);
 
-            const generateImage = useCallback(async () => {
-                if (!prompt) {
-                    setError(t('ai_generator.error.prompt_required'));
-                    return;
-                }
-                if (YOUR_GEMINI_API_KEY === "METTEZ_VOTRE_CLÉ_API_GEMINI_ICI") {
-                    setError(t('ai_generator.error.api_key_missing'));
-                    return;
-                }
-                
-                setLoading(true);
-                setError(null);
-                setImage(null);
-
+            const handleGenerate = async () => {
+                if (!prompt.trim()) { setError(t('ai_generator.error.prompt_required')); return; }
+                setIsLoading(true); setError(null); setImageUrl(null);
                 try {
-                    const ai = new GoogleGenAI({ apiKey: YOUR_GEMINI_API_KEY });
-                    const response = await ai.models.generateContent({
-                        model: 'gemini-2.5-flash-image',
-                        contents: { parts: [{ text: `${prompt}, aspect ratio ${aspectRatio}` }] },
-                        config: {
-                            responseModalities: [Modality.IMAGE],
-                        },
-                    });
-
-                    let foundImage = false;
-                    for (const part of response.candidates[0].content.parts) {
-                        if (part.inlineData) {
-                            setImage(part.inlineData.data);
-                            foundImage = true;
-                            break;
-                        }
-                    }
-                    if (!foundImage) throw new Error("No image data in response.");
-
-                } catch (e) {
-                    console.error("Image generation failed:", e);
-                    setError(t('ai_generator.error.generic'));
+                    const url = await generateImage(prompt, aspectRatio);
+                    setImageUrl(url);
+                } catch (err) {
+                    setError(err instanceof Error ? err.message : t('ai_generator.error.generic'));
                 } finally {
-                    setLoading(false);
+                    setIsLoading(false);
                 }
-            }, [prompt, aspectRatio, t]);
+            };
+            const aspectRatios = ['1:1', '16:9', '9:16', '4:3', '3:4'];
 
-            return React.createElement("section", { id: "ai-generator", className: "py-16 sm:py-24 bg-neutral-light/50 dark:bg-neutral-extradark/50" },
-                React.createElement("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "text-center" },
-                        React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-primary-dark dark:text-white" }, t('ai_generator.title')),
-                        React.createElement("p", { className: "mt-4 text-lg text-neutral-dark dark:text-neutral-light" }, t('ai_generator.subtitle'))
-                    ),
-                    React.createElement("div", { className: "mt-12 p-8 bg-white dark:bg-neutral-dark rounded-xl shadow-2xl" },
-                        React.createElement("div", { className: "space-y-4" },
-                            React.createElement("textarea", { value: prompt, onChange: e => setPrompt(e.target.value), placeholder: t('ai_generator.prompt_placeholder'), rows: "3", className: "w-full p-3 rounded bg-neutral-light/50 dark:bg-neutral-extradark/50 border border-gray-300 dark:border-neutral-dark focus:ring-2 focus:ring-primary" }),
-                            React.createElement("div", { className: "flex items-center gap-4" },
-                                React.createElement("label", { htmlFor: "aspect-ratio", className: "font-medium" }, t('ai_generator.aspect_ratio_label')),
-                                React.createElement("select", { id: "aspect-ratio", value: aspectRatio, onChange: e => setAspectRatio(e.target.value), className: "p-2 rounded bg-neutral-light/50 dark:bg-neutral-extradark/50 border border-gray-300 dark:border-neutral-dark" },
-                                    ['1:1', '16:9', '9:16', '4:3', '3:4'].map(r => React.createElement("option", { key: r, value: r }, r))
-                                )
-                            ),
-                            React.createElement("button", { onClick: generateImage, disabled: loading, className: "w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition disabled:opacity-50" },
-                                loading ? t('ai_generator.generating') : t('ai_generator.generate_button')
-                            )
-                        ),
-                        error && React.createElement("p", { className: "mt-4 text-center text-red-500" }, error),
-                        React.createElement("div", { className: "mt-8 w-full bg-gray-200 dark:bg-neutral-extradark rounded-lg flex items-center justify-center", style: { aspectRatio: aspectRatio.replace(':', '/') } },
-                            loading ? React.createElement("div", { className: "text-center p-4" },
-                                React.createElement("div", { className: "animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" }),
-                                React.createElement("p", { className: "mt-4" }, t('ai_generator.loading_message'))
-                            ) : image ? React.createElement("img", { src: `data:image/jpeg;base64,${image}`, alt: "Generated by AI", className: "rounded-lg object-contain w-full h-full" })
-                                      : React.createElement("p", { className: "text-gray-500" }, t('ai_generator.placeholder_image'))
-                        )
+            return React.createElement("section", { id: "ai-generator", className: "animate-fade-in", style: { animationDelay: '500ms', opacity: 0 } },
+              React.createElement("div", { className: "text-center" },
+                React.createElement("h2", { className: "text-3xl font-extrabold sm:text-4xl text-primary-dark dark:text-white" }, t('ai_generator.title')),
+                React.createElement("p", { className: "mt-4 max-w-2xl mx-auto text-lg text-neutral-dark/80 dark:text-neutral-light/80" }, t('ai_generator.subtitle'))
+              ),
+              React.createElement("div", { className: "mt-12 max-w-3xl mx-auto p-8 bg-white/50 dark:bg-neutral-dark/50 rounded-lg shadow-xl" },
+                React.createElement("div", { className: "space-y-4" },
+                  React.createElement("div", null,
+                    React.createElement("label", { htmlFor: "prompt", className: "block text-sm font-medium" }, t('ai_generator.prompt_label')),
+                    React.createElement("textarea", { id: "prompt", rows: 3, value: prompt, onChange: (e) => setPrompt(e.target.value), placeholder: t('ai_generator.prompt_placeholder'), className: "mt-1 block w-full px-3 py-2 bg-white dark:bg-neutral-dark border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" })
+                  ),
+                  React.createElement("div", null,
+                    React.createElement("label", { htmlFor: "aspect-ratio", className: "block text-sm font-medium" }, t('ai_generator.aspect_ratio_label')),
+                    React.createElement("select", { id: "aspect-ratio", value: aspectRatio, onChange: (e) => setAspectRatio(e.target.value), className: "mt-1 block w-full pl-3 pr-10 py-2 text-base bg-white dark:bg-neutral-dark border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md" },
+                      aspectRatios.map(ratio => React.createElement("option", { key: ratio, value: ratio }, ratio))
                     )
+                  ),
+                  React.createElement("div", null,
+                    React.createElement("button", { onClick: handleGenerate, disabled: isLoading, className: "w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-gray-400 dark:disabled:bg-gray-600 transition-colors" },
+                      isLoading ? React.createElement(React.Fragment, null, React.createElement("svg", { className: "animate-spin -ml-1 mr-3 h-5 w-5 text-white", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24" }, React.createElement("circle", { className: "opacity-25", cx: "12", cy: "12", r: "10", stroke: "currentColor", strokeWidth: "4" }), React.createElement("path", { className: "opacity-75", fill: "currentColor", d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" })), t('ai_generator.generating')) : t('ai_generator.generate_button')
+                    )
+                  )
+                ),
+                error && React.createElement("p", { className: "mt-4 text-center text-red-600 dark:text-red-400" }, error),
+                React.createElement("div", { className: "mt-8 aspect-w-16 aspect-h-9 bg-neutral-dark/20 dark:bg-black/30 rounded-lg flex items-center justify-center min-h-[200px]" },
+                  isLoading && React.createElement("p", { className: "text-neutral-dark/80 dark:text-neutral-light/80" }, t('ai_generator.loading_message')),
+                  imageUrl && !isLoading && React.createElement("img", { src: imageUrl, alt: prompt, className: "rounded-lg object-contain max-h-full max-w-full" }),
+                  !imageUrl && !isLoading && React.createElement("p", { className: "text-neutral-dark/60 dark:text-neutral-light/60 p-4" }, t('ai_generator.placeholder_image'))
                 )
+              )
             );
         };
         
         const Faq = () => {
             const { t } = useI18n();
             const [openIndex, setOpenIndex] = useState(null);
-
-            return React.createElement("section", { id: "faq", className: "py-16 sm:py-24" },
-                React.createElement("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "text-center" },
-                        React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-primary-dark dark:text-white" }, t('faq.title')),
-                        React.createElement("p", { className: "mt-4 text-lg text-neutral-dark dark:text-neutral-light" }, t('faq.subtitle'))
-                    ),
-                    React.createElement("div", { className: "mt-12 space-y-4" },
-                        faqItems.map((item, index) => React.createElement("div", { key: index, className: "border-b border-gray-200 dark:border-neutral-dark" },
-                            React.createElement("button", { onClick: () => setOpenIndex(openIndex === index ? null : index), className: "w-full flex justify-between items-center py-4 text-left" },
-                                React.createElement("span", { className: "text-lg font-medium" }, t(item.questionKey)),
-                                React.createElement("span", { className: `transform transition-transform ${openIndex === index ? 'rotate-180' : ''}` }, "▼")
-                            ),
-                            openIndex === index && React.createElement("div", { className: "pb-4 text-neutral-dark dark:text-neutral-light" }, React.createElement("p", null, t(item.answerKey)))
-                        ))
+            const handleClick = index => setOpenIndex(openIndex === index ? null : index);
+            const FaqItem = ({ item, isOpen, onClick }) => React.createElement("div", { className: "border-b border-gray-300 dark:border-gray-700" },
+                React.createElement("h3", null,
+                    React.createElement("button", { onClick: onClick, "aria-expanded": isOpen, className: "flex justify-between items-center w-full py-5 text-left text-lg font-medium text-primary-dark dark:text-white" },
+                        React.createElement("span", null, t(item.questionKey)),
+                        React.createElement("span", { className: `transform transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}` }, React.createElement("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24" }, React.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M19 9l-7 7-7-7" })))
                     )
+                ),
+                React.createElement("div", { className: `overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}` },
+                    React.createElement("div", { className: "pb-5 pr-4" }, React.createElement("p", { className: "text-base text-neutral-dark/80 dark:text-neutral-light/80" }, t(item.answerKey)))
                 )
             );
-        };
-
-        const Contact = () => {
-            const { t } = useI18n();
-            
-            const Map = () => {
-                useEffect(() => {
-                    if (YOUR_GOOGLE_MAPS_API_KEY && YOUR_GOOGLE_MAPS_API_KEY !== "METTEZ_VOTRE_CLÉ_API_GOOGLE_MAPS_ICI") {
-                        if (!window.google) {
-                            const script = document.createElement('script');
-                            script.src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_GOOGLE_MAPS_API_KEY}&callback=initMap`;
-                            script.async = true;
-                            script.defer = true;
-                            window.initMap = () => {
-                                const roses = { lat: 42.262, lng: 3.175 };
-                                const map = new google.maps.Map(document.getElementById("map"), {
-                                    zoom: 13,
-                                    center: roses,
-                                    disableDefaultUI: true,
-                                });
-                                new google.maps.Marker({ position: roses, map: map, title: "LM-SERVICES, Roses" });
-                            };
-                            document.head.appendChild(script);
-                        } else if(document.getElementById("map") && !document.getElementById("map").hasChildNodes()) {
-                            window.initMap();
-                        }
-                    }
-                }, []);
-
-                if (YOUR_GOOGLE_MAPS_API_KEY === "METTEZ_VOTRE_CLÉ_API_GOOGLE_MAPS_ICI") {
-                    return React.createElement("div", { className: "h-full w-full bg-gray-300 flex items-center justify-center" }, React.createElement("p", null, "Map requires API Key"));
-                }
-                return React.createElement("div", { id: "map", className: "h-full w-full" });
-            };
-
-            return React.createElement("section", { id: "contact", className: "relative py-20 bg-neutral-light/50 dark:bg-neutral-extradark/50" },
-              React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center" },
-                React.createElement("div", null,
-                  React.createElement("h2", { className: "text-3xl sm:text-4xl font-extrabold text-primary-dark dark:text-white" }, t('contact.title')),
-                  React.createElement("p", { className: "mt-4 text-lg text-neutral-dark dark:text-neutral-light" }, t('contact.subtitle')),
-                  React.createElement("div", { className: "mt-8 space-y-4" },
-                    React.createElement("a", { href: "#contact", className: "inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-lg text-lg transition-transform transform hover:scale-105" }, React.createElement(PhoneIcon, { className: "h-6 w-6" }), t('contact.quote_button')),
-                    React.createElement("a", { href: "https://wa.me/34645062534", target: "_blank", rel: "noopener noreferrer", className: "inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 sm:ml-4" }, React.createElement(WhatsAppIcon, { className: "h-6 w-6" }), t('hero.cta.whatsapp'))
-                  )
+            return React.createElement("section", { id: "faq", className: "animate-fade-in", style: { animationDelay: '600ms', opacity: 0 } },
+                React.createElement("div", { className: "text-center" },
+                    React.createElement("h2", { className: "text-3xl font-extrabold sm:text-4xl text-primary-dark dark:text-white" }, t('faq.title')),
+                    React.createElement("p", { className: "mt-4 max-w-2xl mx-auto text-lg text-neutral-dark/80 dark:text-neutral-light/80" }, t('faq.subtitle'))
                 ),
-                React.createElement("div", { className: "h-80 md:h-96 rounded-lg overflow-hidden shadow-2xl" }, React.createElement(Map, null))
-              )
-            );
-        };
-
-        const Footer = () => {
-            const { t } = useI18n();
-            return React.createElement("footer", { className: "bg-neutral-dark text-neutral-light" },
-                React.createElement("div", { className: "max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "flex flex-col items-center text-center" },
-                        React.createElement("div", { className: "flex items-center gap-3 mb-4" },
-                            React.createElement(Logo, { className: "h-12 w-auto" }),
-                            React.createElement("span", { className: "text-2xl font-bold text-white" }, "LM-SERVICES")
-                        ),
-                        React.createElement("p", { className: "max-w-md" }, t('footer.description'))
-                    ),
-                    React.createElement("div", { className: "mt-8 border-t border-neutral-dark pt-8 flex flex-col sm:flex-row justify-between items-center text-sm" },
-                        React.createElement("p", { className: "order-2 sm:order-1 mt-4 sm:mt-0" }, `© ${new Date().getFullYear()} LM-SERVICES. ${t('footer.rights_reserved')}`),
-                        React.createElement("div", { className: "flex space-x-6 order-1 sm:order-2" },
-                            React.createElement("a", { href: "#", className: "hover:text-secondary" }, t('footer.privacy_policy')),
-                            React.createElement("a", { href: "#", className: "hover:text-secondary" }, t('footer.terms_of_service'))
-                        )
+                React.createElement("div", { className: "mt-12 max-w-3xl mx-auto" },
+                    React.createElement("div", { className: "space-y-4" },
+                        faqItems.map((item, index) => React.createElement(FaqItem, { key: index, item: item, isOpen: openIndex === index, onClick: () => handleClick(index) }))
                     )
                 )
             );
         };
         
-        const CookieConsent = () => {
+        const Contact = () => {
             const { t } = useI18n();
-            const [visible, setVisible] = useState(false);
-
+            const mapRef = useRef(null);
             useEffect(() => {
-                const consent = localStorage.getItem('cookie_consent');
-                if (consent !== 'accepted' && consent !== 'declined') {
-                    setVisible(true);
+                const initializeMap = () => {
+                    if (mapRef.current && window.google) {
+                        const rosesLocation = { lat: 42.2618, lng: 3.1751 };
+                        const isDark = document.documentElement.classList.contains('dark');
+                        const map = new window.google.maps.Map(mapRef.current, {
+                            center: rosesLocation, zoom: 10, disableDefaultUI: true,
+                            styles: isDark ? [{ elementType: "geometry", stylers: [{ color: "#242f3e" }] },{ elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },{ elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },{ featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },{ featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },{ featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#263c3f" }] },{ featureType: "poi.park", elementType: "labels.text.fill", stylers: [{ color: "#6b9a76" }] },{ featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },{ featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212a37" }] },{ featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#9ca5b3" }] },{ featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#746855" }] },{ featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#1f2835" }] },{ featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#f3d19c" }] },{ featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },{ featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },{ featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] },{ featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#515c6d" }] },{ featureType: "water", elementType: "labels.text.stroke", stylers: [{ color: "#17263c" }] }] : [],
+                        });
+                        new window.google.maps.Marker({ position: rosesLocation, map, title: "Roses, Spain", icon: { path: window.google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: "#FFC107", fillOpacity: 1, strokeColor: "white", strokeWeight: 2 } });
+                        new window.google.maps.Circle({ strokeColor: "#007BFF", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "#007BFF", fillOpacity: 0.15, map, center: rosesLocation, radius: 30000 });
+                    }
+                };
+                if (typeof window.google === 'object' && typeof window.google.maps === 'object') {
+                    initializeMap();
+                } else {
+                    const interval = setInterval(() => { if (window.initMap) { clearInterval(interval); initializeMap(); } }, 100);
                 }
             }, []);
 
-            const handleAccept = () => {
-                localStorage.setItem('cookie_consent', 'accepted');
-                setVisible(false);
-            };
-
-            const handleDecline = () => {
-                localStorage.setItem('cookie_consent', 'declined');
-                setVisible(false);
-            };
-
-            if (!visible) return null;
-
-            return React.createElement("div", { className: "fixed bottom-0 inset-x-0 pb-2 sm:pb-5 z-50" },
-                React.createElement("div", { className: "max-w-7xl mx-auto px-2 sm:px-6 lg:px-8" },
-                    React.createElement("div", { className: "p-3 rounded-lg bg-neutral-dark shadow-lg sm:p-4" },
-                        React.createElement("div", { className: "flex items-center justify-between flex-wrap" },
-                            React.createElement("div", { className: "w-0 flex-1 flex items-center" },
-                                React.createElement("p", { className: "ml-3 font-medium text-white" },
-                                    React.createElement("span", null, t('cookie.text')),
-                                    React.createElement("a", { href: "#", className: "ml-2 underline hover:text-secondary" }, t('cookie.learn_more'))
-                                )
-                            ),
-                            React.createElement("div", { className: "order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto" },
-                                React.createElement("button", { onClick: handleDecline, className: "px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-neutral-extradark" }, t('cookie.decline')),
-                                React.createElement("button", { onClick: handleAccept, className: "ml-2 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-dark bg-white hover:bg-gray-50" }, t('cookie.accept'))
-                            )
-                        )
-                    )
+            const contactInfo = [
+                { icon: PhoneIcon, text: "06 89 49 22 63", href: "tel:+33689492263" },
+                { icon: EmailIcon, text: "lm-services02@outlook.fr", href: "mailto:lm-services02@outlook.fr" },
+                { icon: WhatsAppIcon, text: "WhatsApp", href: "https://wa.me/33689492263" }
+            ];
+            return React.createElement("section", { id: "contact", className: "animate-fade-in", style: { animationDelay: '700ms', opacity: 0 } },
+                React.createElement("div", { className: "text-center" },
+                    React.createElement("h2", { className: "text-3xl font-extrabold sm:text-4xl text-primary-dark dark:text-white" }, t('contact.title')),
+                    React.createElement("p", { className: "mt-4 max-w-2xl mx-auto text-lg text-neutral-dark/80 dark:text-neutral-light/80" }, t('contact.subtitle'))
+                ),
+                React.createElement("div", { className: "mt-16 grid lg:grid-cols-2 gap-12 items-center" },
+                    React.createElement("div", { className: "space-y-8" },
+                        contactInfo.map((item, index) => React.createElement("a", { key: index, href: item.href, target: "_blank", rel: "noopener noreferrer", className: "flex items-center space-x-4 group" },
+                            React.createElement("div", { className: "flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 dark:bg-secondary/10 text-primary dark:text-secondary group-hover:scale-110 transition-transform" }, React.createElement(item.icon, { className: "h-6 w-6" })),
+                            React.createElement("span", { className: "text-lg font-medium text-neutral-dark dark:text-neutral-light group-hover:text-primary dark:group-hover:text-secondary transition-colors" }, item.text)
+                        )),
+                        React.createElement("div", { className: "pt-4" }, React.createElement("a", { href: "#contact", className: "w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-primary hover:bg-primary-dark dark:bg-secondary dark:text-neutral-extradark dark:hover:bg-yellow-400 transition-transform transform hover:scale-105 shadow-lg hover:shadow-xl" }, t('contact.quote_button')))
+                    ),
+                    React.createElement("div", { ref: mapRef, className: "h-96 w-full rounded-lg shadow-2xl border-2 border-primary/20 dark:border-secondary/20", style: { minHeight: '400px' } })
                 )
             );
         };
         
-        const App = () => {
-            return React.createElement(I18nProvider, null,
-                React.createElement("div", { className: "text-neutral-dark dark:text-neutral-light" },
-                    React.createElement(Header, null),
-                    React.createElement("main", null,
-                        React.createElement(Hero, null),
+        const Footer = () => {
+          const { t } = useI18n();
+          return React.createElement("footer", { className: "bg-neutral-dark/80 dark:bg-black/50 text-neutral-light/80 mt-24 relative z-10" },
+            React.createElement("div", { className: "max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8" },
+              React.createElement("div", { className: "flex flex-col items-center text-center" },
+                React.createElement("div", { className: "flex items-center gap-3 mb-4" },
+                  React.createElement(Logo, { className: "h-10 w-10 text-secondary" }),
+                  React.createElement("span", { className: "text-2xl font-bold text-white" }, "LM-SERVICES")
+                ),
+                React.createElement("p", { className: "max-w-md" }, t('footer.description'))
+              ),
+              React.createElement("div", { className: "mt-8 border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm" },
+                React.createElement("p", null, `© ${new Date().getFullYear()} LM-SERVICES. ${t('footer.rights_reserved')}`),
+                React.createElement("div", { className: "flex space-x-4 mt-4 sm:mt-0" },
+                  React.createElement("a", { href: "#privacy", className: "hover:text-white transition-colors" }, t('footer.privacy_policy')),
+                  React.createElement("a", { href: "#terms", className: "hover:text-white transition-colors" }, t('footer.terms_of_service'))
+                )
+              )
+            )
+          );
+        };
+
+        const CookieConsent = () => {
+            const { t } = useI18n();
+            const [isVisible, setIsVisible] = useState(false);
+            useEffect(() => {
+                if (!localStorage.getItem('cookie_consent')) setIsVisible(true);
+            }, []);
+            const handleAccept = () => { localStorage.setItem('cookie_consent', 'true'); setIsVisible(false); };
+            const handleDecline = () => { localStorage.setItem('cookie_consent', 'false'); setIsVisible(false); };
+            if (!isVisible) return null;
+            return React.createElement("div", { className: "fixed bottom-0 left-0 right-0 bg-neutral-dark/90 dark:bg-black/90 text-white p-4 shadow-lg z-50 animate-fade-in" },
+                React.createElement("div", { className: "max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4" },
+                    React.createElement("p", { className: "text-sm text-center sm:text-left" }, t('cookie.text'), React.createElement("a", { href: "#privacy", className: "underline hover:text-secondary transition-colors" }, ` ${t('cookie.learn_more')}`), "."),
+                    React.createElement("div", { className: "flex-shrink-0 flex gap-3" },
+                        React.createElement("button", { onClick: handleDecline, className: "px-4 py-2 rounded-md text-sm font-medium bg-gray-600 hover:bg-gray-500 transition-colors" }, t('cookie.decline')),
+                        React.createElement("button", { onClick: handleAccept, className: "px-4 py-2 rounded-md text-sm font-medium bg-primary dark:bg-secondary text-white dark:text-neutral-extradark hover:bg-primary-dark dark:hover:bg-yellow-400 transition-colors" }, t('cookie.accept'))
+                    )
+                )
+            );
+        };
+
+        // =================================================================
+        // MAIN APP COMPONENT (App.tsx)
+        // =================================================================
+
+        const AppContent = () => {
+            return React.createElement("div", { className: "relative isolate min-h-screen text-neutral-dark dark:text-neutral-light font-sans transition-colors duration-300 overflow-x-hidden" },
+                React.createElement(ElectricArcBackground, null),
+                React.createElement(Header, null),
+                React.createElement("main", { className: "relative z-10" },
+                    React.createElement(Hero, null),
+                    React.createElement("div", { className: "space-y-24 md:space-y-32 py-24 md:py-32 px-4 md:px-8 max-w-7xl mx-auto" },
                         React.createElement(About, null),
                         React.createElement(Services, null),
                         React.createElement(Testimonials, null),
                         React.createElement(ImageGenerator, null),
                         React.createElement(Faq, null),
                         React.createElement(Contact, null)
-                    ),
-                    React.createElement(Footer, null),
-                    React.createElement(CookieConsent, null)
-                )
+                    )
+                ),
+                React.createElement(Footer, null),
+                React.createElement(CookieConsent, null)
             );
         };
-        
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(React.createElement(App));
+
+        function App() {
+            useEffect(() => {
+                const isDarkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.documentElement.classList.toggle('dark', isDarkMode);
+            }, []);
+            return React.createElement(I18nProvider, null, React.createElement(AppContent, null));
+        }
+
+        // =================================================================
+        // RENDER THE APP (index.tsx)
+        // =================================================================
+
+        const rootElement = document.getElementById('root');
+        if (!rootElement) {
+            throw new Error("Could not find root element to mount to");
+        }
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(React.createElement(React.StrictMode, null, React.createElement(App, null)));
+
     </script>
+    
+    <script>
+      // Cette fonction sera appelée par le script Google Maps une fois chargé.
+      function initMap() {
+        window.initMap = true;
+      }
+    </script>
+    <script id="google-maps-script"></script>
+    <script>
+      // Injecte dynamiquement le script Google Maps avec la clé API définie en haut du script principal.
+      // Cela évite d'avoir à modifier plusieurs endroits.
+      document.getElementById('google-maps-script').src = `https://maps.googleapis.com/maps/api/js?key=${YOUR_GOOGLE_MAPS_API_KEY}&callback=initMap`;
+    </script>
+
+
+    <!--
+    =================================================================
+    INSTRUCTIONS POUR LA FONCTIONNALITÉ D'ENVOI D'AVIS PAR EMAIL
+    =================================================================
+
+    Pour que le formulaire "Laissez votre avis" vous envoie un e-mail, vous devez
+    déployer une petite fonction "serverless" (sans serveur). C'est plus simple que ça en a l'air
+    et des services comme Netlify ou Vercel offrent des forfaits gratuits généreux.
+
+    Voici les étapes :
+
+    1. CHOISIR UN HÉBERGEUR :
+       - Créez un compte sur Netlify (https://www.netlify.com/) ou Vercel (https://vercel.com/).
+       - Connectez votre compte GitHub.
+
+    2. PRÉPARER VOTRE PROJET :
+       - Sur votre ordinateur, créez un dossier pour votre projet.
+       - Placez ce fichier `index.html` à l'intérieur.
+       - Créez un fichier `package.json` à côté de `index.html` avec ce contenu :
+         {
+           "name": "lm-services-website",
+           "version": "1.0.0",
+           "scripts": {
+             "install-functions": "npm install --prefix netlify/functions"
+           }
+         }
+       - Créez un dossier `netlify`, puis un sous-dossier `functions`.
+       - Dans `netlify/functions`, créez un fichier `submit-review.js`.
+
+    3. COPIER LE CODE DE LA FONCTION :
+       - Collez le code ci-dessous dans votre fichier `netlify/functions/submit-review.js`.
+       - Vous aurez besoin d'un service d'envoi d'e-mails. SendGrid est une bonne option avec un forfait gratuit.
+       - Installez la dépendance : ouvrez un terminal dans votre projet et tapez `npm install @sendgrid/mail`.
+
+    4. CONFIGURER LES VARIABLES D'ENVIRONNEMENT :
+       - Sur le tableau de bord de votre site sur Netlify/Vercel, allez dans les paramètres du site.
+       - Trouvez la section "Environment variables" (Variables d'environnement).
+       - Ajoutez les variables suivantes :
+         - `SENDGRID_API_KEY`: Votre clé API de SendGrid.
+         - `TO_EMAIL_ADDRESS`: Votre email, `lm-services02@outlook.fr`.
+         - `FROM_EMAIL_ADDRESS`: Un email que vous avez vérifié avec SendGrid.
+
+    5. METTRE À JOUR LE FORMULAIRE DANS LE CODE :
+       - Dans le script de ce fichier HTML, trouvez la fonction `submitReview`.
+       - Remplacez son contenu par le code qui fait un appel `fetch` à votre fonction.
+       (Voir l'exemple commenté dans le code de la fonction ci-dessous).
+
+    6. DÉPLOYER :
+       - Poussez votre dossier de projet sur GitHub.
+       - Sur Netlify/Vercel, créez un nouveau site et liez-le à votre dépôt GitHub.
+       - Le déploiement se fera automatiquement.
+
+    --- CODE POUR netlify/functions/submit-review.js ---
+
+    // const sendgrid = require('@sendgrid/mail');
+    // sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+
+    // exports.handler = async function(event, context) {
+    //   if (event.httpMethod !== 'POST') {
+    //     return { statusCode: 405, body: 'Method Not Allowed' };
+    //   }
+
+    //   try {
+    //     const { name, rating, comment } = JSON.parse(event.body);
+
+    //     if (!name || !rating || !comment) {
+    //       return { statusCode: 400, body: JSON.stringify({ message: 'Missing required fields.' }) };
+    //     }
+
+    //     const msg = {
+    //       to: process.env.TO_EMAIL_ADDRESS,
+    //       from: process.env.FROM_EMAIL_ADDRESS,
+    //       subject: `Nouvel avis de ${name} sur votre site LM-SERVICES`,
+    //       html: `
+    //         <h1>Nouvel Avis Reçu</h1>
+    //         <p><strong>Nom:</strong> ${name}</p>
+    //         <p><strong>Note:</strong> ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</p>
+    //         <p><strong>Commentaire:</strong></p>
+    //         <blockquote style="border-left: 4px solid #ccc; padding-left: 1em; margin-left: 0;">
+    //           <p>${comment}</p>
+    //         </blockquote>
+    //       `,
+    //     };
+
+    //     await sendgrid.send(msg);
+
+    //     return {
+    //       statusCode: 200,
+    //       body: JSON.stringify({ success: true, message: 'Avis soumis avec succès !' })
+    //     };
+
+    //   } catch (error) {
+    //     console.error('Error sending email:', error);
+    //     return {
+    //       statusCode: 500,
+    //       body: JSON.stringify({ message: 'Erreur interne du serveur.' })
+    //     };
+    //   }
+    // };
+    
+    --- CODE POUR LA FONCTION submitReview DANS LE HTML (à remplacer) ---
+
+    // const submitReview = async (review) => {
+    //     const response = await fetch('/.netlify/functions/submit-review', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(review),
+    //     });
+    //     if (!response.ok) {
+    //         const errorData = await response.json();
+    //         throw new Error(errorData.message || 'Échec de la soumission de l'avis.');
+    //     }
+    //     return response.json();
+    // };
+
+    -->
+
 </body>
 </html>
