@@ -84,12 +84,49 @@
       html { scroll-behavior: smooth; }
     </style>
 </head>
+    @keyframes logo-pulse {
+  0%,100% { filter: drop-shadow(0 0 4px rgba(255,193,7,0.6)); }
+  50%     { filter: drop-shadow(0 0 12px rgba(255,193,7,1)); }
+}
+
 <body class="bg-neutral-light dark:bg-neutral-extradark">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-K5Q634NG"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="root"></div>
 <div className="flex justify-center mt-6 animate-logo-pulse">
   <Logo className="h-24 w-auto" />
+</div>
+<div style="display:flex; justify-content:center; margin-top:1.5rem;">
+  <svg viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:6rem; animation:logo-pulse 4s infinite cubic-bezier(0.4,0,0.6,1);">
+    <defs>
+      <filter id="logo-glow-yellow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="logo-glow-white" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <linearGradient id="text-fill-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="50%" stop-color="#D1D5DB"/>
+        <stop offset="100%" stop-color="#9CA3AF"/>
+      </linearGradient>
+    </defs>
+    <path d="M5 40 Q 60 15, 120 40 T 235 40" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" filter="url(#logo-glow-yellow)" opacity="0.8"/>
+    <path d="M10 42 Q 70 65, 120 42 T 230 42" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" filter="url(#logo-glow-white)" opacity="0.6"/>
+    <path d="M20 38 C 80 50, 160 30, 220 42" stroke="#FFC107" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+    <g style="font-family:'Arial Black', Gadget, sans-serif;font-size:34px;text-anchor:middle;letter-spacing:-1px;">
+      <text x="121" y="53" fill="#1F2327" opacity="0.7">LM-SERVICES</text>
+      <text x="120" y="52" fill="url(#text-fill-gradient)" stroke="#4B5563" stroke-width="0.5">LM-SERVICES</text>
+    </g>
+  </svg>
 </div>
 
     <script type="module">
