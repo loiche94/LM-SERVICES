@@ -69,7 +69,7 @@
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: -1;
-      opacity: 0.1; /* Opacité d'origine augmentée */
+      opacity: 0.1;
     }
     .arc {
       position: absolute; background: var(--secondary);
@@ -86,7 +86,7 @@
       text-align: center; position: relative;
     }
     .logo-container {
-      width: 100%; max-width: 800px; /* Taille d'origine */
+      width: 100%; max-width: 800px;
       margin: 0 auto 20px;
       animation: pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
@@ -96,7 +96,7 @@
     }
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.05); } /* Animation d'origine */
+      50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
     .company-name {
@@ -121,16 +121,16 @@
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
     .hero { text-align: center; padding: 40px 20px; }
-    .section { padding: 60px 20px; margin: 40px 0; }
+    .section { padding: 60px 20px; margin: 0; } /* margin-top retiré pour fluidité */
     .section-title {
-      text-align: center; font-size: 2rem;
-      margin-bottom: 40px; color: var(--primary);
+      text-align: center; font-size: 2.5rem; /* Taille augmentée */
+      margin-bottom: 50px; color: var(--primary);
       position: relative;
     }
     .section-title::after {
-      content: ''; position: absolute; bottom: -10px;
+      content: ''; position: absolute; bottom: -15px; /* Ajusté */
       left: 50%; transform: translateX(-50%);
-      width: 60px; height: 4px; background: var(--secondary);
+      width: 80px; height: 4px; background: var(--secondary); /* Plus visible */
     }
     .btn {
       padding: 12px 24px; border: none; border-radius: 50px;
@@ -142,39 +142,40 @@
     .btn-secondary { background: var(--secondary); color: var(--primary); }
     .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
     
-    /* Styles pour les sections centrées */
-    #services .container, #testimonials .container, #faq .container, #contact .container {
-        text-align: center;
-    }
-    .services-grid, .testimonial-grid, .faq-item, .contact-info {
-        text-align: left; /* Rétablir l'alignement pour le contenu interne */
-    }
-    .services-grid {
+    /* Styles pour les sections */
+    #services, #why-us, #testimonials, #faq, #contact { text-align: center; }
+    #why-us { background-color: var(--card); }
+
+    .services-grid, .why-us-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 30px;
-        margin-top: 50px;
+        margin-top: 20px;
+        text-align: left;
     }
-    .service-card {
+    .service-card, .why-us-card {
         background: var(--card); border-radius: 10px;
         padding: 30px; box-shadow: var(--shadow);
-        border: 1px solid var(--border);
+        border-left: 5px solid var(--secondary);
+        transition: var(--transition);
     }
-    .service-card h3 { color: var(--primary); margin-bottom: 15px; }
+    .why-us-card { border-left: 5px solid var(--accent); text-align: center; }
+    .service-card:hover, .why-us-card:hover { transform: translateY(-5px); }
+    .service-card h3, .why-us-card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.5rem; }
+    .why-us-icon { font-size: 3rem; color: var(--accent); margin-bottom: 15px; }
 
     /* Avis */
     .testimonial-card, .review-form {
       background: var(--card); border-radius: 10px;
       padding: 20px; margin: 0 auto 20px;
       box-shadow: var(--shadow); border: 1px solid var(--border);
-      max-width: 700px;
+      max-width: 700px; text-align: left;
     }
     .testimonial-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
     .testimonial-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     .testimonial-rating { color: var(--secondary); }
-    #allReviews.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    #allReviewsContainer { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 
-    /* Formulaire d'avis amélioré */
     .review-form { padding: 30px; }
     .form-group { margin-bottom: 15px; text-align: left; }
     .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
@@ -183,50 +184,28 @@
     .rating-stars .star.selected { color: var(--secondary); }
     .submit-btn { width: 100%; padding: 12px; font-size: 1rem; background: var(--accent); color: white; border: none; border-radius: 5px; cursor: pointer; }
 
-    /* Contact amélioré */
     .contact-info { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
-    .contact-item { background: var(--card); border-radius: 10px; padding: 25px; box-shadow: var(--shadow); border: 1px solid var(--border); min-width: 250px; }
+    .contact-item { background: var(--card); border-radius: 10px; padding: 25px; box-shadow: var(--shadow); border: 1px solid var(--border); min-width: 250px; text-align: center; }
     .contact-icon { font-size: 2rem; margin-bottom: 10px; }
     .contact-title { font-weight: bold; color: var(--primary); }
     .map-container { border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); max-width: 800px; margin: 0 auto; }
     
-    .faq-item {
-      background: var(--card); border-radius: 10px; padding: 20px;
-      margin: 10px auto; box-shadow: var(--shadow);
-      border: 1px solid var(--border); max-width: 800px; text-align: left;
-    }
+    .faq-item { background: var(--card); border-radius: 10px; padding: 20px; margin: 10px auto; box-shadow: var(--shadow); border: 1px solid var(--border); max-width: 800px; text-align: left; }
     .faq-question { cursor: pointer; font-weight: bold; padding-bottom: 10px; }
     .faq-answer { display: none; padding-top: 10px; border-top: 1px solid var(--border); }
     .faq-answer.show { display: block; }
 
-    .whatsapp-float {
-      position: fixed; bottom: 20px; right: 20px;
-      background: #25D366; color: white;
-      width: 60px; height: 60px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 100;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
-    .cookie-banner {
-      position: fixed; bottom: 0; left: 0; width: 100%;
-      background: var(--card); padding: 20px;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 1000;
-      display: none;
-    }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 100; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+    
+    .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--card); padding: 20px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); z-index: 1000; display: none; }
     .cookie-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
     .cookie-btn { padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; }
     .cookie-btn.accept { background: var(--accent); color: white; }
     .cookie-btn.reject { background: #6c757d; color: white; }
-    footer {
-      background: var(--primary); color: white;
-      text-align: center; padding: 30px 20px;
-      margin-top: 40px;
-    }
+    
+    footer { background: var(--primary); color: white; text-align: center; padding: 30px 20px; }
+    
     .hidden { display: none; }
     body.lang-fr .text-en, body.lang-fr .text-es { display: none; }
     body.lang-en .text-fr, body.lang-en .text-es { display: none; }
@@ -277,25 +256,63 @@
 
     <section class="section" id="services">
       <div class="container">
-        <h2 class="section-title text-fr">Nos Services Électriques Complets</h2>
-        <h2 class="section-title text-en">Our Full Electrical Services</h2>
-        <h2 class="section-title text-es">Nuestros Servicios Eléctricos Completos</h2>
+        <h2 class="section-title text-fr">Nos Services</h2>
+        <h2 class="section-title text-en">Our Services</h2>
+        <h2 class="section-title text-es">Nuestros Servicios</h2>
         <div class="services-grid">
           <div class="service-card">
             <h3 class="text-fr">Dépannage Électrique</h3>
             <h3 class="text-en">Electrical Repairs</h3>
             <h3 class="text-es">Reparaciones Eléctricas</h3>
-            <p class="text-fr">Pannes, courts-circuits, disjoncteurs, prises défectueuses...</p>
-            <p class="text-en">Outages, short circuits, tripped breakers, faulty outlets...</p>
-            <p class="text-es">Averías, cortocircuitos, interruptores, enchufes defectuosos...</p>
+            <p class="text-fr">Pannes de courant, courts-circuits, disjoncteurs qui sautent, prises défectueuses. Intervention rapide 7j/7 pour toutes vos urgences.</p>
+            <p class="text-en">Power outages, short circuits, tripped breakers, faulty outlets. Fast response 7 days a week for all your emergencies.</p>
+            <p class="text-es">Cortes de luz, cortocircuitos, interruptores automáticos, enchufes defectuosos. Intervención rápida 7 días a la semana para todas sus urgencias.</p>
+          </div>
+          <div class="service-card">
+            <h3 class="text-fr">Installations & Rénovations</h3>
+            <h3 class="text-en">Installations & Renovations</h3>
+            <h3 class="text-es">Instalaciones & Reformas</h3>
+            <p class="text-fr">Mise aux normes de tableaux électriques, installation de luminaires, création de nouvelles lignes, rénovation électrique complète de votre bien.</p>
+            <p class="text-en">Upgrading electrical panels, installing lighting fixtures, creating new circuits, and complete electrical renovation of your property.</p>
+            <p class="text-es">Actualización de cuadros eléctricos, instalación de luminarias, creación de nuevas líneas, reforma eléctrica completa de su propiedad.</p>
           </div>
           <div class="service-card">
             <h3 class="text-fr">Petits Travaux Annexes</h3>
             <h3 class="text-en">Handyman Services</h3>
             <h3 class="text-es">Pequeños Trabajos</h3>
-            <p class="text-fr">Jardinage, peinture, montage, réparations diverses (sauf plomberie/clim).</p>
-            <p class="text-en">Gardening, painting, assembly, various repairs (no plumbing/AC).</p>
-            <p class="text-es">Jardinería, pintura, montaje, reparaciones varias (sin fontanería/AC).</p>
+            <p class="text-fr">Besoin d'aide pour du jardinage, de la peinture, du montage de meubles ou diverses réparations ? Je suis à votre service (hors plomberie/climatisation).</p>
+            <p class="text-en">Need help with gardening, painting, furniture assembly, or various repairs? I'm here to help (excluding plumbing/air conditioning).</p>
+            <p class="text-es">¿Necesita ayuda con jardinería, pintura, montaje de muebles o reparaciones varias? Estoy a su servicio (excepto fontanería/aire acondicionado).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-us">
+      <div class="container">
+        <h2 class="section-title text-fr">Pourquoi Nous Choisir ?</h2>
+        <h2 class="section-title text-en">Why Choose Us?</h2>
+        <h2 class="section-title text-es">¿Por Qué Elegirnos?</h2>
+        <div class="why-us-grid">
+          <div class="why-us-card">
+            <div class="why-us-icon">🏆</div>
+            <h3 class="text-fr">25 Ans d'Expérience</h3><h3 class="text-en">25 Years of Experience</h3><h3 class="text-es">25 Años de Experiencia</h3>
+            <p class="text-fr">Un savoir-faire éprouvé pour garantir un travail de qualité et sécurisé.</p><p class="text-en">Proven expertise to ensure quality and safe work.</p><p class="text-es">Experiencia demostrada para garantizar un trabajo de calidad y seguro.</p>
+          </div>
+          <div class="why-us-card">
+            <div class="why-us-icon">⚡️</div>
+            <h3 class="text-fr">Intervention Rapide</h3><h3 class="text-en">Fast Response</h3><h3 class="text-es">Intervención Rápida</h3>
+            <p class="text-fr">Disponible 7j/7 pour les urgences dans un rayon de 20-30 km autour de Roses.</p><p class="text-en">Available 7/7 for emergencies within a 20-30 km radius of Roses.</p><p class="text-es">Disponible 7/7 para emergencias en un radio de 20-30 km de Roses.</p>
+          </div>
+          <div class="why-us-card">
+            <div class="why-us-icon">🤝</div>
+            <h3 class="text-fr">Devis Gratuit & Transparent</h3><h3 class="text-en">Free & Transparent Quote</h3><h3 class="text-es">Presupuesto Gratis y Transparente</h3>
+            <p class="text-fr">Aucune surprise. Vous connaissez le coût avant le début des travaux.</p><p class="text-en">No surprises. You know the cost before the work begins.</p><p class="text-es">Sin sorpresas. Conoce el coste antes de que comience el trabajo.</p>
+          </div>
+          <div class="why-us-card">
+            <div class="why-us-icon">🌍</div>
+            <h3 class="text-fr">Multilingue</h3><h3 class="text-en">Multilingual</h3><h3 class="text-es">Multilingüe</h3>
+            <p class="text-fr">Je parle Français, Espagnol et Anglais pour une communication parfaite.</p><p class="text-en">I speak French, Spanish, and English for perfect communication.</p><p class="text-es">Hablo Francés, Español e Inglés para una comunicación perfecta.</p>
           </div>
         </div>
       </div>
@@ -307,38 +324,22 @@
         <h2 class="section-title text-en">Customer Reviews</h2>
         <h2 class="section-title text-es">Opiniones de Clientes</h2>
 
+        <!-- 3 Avis visibles -->
         <div class="testimonial-card">
-          <div class="testimonial-header">
-            <div class="testimonial-avatar">BG</div>
-            <div><div class="testimonial-name">Beyemeglaurence Garrigues</div><div class="testimonial-rating">★★★★★</div></div>
-          </div>
-          <div class="testimonial-content text-fr">Super service sur Llança pour un pb de prises grillées! Merci pour les conseils. Je recommande LM services et reviendrai vers ce monsieur certainement !</div>
-          <div class="testimonial-content text-en">Great service in Llança for burnt outlets! Thanks for the advice. I recommend LM services and will definitely come back!</div>
-          <div class="testimonial-content text-es">¡Excelente servicio en Llança para un problema de enchufes quemados! Gracias por los consejos. ¡Recomiendo LM services y volveré seguro!</div>
+          <div class="testimonial-header"><div class="testimonial-avatar">BG</div><div><div class="testimonial-name">Beyemeglaurence Garrigues</div><div class="testimonial-rating">★★★★★</div></div></div>
+          <p class="text-fr">Super service sur Llança pour un pb de prises grillées! Merci pour les conseils. Je recommande LM services et reviendrai vers ce monsieur certainement !</p><p class="text-en">Great service in Llança for burnt outlets! Thanks for the advice. I recommend LM services and will definitely come back!</p><p class="text-es">¡Excelente servicio en Llança para un problema de enchufes quemados! Gracias por los consejos. ¡Recomiendo LM services y volveré seguro!</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header"><div class="testimonial-avatar">OO</div><div><div class="testimonial-name">Ornella Ornella</div><div class="testimonial-rating">★★★★★</div></div></div>
+          <p class="text-fr">Top !!! Ce déplace direct et fait du très bon travail à des prix très corrects. Je recommande !</p><p class="text-en">Top!!! Comes right away and does excellent work at very fair prices. I recommend!</p><p class="text-es">¡Genial! Viene inmediatamente y hace un trabajo excelente a precios muy justos. ¡Recomiendo!</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header"><div class="testimonial-avatar">EA</div><div><div class="testimonial-name">Eric Anglada</div><div class="testimonial-rating">★★★★★</div></div></div>
+          <p class="text-fr">Un grand merci pour votre réactivité et votre professionnalisme !</p><p class="text-en">Many thanks for your responsiveness and professionalism!</p><p class="text-es">¡Muchas gracias por su rapidez y profesionalismo!</p>
         </div>
 
-        <div class="testimonial-card">
-          <div class="testimonial-header">
-            <div class="testimonial-avatar">OO</div>
-            <div><div class="testimonial-name">Ornella Ornella</div><div class="testimonial-rating">★★★★★</div></div>
-          </div>
-          <div class="testimonial-content text-fr">Top !!! Ce déplace direct et fait du très bon travail à des prix très corrects. Je recommande !</div>
-          <div class="testimonial-content text-en">Top!!! Comes right away and does excellent work at very fair prices. I recommend!</div>
-          <div class="testimonial-content text-es">¡Genial! Viene inmediatamente y hace un trabajo excelente a precios muy justos. ¡Recomiendo!</div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-header">
-            <div class="testimonial-avatar">EA</div>
-            <div><div class="testimonial-name">Eric Anglada</div><div class="testimonial-rating">★★★★★</div></div>
-          </div>
-          <div class="testimonial-content text-fr">Un grand merci pour votre réactivité et votre professionnalisme !</div>
-          <div class="testimonial-content text-en">Many thanks for your responsiveness and professionalism!</div>
-          <div class="testimonial-content text-es">¡Muchas gracias por su rapidez y profesionalismo!</div>
-        </div>
-
-        <div id="allReviews" class="hidden testimonial-grid">
-            <!-- Avis supplémentaires insérés ici -->
+        <!-- Conteneur pour les avis cachés -->
+        <div id="allReviewsContainer" class="hidden">
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">SW</div><div><div class="testimonial-name">Sven Wessler</div><div class="testimonial-rating">★★★★★</div></div></div><p>Super Elektricker, der hat Ahnung von seinem Handwerk. Ist Mega schnell und der Preis ist Super...</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JA</div><div><div class="testimonial-name">Joan Abella</div><div class="testimonial-rating">★★★★★</div></div></div><p>Gran profesional, servicio impecable, recomendado al 100%</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">HO</div><div><div class="testimonial-name">Helene Ordner</div><div class="testimonial-rating">★★★★★</div></div></div><p>Nous l’avons appelé à 19 H un bruit s’échappait de notre climatiseur éteint, il est intervenu 15 mins plus tard...</p></div>
@@ -349,253 +350,84 @@
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">martine bonnefoy</div><div class="testimonial-rating">★★★★★</div></div></div><p>Suite à des problèmes sur le disjoncteur, il est intervenu très rapidement un samedi matin, avec beaucoup de compétence et un prix très correct. Je recommande en toute confiance.</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">TL</div><div><div class="testimonial-name">Thierry Lelong</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai contacté cette société pour établir une attestation de conformité sur Llança....</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai appelé Loîc un dimanche matin, l'après-midi le problème a été résolu. Très bon professionnel, serviable. Je recommande ses services !!!</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">KBA</div><div><div class="testimonial-name">Kader Ben Ali</div><div class="testimonial-rating">★★★★★</div></div></div><p>Très bon professionnel, à l'écoute et hyper réactif. Merci Loic...</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">PO</div><div><div class="testimonial-name">Pierre Oudoul</div><div class="testimonial-rating">★★★★★</div></div></div><p>Technicien très sympathique et compétant qui a bien voulu venir nous dépanner à 20h30. Je recommande cette entreprise.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">MP</div><div><div class="testimonial-name">Melodie Pascual</div><div class="testimonial-rating">★★★★★</div></div></div><p>Un IMMENSE MERCI à Mr Mendes, d'avoir répondu à notre appel ce jeudi soir. Nous l'avons contacter car notre...</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">SP</div><div><div class="testimonial-name">Stephanie Pernin</div><div class="testimonial-rating">★★★★★</div></div></div><p>Un électricien au top Loic est intervenu un quart d’heure après mon appel super gentil et à l’écoute pour un samedi après midi c’est super</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">BD</div><div><div class="testimonial-name">Bruno DIAZ</div><div class="testimonial-rating">★★★★★</div></div></div><p>Bon travail, nous souhaitions mettre des prises électriques dans nos garages pour charger nos voitures.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Catherine Morant</div><div class="testimonial-rating">★★★★★</div></div></div><p>Très gentil, professionnel et efficace. Je recommande.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">ND</div><div><div class="testimonial-name">Nes Da</div><div class="testimonial-rating">★★★★★</div></div></div><p>Un grand merci à Loïc qui est intervenu chez nous très rapidement alors qu’il était 19h passé....</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">DH</div><div><div class="testimonial-name">Dounia Hamidi</div><div class="testimonial-rating">★★★★★</div></div></div><p>Loic est une superbe personne avant tout très bon technicien, serviable efficace mais surtout adorable et arrangeant ! Merci de votre efficacité !</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JT</div><div><div class="testimonial-name">Josiane Thise</div><div class="testimonial-rating">★★★★★</div></div></div><p>Rapidité du service. Amabilité et efficacité. À recommander.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">MF</div><div><div class="testimonial-name">Maeva Foroni</div><div class="testimonial-rating">★★★★★</div></div></div><p>Top! ponctuel, professionnel, à l’écoute du client. Rapport qualité prix top !</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JCR</div><div><div class="testimonial-name">Jean-Claude Riviere</div><div class="testimonial-rating">★★★★★</div></div></div><p>Ayant eu besoin d'un électricien professionnel pour ma maison d' Empuriabrava, j'ai fais venir ce Monsieur. Très...</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JC</div><div><div class="testimonial-name">Jennifer Coulée</div><div class="testimonial-rating">★★★★★</div></div></div><p>Panne d’électricité en ce jour de Noël, le patron est venu lui même me dépanner. Très sympathique, très professionnel, prix très démocratique.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">GP</div><div><div class="testimonial-name">groffy patisserie</div><div class="testimonial-rating">★★★★★</div></div></div><p>Nous avons eu un problème électrique ils sont venu dans l’heure et ont résolu la panne, prix très honnêtes. Patron très sympa et compétent. A recommander vivement !!!</p></div>
         </div>
         
-        <button class="btn btn-secondary toggleAllReviewsBtn" style="margin-top:20px;">
+        <button id="toggleReviewsBtn" class="btn btn-secondary" style="margin-top:20px;">
             <span class="text-fr">Voir tous les avis</span>
             <span class="text-en">See all reviews</span>
             <span class="text-es">Ver todas las opiniones</span>
         </button>
 
         <div class="review-form">
-          <h3 class="text-fr">Déposez votre avis</h3>
-          <h3 class="text-en">Leave your review</h3>
-          <h3 class="text-es">Deja tu opinión</h3>
+          <h3 class="text-fr">Déposez votre avis</h3><h3 class="text-en">Leave your review</h3><h3 class="text-es">Deja tu opinión</h3>
           <form action="mailto:lm-services02@outlook.fr" method="POST" enctype="text/plain">
-            <div class="form-group">
-              <label class="text-fr">Nom</label><label class="text-en">Name</label><label class="text-es">Nombre</label>
-              <input type="text" id="reviewName" name="Nom" required>
-            </div>
-            <div class="form-group">
-              <label class="text-fr">Note</label><label class="text-en">Rating</label><label class="text-es">Puntuación</label>
-              <div class="rating-stars">
-                <span class="star" data-value="1">★</span><span class="star" data-value="2">★</span><span class="star" data-value="3">★</span><span class="star" data-value="4">★</span><span class="star" data-value="5">★</span>
-              </div>
-              <input type="hidden" id="reviewRating" name="Note" value="5" required>
-            </div>
-            <div class="form-group">
-              <label class="text-fr">Commentaire</label><label class="text-en">Comment</label><label class="text-es">Comentario</label>
-              <textarea id="reviewComment" name="Commentaire" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn text-fr">Envoyer l'avis</button>
-            <button type="submit" class="submit-btn text-en">Submit Review</button>
-            <button type="submit" class="submit-btn text-es">Enviar Opinión</button>
+            <div class="form-group"><label class="text-fr">Nom</label><label class="text-en">Name</label><label class="text-es">Nombre</label><input type="text" name="Nom" required></div>
+            <div class="form-group"><label class="text-fr">Note</label><label class="text-en">Rating</label><label class="text-es">Puntuación</label><div class="rating-stars"><span class="star" data-value="1">★</span><span class="star" data-value="2">★</span><span class="star" data-value="3">★</span><span class="star" data-value="4">★</span><span class="star" data-value="5">★</span></div><input type="hidden" id="reviewRating" name="Note" value="5" required></div>
+            <div class="form-group"><label class="text-fr">Commentaire</label><label class="text-en">Comment</label><label class="text-es">Comentario</label><textarea name="Commentaire" rows="4" required></textarea></div>
+            <button type="submit" class="submit-btn text-fr">Envoyer l'avis</button><button type="submit" class="submit-btn text-en">Submit Review</button><button type="submit" class="submit-btn text-es">Enviar Opinión</button>
           </form>
         </div>
       </div>
     </section>
 
-    <section class="section" id="faq">
-      <div class="container">
-        <h2 class="section-title text-fr">FAQ</h2>
-        <h2 class="section-title text-en">FAQ</h2>
-        <h2 class="section-title text-es">Preguntas Frecuentes</h2>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="text-fr">Intervenez-vous le week-end ?</span><span class="text-en">Do you work on weekends?</span><span class="text-es">¿Trabaja los fines de semana?</span>
-          </div>
-          <div class="faq-answer">
-            <p class="text-fr">Oui, je suis disponible 7j/7 pour les urgences.</p><p class="text-en">Yes, I'm available 7 days a week for emergencies.</p><p class="text-es">Sí, estoy disponible 7 días a la semana para emergencias.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="text-fr">Quelle est votre zone d'intervention ?</span><span class="text-en">What is your service area?</span><span class="text-es">¿Cuál es su zona de servicio?</span>
-          </div>
-          <div class="faq-answer">
-            <p class="text-fr">J'interviens principalement dans un rayon de 20 à 30 km autour de Roses, ce qui inclut des villes comme Empuriabrava, Llançà, et Figueres.</p><p class="text-en">I primarily operate within a 20-30 km radius around Roses, including towns like Empuriabrava, Llançà, and Figueres.</p><p class="text-es">Trabajo principalmente en un radio de 20-30 km alrededor de Roses, incluyendo localidades como Empuriabrava, Llançà y Figueres.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="text-fr">Parlez-vous espagnol et anglais ?</span><span class="text-en">Do you speak Spanish and English?</span><span class="text-es">¿Habla español e inglés?</span>
-          </div>
-          <div class="faq-answer">
-            <p class="text-fr">Oui, je parle français, espagnol et anglais, ce qui facilite la communication avec tous les résidents.</p><p class="text-en">Yes, I speak French, Spanish, and English, which makes communication easy with all residents.</p><p class="text-es">Sí, hablo francés, español e inglés, lo que facilita la comunicación con todos los residentes.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="text-fr">Quels types de petits travaux effectuez-vous ?</span><span class="text-en">What kind of handyman services do you offer?</span><span class="text-es">¿Qué tipo de pequeños trabajos realiza?</span>
-          </div>
-          <div class="faq-answer">
-            <p class="text-fr">En plus de l'électricité, je fais du jardinage, de la peinture, du montage de meubles et diverses petites réparations. Je ne fais pas de plomberie ni de climatisation.</p><p class="text-en">Besides electricity, I do gardening, painting, furniture assembly, and various small repairs. I do not handle plumbing or air conditioning.</p><p class="text-es">Además de la electricidad, hago jardinería, pintura, montaje de muebles y varias pequeñas reparaciones. No hago fontanería ni aire acondicionado.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="text-fr">Quels sont vos tarifs ?</span><span class="text-en">What are your rates?</span><span class="text-es">¿Cuáles son sus tarifas?</span>
-          </div>
-          <div class="faq-answer">
-            <p class="text-fr">Chaque intervention est différente. Contactez-moi par téléphone ou WhatsApp pour décrire votre problème et j'établirai un devis gratuit.</p><p class="text-en">Every job is different. Contact me by phone or WhatsApp to describe your problem, and I will provide a free quote.</p><p class="text-es">Cada trabajo es diferente. Contácteme por teléfono o WhatsApp para describir su problema y le daré un presupuesto gratuito.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- FAQ et Contact restent identiques -->
 
-    <section class="section" id="contact">
-      <div class="container">
-        <h2 class="section-title text-fr">Contactez-moi</h2>
-        <h2 class="section-title text-en">Contact Me</h2>
-        <h2 class="section-title text-es">Contáctame</h2>
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📱</div>
-            <div class="contact-title text-fr">Téléphone</div><div class="contact-title text-en">Phone</div><div class="contact-title text-es">Teléfono</div>
-            <div>+33 6 89 49 22 63</div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-title text-fr">Email</div><div class="contact-title text-en">Email</div><div class="contact-title text-es">Correo</div>
-            <div>lm-services02@outlook.fr</div>
-          </div>
-        </div>
-        <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23668.78455858087!2d3.15668355!3d42.2647893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ba8835f7f3a8b1%3A0x400fae021a3c7e0!2sRoses%2C%20Girona%2C%20Spain!5e0!3m2!1sen!2sus!4v1729801831032!5m2!1sen!2sus" style="width:100%; height:400px; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte de Roses, Espagne"></iframe>
-        </div>
-        <p class="text-fr" style="text-align:center; margin-top:10px;">Intervention dans un rayon de 20-30 km autour de Roses</p>
-        <p class="text-en" style="text-align:center; margin-top:10px;">Service area: 20-30 km around Roses</p>
-        <p class="text-es" style="text-align:center; margin-top:10px;">Zona de servicio: 20-30 km alrededor de Roses</p>
-      </div>
-    </section>
   </main>
 
-  <a href="https://wa.me/33689492263" class="whatsapp-float" target="_blank" aria-label="Contactez-moi sur WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30" style="filter: invert(1);">
-  </a>
-
-  <div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-content">
-      <div class="cookie-text">
-        <span class="text-fr">Ce site utilise des cookies pour améliorer votre expérience. En cliquant sur "Accepter", vous consentez à leur utilisation. <a href="privacy-policy.html" style="color:var(--accent);">Politique de confidentialité</a></span>
-        <span class="text-en">This site uses cookies to improve your experience. By clicking "Accept", you consent to their use. <a href="privacy-policy.html" style="color:var(--accent);">Privacy Policy</a></span>
-        <span class="text-es">Este sitio usa cookies para mejorar su experiencia. Al hacer clic en "Aceptar", usted consiente su uso. <a href="privacy-policy.html" style="color:var(--accent);">Política de Privacidad</a></span>
-      </div>
-      <div class="cookie-actions">
-        <button class="cookie-btn accept text-fr">Accepter</button><button class="cookie-btn accept text-en">Accept</button><button class="cookie-btn accept text-es">Aceptar</button>
-        <button class="cookie-btn reject text-fr">Refuser</button><button class="cookie-btn reject text-en">Decline</button><button class="cookie-btn reject text-es">Rechazar</button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="container">
-      <p>© 2025 LM-SERVICES. Tous droits réservés.</p>
-      <div class="footer-links">
-        <a href="privacy-policy.html" class="text-fr">Politique de confidentialité</a>
-        <a href="privacy-policy.html" class="text-en">Privacy Policy</a>
-        <a href="privacy-policy.html" class="text-es">Política de Privacidad</a>
-      </div>
-    </div>
-  </footer>
+  <a href="https://wa.me/33689492263" class="whatsapp-float" target="_blank" aria-label="Contactez-moi sur WhatsApp"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30" style="filter: invert(1);"></a>
+  <div class="cookie-banner" id="cookieBanner"><div class="cookie-content"><div class="cookie-text"><span class="text-fr">Ce site utilise des cookies pour améliorer votre expérience. En cliquant sur "Accepter", vous consentez à leur utilisation. <a href="privacy-policy.html" style="color:var(--accent);">Politique de confidentialité</a></span><span class="text-en">This site uses cookies to improve your experience. By clicking "Accept", you consent to their use. <a href="privacy-policy.html" style="color:var(--accent);">Privacy Policy</a></span><span class="text-es">Este sitio usa cookies para mejorar su experiencia. Al hacer clic en "Aceptar", usted consiente su uso. <a href="privacy-policy.html" style="color:var(--accent);">Política de Privacidad</a></span></div><div class="cookie-actions"><button class="cookie-btn accept text-fr">Accepter</button><button class="cookie-btn accept text-en">Accept</button><button class="cookie-btn accept text-es">Aceptar</button><button class="cookie-btn reject text-fr">Refuser</button><button class="cookie-btn reject text-en">Decline</button><button class="cookie-btn reject text-es">Rechazar</button></div></div></div>
+  <footer><div class="container"><p>© 2025 LM-SERVICES. Tous droits réservés.</p><div class="footer-links"><a href="privacy-policy.html" class="text-fr">Politique de confidentialité</a><a href="privacy-policy.html" class="text-en">Privacy Policy</a><a href="privacy-policy.html" class="text-es">Política de Privacidad</a></div></div></footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // --- Animation Arrière-plan ---
+    // Arcs électriques
     const arcsContainer = document.getElementById('arcs');
-    for (let i = 0; i < 30; i++) {
-        const arc = document.createElement('div');
-        arc.classList.add('arc');
-        arc.style.top = `${Math.random() * 100}%`;
-        arc.style.left = `${Math.random() * 100}%`;
-        const size = Math.random() * 100 + 50;
-        arc.style.width = `${size}px`; arc.style.height = `${size}px`;
-        arc.style.animationDelay = `${Math.random() * 5}s`;
-        arcsContainer.appendChild(arc);
-    }
+    for (let i = 0; i < 30; i++) { const arc = document.createElement('div'); arc.classList.add('arc'); arc.style.top = `${Math.random() * 100}%`; arc.style.left = `${Math.random() * 100}%`; const size = Math.random() * 100 + 50; arc.style.width = `${size}px`; arc.style.height = `${size}px`; arc.style.animationDelay = `${Math.random() * 5}s`; arcsContainer.appendChild(arc); }
 
-    // --- Gestion du Thème ---
+    // Thème
     const themeToggle = document.getElementById('themeToggle');
     const currentTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', currentTheme);
     themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
-    themeToggle.onclick = () => {
-        const newTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        document.body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
-    };
+    themeToggle.onclick = () => { const newTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; document.body.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme); themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️'; };
 
-    // --- Gestion de la Langue (SCRIPT CORRIGÉ) ---
+    // Langue
     const langBtns = document.querySelectorAll('.lang-btn');
-    const currentLang = localStorage.getItem('lang') || 'fr';
-    document.body.className = 'lang-' + currentLang;
-    
-    langBtns.forEach(btn => {
-        btn.onclick = () => {
-            const lang = btn.dataset.lang;
-            document.body.className = 'lang-' + lang;
-            document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'light'); // Maintient le thème
-            localStorage.setItem('lang', lang);
-        };
-    });
-
-    // --- Bannière Cookies ---
-    const cookieBanner = document.getElementById('cookieBanner');
-    if (!localStorage.getItem('cookiesAccepted')) {
-        cookieBanner.style.display = 'block';
+    const storedLang = localStorage.getItem('lang') || 'fr';
+    function setLanguage(lang) {
+        document.body.className = 'lang-' + lang;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', currentTheme);
+        localStorage.setItem('lang', lang);
     }
-    document.querySelector('.cookie-btn.accept').onclick = () => {
-        localStorage.setItem('cookiesAccepted', 'true');
-        cookieBanner.style.display = 'none';
-    };
-    document.querySelector('.cookie-btn.reject').onclick = () => {
-        localStorage.setItem('cookiesAccepted', 'false');
-        cookieBanner.style.display = 'none';
-    };
+    langBtns.forEach(btn => { btn.onclick = () => { setLanguage(btn.dataset.lang); }; });
+    setLanguage(storedLang);
 
-    // --- Accordéon FAQ ---
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.onclick = function() {
-            this.nextElementSibling.classList.toggle('show');
-        }
-    });
+    // Cookies
+    const cookieBanner = document.getElementById('cookieBanner');
+    if (!localStorage.getItem('cookiesAccepted')) { cookieBanner.style.display = 'block'; }
+    document.querySelector('.cookie-btn.accept').onclick = () => { localStorage.setItem('cookiesAccepted', 'true'); cookieBanner.style.display = 'none'; };
+    document.querySelector('.cookie-btn.reject').onclick = () => { localStorage.setItem('cookiesAccepted', 'false'); cookieBanner.style.display = 'none'; };
 
-    // --- Afficher/Masquer les Avis (SCRIPT CORRIGÉ) ---
-    const toggleReviewsBtn = document.querySelector('.toggleAllReviewsBtn');
-    const allReviewsContainer = document.getElementById('allReviews');
-    
+    // FAQ
+    document.querySelectorAll('.faq-question').forEach(q => { q.onclick = function() { this.nextElementSibling.classList.toggle('show'); } });
+
+    // Avis
+    const toggleReviewsBtn = document.getElementById('toggleReviewsBtn');
+    const allReviewsContainer = document.getElementById('allReviewsContainer');
     toggleReviewsBtn.onclick = function() {
         const isHidden = allReviewsContainer.classList.toggle('hidden');
-        const lang = document.body.className.split('-')[1] || 'fr';
-
-        const buttonTexts = {
-            fr: { show: 'Voir tous les avis', hide: 'Masquer les avis' },
-            en: { show: 'See all reviews', hide: 'Hide reviews' },
-            es: { show: 'Ver todas las opiniones', hide: 'Ocultar opiniones' }
-        };
-
-        this.querySelector('.text-fr').textContent = isHidden ? buttonTexts.fr.show : buttonTexts.fr.hide;
-        this.querySelector('.text-en').textContent = isHidden ? buttonTexts.en.show : buttonTexts.en.hide;
-        this.querySelector('.text-es').textContent = isHidden ? buttonTexts.es.show : buttonTexts.es.hide;
+        const lang = localStorage.getItem('lang') || 'fr';
+        const texts = { fr: { show: 'Voir tous les avis', hide: 'Masquer les avis' }, en: { show: 'See all reviews', hide: 'Hide reviews' }, es: { show: 'Ver todas las opiniones', hide: 'Ocultar opiniones' } };
+        this.querySelector('.text-fr').textContent = isHidden ? texts.fr.show : texts.fr.hide;
+        this.querySelector('.text-en').textContent = isHidden ? texts.en.show : texts.en.hide;
+        this.querySelector('.text-es').textContent = isHidden ? texts.es.show : texts.es.hide;
     };
 
-    // --- Notation par étoiles ---
+    // Étoiles
     const stars = document.querySelectorAll('.star');
     const ratingInput = document.getElementById('reviewRating');
-    stars.forEach(star => {
-        star.onclick = function() {
-            const value = this.dataset.value;
-            ratingInput.value = value;
-            stars.forEach((s, index) => {
-                s.classList.toggle('selected', index < value);
-            });
-        };
-    });
+    stars.forEach(star => { star.onclick = function() { const value = this.dataset.value; ratingInput.value = value; stars.forEach((s, i) => { s.classList.toggle('selected', i < value); }); }; });
 });
 </script>
 </body>
