@@ -169,7 +169,7 @@
     .testimonial-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
     .testimonial-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     .testimonial-rating { color: var(--secondary); }
-    #allReviewsContainer { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    #allReviewsContainer { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; overflow-y: auto; max-height: 600px; margin-top: 20px; }
     .review-form { padding: 30px; }
     .form-group { margin-bottom: 15px; text-align: left; }
     .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
@@ -267,6 +267,14 @@
             <p class="text-en">Need help with gardening, painting, furniture assembly, or various repairs? I'm here to help (excluding plumbing/air conditioning).</p>
             <p class="text-es">¿Necesita ayuda con jardinería, pintura, montaje de muebles o reparaciones varias? Estoy a su servicio (excepto fontanería/aire acondicionado).</p>
           </div>
+          <div class="service-card">
+            <h3 class="text-fr">Éclairage et Domotique</h3>
+            <h3 class="text-en">Lighting and Home Automation</h3>
+            <h3 class="text-es">Iluminación y Domótica</h3>
+            <p class="text-fr">Installation de systèmes d'éclairage LED modernes, intégration de solutions domotiques pour une maison connectée, avec contrôle à distance via applications mobiles pour plus de confort et d'efficacité énergétique.</p>
+            <p class="text-en">Installation of modern LED lighting systems, integration of home automation solutions for a connected home, with remote control via mobile apps for greater comfort and energy efficiency.</p>
+            <p class="text-es">Instalación de sistemas de iluminación LED modernos, integración de soluciones de domótica para un hogar conectado, con control remoto a través de aplicaciones móviles para mayor comodidad y eficiencia energética.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -317,39 +325,31 @@
           <div class="testimonial-header"><div class="testimonial-avatar">EA</div><div><div class="testimonial-name">Eric Anglada</div><div class="testimonial-rating">★★★★★</div></div></div>
           <p class="text-fr">Un grand merci pour votre réactivité et votre professionnalisme !</p><p class="text-en">Many thanks for your responsiveness and professionalism!</p><p class="text-es">¡Muchas gracias por su rapidez y profesionalismo!</p>
         </div>
-        <!-- Menu déroulant pour les avis supplémentaires -->
-        <div class="form-group" style="margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">
-            <label for="moreReviewsSelect" class="text-fr">Voir d'autres avis</label>
-            <label for="moreReviewsSelect" class="text-en">See other reviews</label>
-            <label for="moreReviewsSelect" class="text-es">Ver otras opiniones</label>
-            <select id="moreReviewsSelect" class="form-control" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border); background-color: var(--card); color: var(--text);">
-                <option value="" class="text-fr" disabled>Sélectionnez un avis...</option>
-                <option value="" class="text-en" disabled>Select a review...</option>
-                <option value="" class="text-es" disabled>Seleccione una opinión...</option>
-                <option value="Sven Wessler">Sven Wessler</option>
-                <option value="Joan Abella">Joan Abella</option>
-                <option value="Helene Ordner">Helene Ordner</option>
-                <option value="Rudy Delsaut">Rudy Delsaut</option>
-                <option value="Sabine Parolini">Sabine Parolini</option>
-                <option value="Chloé Crnc">Chloé Crnc</option>
-                <option value="bruno kovalski">bruno kovalski</option>
-                <option value="martine bonnefoy">martine bonnefoy</option>
-                <option value="Thierry Lelong">Thierry Lelong</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-            </select>
-        </div>
-        <!-- Conteneur pour les avis cachés -->
-        <div id="allReviewsContainer" class="hidden">
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">SW</div><div><div class="testimonial-name">Sven Wessler</div><div class="testimonial-rating">★★★★★</div></div></div><p>Super Elektricker, der hat Ahnung von seinem Handwerk. Ist Mega schnell und der Preis ist Super...</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JA</div><div><div class="testimonial-name">Joan Abella</div><div class="testimonial-rating">★★★★★</div></div></div><p>Gran profesional, servicio impecable, recomendado al 100%</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">HO</div><div><div class="testimonial-name">Helene Ordner</div><div class="testimonial-rating">★★★★★</div></div></div><p>Nous l’avons appelé à 19 H un bruit s’échappait de notre climatiseur éteint, il est intervenu 15 mins plus tard...</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">RD</div><div><div class="testimonial-name">Rudy Delsaut</div><div class="testimonial-rating">★★★★★</div></div></div><p>Rapide, efficace, coche toutes les cases! Je recommande aux francophones de Roses!</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">SP</div><div><div class="testimonial-name">Sabine Parolini</div><div class="testimonial-rating">★★★★★</div></div></div><p>Merci à Loic qui est intervenu très rapidement un dimanche , une personne très à l'écoute et très sympathique</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">CC</div><div><div class="testimonial-name">Chloé Crnc</div><div class="testimonial-rating">★★★★★</div></div></div><p>Service irréprochable ! Appel la veille au soir pour une intervention le lendemain matin. Monsieur s’est démené pour...</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">BK</div><div><div class="testimonial-name">bruno kovalski</div><div class="testimonial-rating">★★★★★</div></div></div><p>Intervention efficace. Prix raisonnable. Rien à redire.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">martine bonnefoy</div><div class="testimonial-rating">★★★★★</div></div></div><p>Suite à des problèmes sur le disjoncteur, il est intervenu très rapidement un samedi matin, avec beaucoup de compétence et un prix très correct. Je recommande en toute confiance.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">TL</div><div><div class="testimonial-name">Thierry Lelong</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai contacté cette société pour établir une attestation de conformité sur Llança....</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai appelé Loîc un dimanche matin, l'après-midi le problème a été résolu. Très bon professionnel, serviable. Je recommande ses services !!!</p></div>
+        <!-- Conteneur pour les avis cachés (utilisé pour le script) -->
+        <div id="allReviewsContainer">
+            <div class="testimonial-card" data-author="Sven Wessler"><div class="testimonial-header"><div class="testimonial-avatar">SW</div><div><div class="testimonial-name">Sven Wessler</div><div class="testimonial-rating">★★★★★</div></div></div><p>Super Elektricker, der hat Ahnung von seinem Handwerk. Ist Mega schnell und der Preis ist Super...</p></div>
+            <div class="testimonial-card" data-author="Joan Abella"><div class="testimonial-header"><div class="testimonial-avatar">JA</div><div><div class="testimonial-name">Joan Abella</div><div class="testimonial-rating">★★★★★</div></div></div><p>Gran profesional, servicio impecable, recomendado al 100%</p></div>
+            <div class="testimonial-card" data-author="Helene Ordner"><div class="testimonial-header"><div class="testimonial-avatar">HO</div><div><div class="testimonial-name">Helene Ordner</div><div class="testimonial-rating">★★★★★</div></div></div><p>Nous l’avons appelé à 19 H un bruit s’échappait de notre climatiseur éteint, il est intervenu 15 mins plus tard...</p></div>
+            <div class="testimonial-card" data-author="Rudy Delsaut"><div class="testimonial-header"><div class="testimonial-avatar">RD</div><div><div class="testimonial-name">Rudy Delsaut</div><div class="testimonial-rating">★★★★★</div></div></div><p>Rapide, efficace, coche toutes les cases! Je recommande aux francophones de Roses!</p></div>
+            <div class="testimonial-card" data-author="Sabine Parolini"><div class="testimonial-header"><div class="testimonial-avatar">SP</div><div><div class="testimonial-name">Sabine Parolini</div><div class="testimonial-rating">★★★★★</div></div></div><p>Merci à Loic qui est intervenu très rapidement un dimanche , une personne très à l'écoute et très sympathique</p></div>
+            <div class="testimonial-card" data-author="Chloé Crnc"><div class="testimonial-header"><div class="testimonial-avatar">CC</div><div><div class="testimonial-name">Chloé Crnc</div><div class="testimonial-rating">★★★★★</div></div></div><p>Service irréprochable ! Appel la veille au soir pour une intervention le lendemain matin. Monsieur s’est démené pour...</p></div>
+            <div class="testimonial-card" data-author="bruno kovalski"><div class="testimonial-header"><div class="testimonial-avatar">BK</div><div><div class="testimonial-name">bruno kovalski</div><div class="testimonial-rating">★★★★★</div></div></div><p>Intervention efficace. Prix raisonnable. Rien à redire.</p></div>
+            <div class="testimonial-card" data-author="martine bonnefoy"><div class="testimonial-header"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">martine bonnefoy</div><div class="testimonial-rating">★★★★★</div></div></div><p>Suite à des problèmes sur le disjoncteur, il est intervenu très rapidement un samedi matin, avec beaucoup de compétence et un prix très correct. Je recommande en toute confiance.</p></div>
+            <div class="testimonial-card" data-author="Thierry Lelong"><div class="testimonial-header"><div class="testimonial-avatar">TL</div><div><div class="testimonial-name">Thierry Lelong</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai contacté cette société pour établir une attestation de conformité sur Llança....</p></div>
+            <div class="testimonial-card" data-author="Jean Pierre Chaumay"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai appelé Loîc un dimanche matin, l'après-midi le problème a été résolu. Très bon professionnel, serviable. Je recommande ses services !!!</p></div>
+            <div class="testimonial-card" data-author="Kader Ben Ali"><div class="testimonial-header"><div class="testimonial-avatar">KBA</div><div><div class="testimonial-name">Kader Ben Ali</div><div class="testimonial-rating">★★★★★</div></div></div><p>Très bon professionnel, à l'écoute et hyper réactif. Merci Loic...</p></div>
+            <div class="testimonial-card" data-author="Pierre Oudoul"><div class="testimonial-header"><div class="testimonial-avatar">PO</div><div><div class="testimonial-name">Pierre Oudoul</div><div class="testimonial-rating">★★★★★</div></div></div><p>Technicien très sympathique et compétant qui a bien voulu venir nous dépanner à 20h30 .je recommande cette entreprise.</p></div>
+            <div class="testimonial-card" data-author="Melodie Pascual"><div class="testimonial-header"><div class="testimonial-avatar">MP</div><div><div class="testimonial-name">Melodie Pascual</div><div class="testimonial-rating">★★★★★</div></div></div><p>Un IMMENSE MERCI à Mr Mendes, d'avoir répondu à notre appel ce jeudi soir. Nous l'avons contacter car notre...</p></div>
+            <div class="testimonial-card" data-author="Stephanie Pernin"><div class="testimonial-header"><div class="testimonial-avatar">SP</div><div><div class="testimonial-name">Stephanie Pernin</div><div class="testimonial-rating">★★★★★</div></div></div><p>Un électricien au top Loic est intervenu un quart d’heure après mon appel super gentil et à l’écoute pour un samedi après midi c’est super</p></div>
+            <div class="testimonial-card" data-author="Bruno DIAZ"><div class="testimonial-header"><div class="testimonial-avatar">BD</div><div><div class="testimonial-name">Bruno DIAZ</div><div class="testimonial-rating">★★★★★</div></div></div><p>Bon travail, nous souhaitions mettre des prises électriques dans nos garages pour charger nos voitures.</p></div>
+            <div class="testimonial-card" data-author="Catherine Morant"><div class="testimonial-header"><div class="testimonial-avatar">CM</div><div><div class="testimonial-name">Catherine Morant</div><div class="testimonial-rating">★★★★★</div></div></div><p>Très gentil, professionnel et efficace. Je recommande</p></div>
+            <div class="testimonial-card" data-author="Nes Da"><div class="testimonial-header"><div class="testimonial-avatar">ND</div><div><div class="testimonial-name">Nes Da</div><div class="testimonial-rating">★★★★★</div></div></div><p>Un grand merci à Loïc qui est intervenu chez nous très rapidement alors qu’il était 19h passé....</p></div>
+            <div class="testimonial-card" data-author="Dounia Hamidi"><div class="testimonial-header"><div class="testimonial-avatar">DH</div><div><div class="testimonial-name">Dounia Hamidi</div><div class="testimonial-rating">★★★★★</div></div></div><p>Loic est une superbe personne avant tout très bon technicien, serviable efficace mais surtout adorable et arrangeant ! Merci de votre efficacité !</p></div>
+            <div class="testimonial-card" data-author="Josiane Thise"><div class="testimonial-header"><div class="testimonial-avatar">JT</div><div><div class="testimonial-name">Josiane Thise</div><div class="testimonial-rating">★★★★★</div></div></div><p>Rapidité du service. Amabilité et efficacité. À recommander</p></div>
+            <div class="testimonial-card" data-author="Maeva Foroni"><div class="testimonial-header"><div class="testimonial-avatar">MF</div><div><div class="testimonial-name">Maeva Foroni</div><div class="testimonial-rating">★★★★★</div></div></div><p>Top! ponctuel, professionnel, à l’écoute du client Rapport qualité prix top !...</p></div>
+            <div class="testimonial-card" data-author="Jean-Claude Riviere"><div class="testimonial-header"><div class="testimonial-avatar">JCR</div><div><div class="testimonial-name">Jean-Claude Riviere</div><div class="testimonial-rating">★★★★★</div></div></div><p>Ayant eu besoin d'un électricien professionnel pour ma maison d' Empuriabrava , j'ai fais venir ce Monsieur . Très...</p></div>
+            <div class="testimonial-card" data-author="Jennifer Coulée"><div class="testimonial-header"><div class="testimonial-avatar">JC</div><div><div class="testimonial-name">Jennifer Coulée</div><div class="testimonial-rating">★★★★★</div></div></div><p>Panne d’électricité en ce jour de Noël, le patron est venu lui même me dépanner. Très sympathique, très professionnel, prix très démocratique. Probablement le meilleur électricien français à Rosas</p></div>
+            <div class="testimonial-card" data-author="groffy patisserie"><div class="testimonial-header"><div class="testimonial-avatar">GP</div><div><div class="testimonial-name">groffy patisserie</div><div class="testimonial-rating">★★★★★</div></div></div><p>Nous avons eu un problème électrique ils sont venu dans l’heure et ont résolu la panne, prix très honnêtes. Patron très sympa et compétent. A recommander vivement !!!</p></div>
         </div>
         <!-- Bouton caché (remplacé par le menu déroulant) -->
         <button id="toggleReviewsBtn" class="btn btn-secondary hidden" style="margin-top:20px;">
@@ -378,7 +378,7 @@
           <div class="faq-question text-en">What types of work do you do?</div>
           <div class="faq-question text-es">¿Qué tipos de trabajos realizas?</div>
           <div class="faq-answer">
-            <p class="text-fr">Je suis principalement électricien, mais je propose également des services de jardinage, de peinture et d'autres petits travaux manuels. Veuillez me contacter pour plus de détails.</p>
+            <p class="text-fr">Je suis principalement électricien, mais je propose également des services de jardinage, de la peinture et d'autres petits travaux manuels. Veuillez me contacter pour plus de détails.</p>
             <p class="text-en">I am primarily an electrician, but I also offer gardening, painting, and other handyman services. Please contact me for more details.</p>
             <p class="text-es">Soy principalmente electricista, pero también ofrezco servicios de jardinería, pintura y otros trabajos manuales. Por favor, contácteme para más detalles.</p>
           </div>
@@ -495,6 +495,7 @@ document.addEventListener('DOMContentLoaded', function () {
         this.querySelector('.text-en').textContent = isHidden ? texts.en.show : texts.en.hide;
         this.querySelector('.text-es').textContent = isHidden ? texts.es.show : texts.es.hide;
     };
+
     // Étoiles
     const stars = document.querySelectorAll('.star');
     const ratingInput = document.getElementById('reviewRating');
