@@ -323,9 +323,9 @@
             <label for="moreReviewsSelect" class="text-en">See other reviews</label>
             <label for="moreReviewsSelect" class="text-es">Ver otras opiniones</label>
             <select id="moreReviewsSelect" class="form-control" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border); background-color: var(--card); color: var(--text);">
-                <option value="" class="text-fr">Sélectionnez un avis...</option>
-                <option value="" class="text-en">Select a review...</option>
-                <option value="" class="text-es">Seleccione una opinión...</option>
+                <option value="" class="text-fr" disabled>Sélectionnez un avis...</option>
+                <option value="" class="text-en" disabled>Select a review...</option>
+                <option value="" class="text-es" disabled>Seleccione una opinión...</option>
                 <option value="Sven Wessler">Sven Wessler</option>
                 <option value="Joan Abella">Joan Abella</option>
                 <option value="Helene Ordner">Helene Ordner</option>
@@ -336,23 +336,9 @@
                 <option value="martine bonnefoy">martine bonnefoy</option>
                 <option value="Thierry Lelong">Thierry Lelong</option>
                 <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option> <!-- Exemple de répétition si nécessaire, sinon supprimer -->
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
-                <option value="Jean Pierre Chaumay">Jean Pierre Chaumay</option>
             </select>
         </div>
-        <!-- Conteneur pour les avis cachés (maintenu pour compatibilité avec le script existant) -->
+        <!-- Conteneur pour les avis cachés -->
         <div id="allReviewsContainer" class="hidden">
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">SW</div><div><div class="testimonial-name">Sven Wessler</div><div class="testimonial-rating">★★★★★</div></div></div><p>Super Elektricker, der hat Ahnung von seinem Handwerk. Ist Mega schnell und der Preis ist Super...</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JA</div><div><div class="testimonial-name">Joan Abella</div><div class="testimonial-rating">★★★★★</div></div></div><p>Gran profesional, servicio impecable, recomendado al 100%</p></div>
@@ -364,22 +350,8 @@
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">MB</div><div><div class="testimonial-name">martine bonnefoy</div><div class="testimonial-rating">★★★★★</div></div></div><p>Suite à des problèmes sur le disjoncteur, il est intervenu très rapidement un samedi matin, avec beaucoup de compétence et un prix très correct. Je recommande en toute confiance.</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">TL</div><div><div class="testimonial-name">Thierry Lelong</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai contacté cette société pour établir une attestation de conformité sur Llança....</p></div>
             <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>J'ai appelé Loîc un dimanche matin, l'après-midi le problème a été résolu. Très bon professionnel, serviable. Je recommande ses services !!!</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div> <!-- Exemple de répétition si nécessaire, sinon supprimer -->
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre......</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
-            <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">JPC</div><div><div class="testimonial-name">Jean Pierre Chaumay</div><div class="testimonial-rating">★★★★★</div></div></div><p>Autre commentaire de Jean Pierre Chaumay.</p></div>
         </div>
-        <!-- Bouton caché remplacé -->
+        <!-- Bouton caché (remplacé par le menu déroulant) -->
         <button id="toggleReviewsBtn" class="btn btn-secondary hidden" style="margin-top:20px;">
             <span class="text-fr">Voir tous les avis</span>
             <span class="text-en">See all reviews</span>
@@ -429,6 +401,26 @@
             <p class="text-fr">Oui, je propose des devis gratuits pour tous mes services.</p>
             <p class="text-en">Yes, I offer free quotes for all my services.</p>
             <p class="text-es">Sí, ofrezco presupuestos gratuitos para todos mis servicios.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question text-fr">Quels sont vos tarifs ?</div>
+          <div class="faq-question text-en">What are your rates?</div>
+          <div class="faq-question text-es">¿Cuáles son sus tarifas?</div>
+          <div class="faq-answer">
+            <p class="text-fr">Les tarifs varient en fonction du type et de la complexité du travail. Un devis gratuit sera fourni avant le début de chaque intervention.</p>
+            <p class="text-en">Rates vary depending on the type and complexity of the job. A free quote will be provided before the start of each job.</p>
+            <p class="text-es">Las tarifas varían según el tipo y la complejidad del trabajo. Se proporcionará un presupuesto gratuito antes del inicio de cada trabajo.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question text-fr">Êtes-vous disponible en dehors des heures de bureau ?</div>
+          <div class="faq-question text-en">Are you available outside office hours?</div>
+          <div class="faq-question text-es">¿Está disponible fuera del horario de oficina?</div>
+          <div class="faq-answer">
+            <p class="text-fr">Je suis disponible 7 jours sur 7 pour les urgences électriques. Pour les travaux planifiés, merci de prendre contact à l'avance.</p>
+            <p class="text-en">I am available 7 days a week for electrical emergencies. For planned work, please contact me in advance.</p>
+            <p class="text-es">Estoy disponible 7 días a la semana para emergencias eléctricas. Para trabajos planificados, por favor contácteme con antelación.</p>
           </div>
         </div>
       </div>
