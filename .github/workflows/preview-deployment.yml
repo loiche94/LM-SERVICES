@@ -1,86 +1,98 @@
-name: Preview Deployment for Pull Requests
+name: Preview Deploy to gh-pages per PR
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  pull_request_target:
-    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  deploy-preview:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    
     steps:
-      - name: Checkout PR Branch
+      - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-      
-      - name: Create Preview Branch
+
+      - name: Setup Pages workspace
         run: |
-          PREVIEW_BRANCH="preview-pr-${{ github.event.pull_request.number }}"
+          mkdir -p site
+          cp -R . site/
+
+      - name: Checkout gh-pages
+        run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          
-          # Create or update preview branch from PR branch
-          git branch -D $PREVIEW_BRANCH 2>/dev/null || true
-          git checkout -b $PREVIEW_BRANCH
-          git push origin $PREVIEW_BRANCH --force
-      
-      - name: Generate Preview URL
-        id: preview-url
+          git fetch origin gh-pages || true
+          git checkout -B gh-pages origin/gh-pages || git checkout -b gh-pages
+          mkdir -p preview/pr-${{ github.event.pull_request.number }}
+          rm -rf preview/pr-${{ github.event.pull_request.number }}/*
+          cp -R site/* preview/pr-${{ github.event.pull_request.number }}/
+          touch .nojekyll
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "PR #${{ github.event.pull_request.number }} preview update"
+            git push origin gh-pages
+          fi
+
+      - name: Compute Preview URL
+        id: url
         run: |
-          REPO_OWNER="loiche94"
-          REPO_NAME="LM-SERVICES"
-          PR_NUMBER="${{ github.event.pull_request.number }}"
-          PREVIEW_BRANCH="preview-pr-${PR_NUMBER}"
-          
-          # Note: GitHub Pages URL format
-          # For branch deployment, we'll use a standard pattern
-          PREVIEW_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/preview/pr-${PR_NUMBER}/"
-          
-          echo "preview-url=${PREVIEW_URL}" >> $GITHUB_OUTPUT
-          echo "Preview URL: ${PREVIEW_URL}"
-      
+          echo "value=https://loiche94.github.io/LM-SERVICES/preview/pr-${{ github.event.pull_request.number }}/" >> $GITHUB_OUTPUT
+
       - name: Comment PR with Preview URL
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const previewUrl = "${{ steps.preview-url.outputs.preview-url }}";
+            const previewUrl = "${{ steps.url.outputs.value }}";
             const prNumber = context.issue.number;
-            
-            // Check if comment already exists
-            const comments = await github.rest.issues.listComments({
+            const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber
             });
-            
-            const botComment = comments.data.find(comment => 
-              comment.body.includes('Preview URL') && 
-              comment.user.type === 'Bot'
-            );
-            
-            const commentBody = `## 🔍 Preview Available\n\nYour changes are now available for preview:\n\n**Preview URL:** [${previewUrl}](${previewUrl})\n\n**How to test:**\n1. Click the link above to view your changes\n2. The preview is automatically updated with each new commit\n3. The preview URL remains the same throughout the PR lifecycle\n\n---\n*This comment is automatically updated with each commit*`;
-            
-            if (botComment) {
-              // Update existing comment
+            const marker = "[preview-url-marker]";
+            const body = `## Aperçu de la PR\n\n${marker}\nAperçu disponible ici : ${previewUrl}\n\n- L'URL reste stable pendant toute la durée de vie de la PR\n- Le contenu est mis à jour automatiquement à chaque commit`;
+            const existing = comments.find(c => c.body.includes(marker));
+            if (existing) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                comment_id: botComment.id,
-                body: commentBody
+                comment_id: existing.id,
+                body
               });
             } else {
-              // Create new comment
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: commentBody
+                body
               });
             }
+
+  cleanup-preview:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'closed'
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Remove PR preview
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          PREVIEW_DIR="preview/pr-${{ github.event.pull_request.number }}"
+          if [ -d "$PREVIEW_DIR" ]; then
+            rm -rf "$PREVIEW_DIR"
+            git add -A
+            git commit -m "Remove preview for PR #${{ github.event.pull_request.number }}"
+            git push origin gh-pages
+          fi
