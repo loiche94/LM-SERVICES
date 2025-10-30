@@ -345,22 +345,38 @@
           <div class="why-us-grid">
             <div class="why-us-card">
               <div class="why-us-icon">🏆</div>
-              <h3 class="text-fr">25 Ans d'Expérience</h3><h3 class="text-en">25 Years of Experience</h3><h3 class="text-es">25 Años de Experiencia</h3>
+              <h3>
+                <span class="text-fr">25 Ans d'Expérience</span>
+                <span class="text-en">25 Years of Experience</span>
+                <span class="text-es">25 Años de Experiencia</span>
+              </h3>
               <p class="text-fr">Un savoir-faire éprouvé pour garantir un travail de qualité et sécurisé.</p><p class="text-en">Proven expertise to ensure quality and safe work.</p><p class="text-es">Experiencia demostrada para garantizar un trabajo de calidad y seguro.</p>
             </div>
             <div class="why-us-card">
               <div class="why-us-icon">⚡️</div>
-              <h3 class="text-fr">Intervention Rapide</h3><h3 class="text-en">Fast Response</h3><h3 class="text-es">Intervención Rápida</h3>
+              <h3>
+                <span class="text-fr">Intervention Rapide</span>
+                <span class="text-en">Fast Response</span>
+                <span class="text-es">Intervención Rápida</span>
+              </h3>
               <p class="text-fr">Disponible 7j/7 pour les urgences dans un rayon de 20-30 km autour de Roses.</p><p class="text-en">Available 7/7 for emergencies within a 20-30 km radius of Roses.</p><p class="text-es">Disponible 7/7 para emergencias en un radio de 20-30 km de Roses.</p>
             </div>
             <div class="why-us-card">
               <div class="why-us-icon">🤝</div>
-              <h3 class="text-fr">Devis Gratuit & Transparent</h3><h3 class="text-en">Free & Transparent Quote</h3><h3 class="text-es">Presupuesto Gratis y Transparente</h3>
+              <h3>
+                <span class="text-fr">Devis Gratuit & Transparent</span>
+                <span class="text-en">Free & Transparent Quote</span>
+                <span class="text-es">Presupuesto Gratis y Transparente</span>
+              </h3>
               <p class="text-fr">Aucune surprise. Vous connaissez le coût avant le début des travaux.</p><p class="text-en">No surprises. You know the cost before the work begins.</p><p class="text-es">Sin sorpresas. Conoce el coste antes de que comience el trabajo.</p>
             </div>
             <div class="why-us-card">
               <div class="why-us-icon">🌍</div>
-              <h3 class="text-fr">Multilingue</h3><h3 class="text-en">Multilingual</h3><h3 class="text-es">Multilingüe</h3>
+              <h3>
+                <span class="text-fr">Multilingue</span>
+                <span class="text-en">Multilingual</span>
+                <span class="text-es">Multilingüe</span>
+              </h3>
               <p class="text-fr">Je parle Français, Espagnol et Anglais pour une communication parfaite.</p><p class="text-en">I speak French, Spanish, and English for perfect communication.</p><p class="text-es">Hablo Francés, Español e Inglés para una comunicación perfecta.</p>
             </div>
           </div>
@@ -530,7 +546,7 @@
 
   <footer>
     <div class="container">
-      <p>© 2025 LM-SERVICES. Tous droits réservés.</p>
+      <p>© <span id="current-year">2025</span> LM-SERVICES. Tous droits réservés.</p>
       <div class="footer-links">
         <!-- Assurez-vous que le fichier 'privacy-policy.html' est dans le même dossier -->
         <a href="privacy-policy.html" class="text-fr">Politique de confidentialité</a>
@@ -568,38 +584,79 @@
   <!-- Site Functionality Script -->
   <script>
   document.addEventListener('DOMContentLoaded', function () {
-      // Arcs électriques
+    function initElectricalArcs() {
       const arcsContainer = document.getElementById('arcs');
-      for (let i = 0; i < 30; i++) { const arc = document.createElement('div'); arc.classList.add('arc'); arc.style.top = `${Math.random() * 100}%`; arc.style.left = `${Math.random() * 100}%`; const size = Math.random() * 100 + 50; arc.style.width = `${size}px`; arc.style.height = `${size}px`; arc.style.animationDelay = `${Math.random() * 5}s`; arcsContainer.appendChild(arc); }
-      // Thème
+      if (!arcsContainer) return;
+      for (let i = 0; i < 30; i++) {
+        const arc = document.createElement('div');
+        arc.classList.add('arc');
+        arc.style.top = `${Math.random() * 100}%`;
+        arc.style.left = `${Math.random() * 100}%`;
+        const size = Math.random() * 100 + 50;
+        arc.style.width = `${size}px`;
+        arc.style.height = `${size}px`;
+        arc.style.animationDelay = `${Math.random() * 5}s`;
+        arcsContainer.appendChild(arc);
+      }
+    }
+
+    function initTheme() {
       const themeToggle = document.getElementById('themeToggle');
       const currentTheme = localStorage.getItem('theme') || 'light';
       document.body.setAttribute('data-theme', currentTheme);
       themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
-      themeToggle.onclick = () => { const newTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; document.body.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme); themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️'; };
-      // Langue
+      themeToggle.onclick = () => {
+        const newTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+      };
+    }
+
+    function setLanguage(lang) {
+      document.body.classList.remove('lang-fr', 'lang-en', 'lang-es');
+      document.body.classList.add('lang-' + lang);
+      localStorage.setItem('lang', lang);
+    }
+
+    function initLanguage() {
       const langBtns = document.querySelectorAll('.lang-btn');
       const storedLang = localStorage.getItem('lang') || 'fr';
-      function setLanguage(lang) {
-          document.body.className = 'lang-' + lang;
-          const currentTheme = localStorage.getItem('theme') || 'light';
-          document.body.setAttribute('data-theme', currentTheme);
-          localStorage.setItem('lang', lang);
-      }
-      langBtns.forEach(btn => { btn.onclick = () => { setLanguage(btn.dataset.lang); }; });
+      langBtns.forEach(btn => {
+        btn.onclick = () => setLanguage(btn.dataset.lang);
+      });
       setLanguage(storedLang);
-      // Cookies
+    }
+
+    function initCookieBanner() {
       const cookieBanner = document.getElementById('cookieBanner');
       if (!localStorage.getItem('cookiesAccepted')) { cookieBanner.style.display = 'block'; }
       document.querySelector('.cookie-btn.accept').onclick = () => { localStorage.setItem('cookiesAccepted', 'true'); cookieBanner.style.display = 'none'; };
       document.querySelector('.cookie-btn.reject').onclick = () => { localStorage.setItem('cookiesAccepted', 'false'); cookieBanner.style.display = 'none'; };
-      // FAQ
+    }
+
+    function initFAQ() {
       document.querySelectorAll('.faq-question').forEach(q => { q.onclick = function() { this.nextElementSibling.classList.toggle('show'); } });
-      
-      // Étoiles pour avis
+    }
+
+    function initRatingStars() {
       const stars = document.querySelectorAll('.star');
       const ratingInput = document.getElementById('reviewRating');
       stars.forEach(star => { star.onclick = function() { const value = this.dataset.value; ratingInput.value = value; stars.forEach((s, i) => { s.classList.toggle('selected', i < value); }); }; });
+    }
+
+    function initCurrentYear() {
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    }
+
+    // Initialize all functionalities
+    initElectricalArcs();
+    initTheme();
+    initLanguage();
+    initCookieBanner();
+    initFAQ();
+    initRatingStars();
+    initCurrentYear();
   });
   </script>
 
