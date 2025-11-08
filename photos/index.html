@@ -65,22 +65,18 @@
             height: 250px;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease; /* Ajout pour zoom subtil */
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05); /* Zoom professionnel au survol */
         }
         
         .gallery-info {
             padding: 15px;
             text-align: center;
-        }
-        
-        .empty-state {
-            text-align: center;
-            color: white;
-            padding: 60px 20px;
-        }
-        
-        .empty-state h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #333;
         }
         
         .back-button {
@@ -111,26 +107,111 @@
     <div class="container">
         <header>
             <h1>Galerie de Projets</h1>
-            <p>LM-SERVICES - Electricien Professionnel a Roses, Espagne</p>
+            <p>LM-SERVICES - Electricien Professionnel à Roses, Espagne</p>
         </header>
         
         <div class="gallery-grid" id="gallery">
-            <div class="empty-state" style="grid-column: 1/-1;">
-                <h2>Galerie en cours de mise a jour</h2>
-                <p>Les photos de nos projets seront bientot disponibles.</p>
-                <p style="margin-top: 20px; opacity: 0.8;">
-                    Retrouvez-nous sur <a href="https://github.com/loiche94/LM-SERVICES" style="color: #ffcc00; text-decoration: underline;">GitHub</a>
-                </p>
-            </div>
+            <!-- Les images seront ajoutées dynamiquement via JS -->
         </div>
         
         <div style="text-align: center;">
-            <a href="https://loiche94.github.io/LM-SERVICES/" class="back-button">Retour au Site Principal</a>
+            <a href="https://lm-services-electricite.web.app/" class="back-button">Retour au Site Principal</a>
         </div>
         
         <footer>
-            <p>2025 LM-SERVICES. Tous droits reserves.</p>
+            <p>2025 LM-SERVICES. Tous droits réservés.</p>
         </footer>
     </div>
+    
+    <script>
+        const images = [
+            "20220205_113328.webp",
+            "20220205_182724.webp",
+            "20220205_182735.webp",
+            "20220206_120748.webp",
+            "20220206_160658.webp",
+            "20220207_154454.webp",
+            "20220207_154504.webp",
+            "20220207_154529.webp",
+            "20220209_120518.webp",
+            "20220616_151835.webp",
+            "20220616_151840.webp",
+            "20220616_151843.webp",
+            "20220616_152012.webp",
+            "20220616_152051.webp",
+            "20220622_145125.webp",
+            "20220622_145134.webp",
+            "20220622_145153.webp",
+            "20221107_103008.webp",
+            "20221107_103012.webp",
+            "20221107_103146.webp",
+            "20230206_121032.webp",
+            "20230206_121039.webp",
+            "20230206_163945.webp",
+            "20230415_105203.webp",
+            "20230415_143714.webp",
+            "20230415_144002.webp",
+            "20230415_144611.webp",
+            "20230817_140351.webp",
+            "20230913_103548.webp",
+            "20230913_103612.webp",
+            "20231120_143313.webp",
+            "20231120_143327.webp",
+            "20240301_161136.webp",
+            "20240403_143453.webp",
+            "20240522_165726.webp",
+            "20240522_165733.webp",
+            "20240522_165749.webp",
+            "20240522_165753.webp",
+            "20240529_101359.webp",
+            "20240529_101509.webp",
+            "20241204_141812.webp",
+            "20250226_101951.webp",
+            "20250424_104623.webp",
+            "20250424_104742.webp",
+            "20250424_105704.webp",
+            "20250506_142400.webp",
+            "20250527_154338.webp",
+            "20250527_154443.webp",
+            "20250527_154543.webp",
+            "20250530_101739.webp",
+            "20250530_105251.webp",
+            "20250730_145456.webp",
+            "20250809_141143.webp",
+            "20251009_102816.webp",
+            "20251009_102821 - Copie.webp",
+            "20251009_102821.webp",
+            "20251010_141409.webp",
+            "20251010_141417.webp",
+            "20251014_105428.webp",
+            "20251031_140510.webp"
+        ];
+        
+        const gallery = document.getElementById('gallery');
+        
+        images.forEach(filename => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            
+            const img = document.createElement('img');
+            img.className = 'gallery-img';
+            img.src = filename;
+            img.loading = 'lazy';
+            
+            // Formatage de l'alt et du info : extraire la date du filename (YYYYMMDD_HHMMSS)
+            const dateMatch = filename.match(/^(\d{4})(\d{2})(\d{2})_(\d{6})/);
+            const formattedDate = dateMatch ? `${dateMatch[3]}/${dateMatch[2]}/${dateMatch[1]}` : filename;
+            img.alt = `Projet du ${formattedDate}`;
+            
+            item.appendChild(img);
+            
+            const info = document.createElement('div');
+            info.className = 'gallery-info';
+            info.innerHTML = `<p>Projet du ${formattedDate}</p>`;
+            item.appendChild(info);
+            
+            gallery.appendChild(item);
+        });
+    </script>
 </body>
 </html>
